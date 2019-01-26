@@ -52,25 +52,29 @@ public class AlienSpawner : MonoBehaviour
     
     private Elements GetNextElement()
     {
-        if (_availableELements.Count == 0)
+        if (_availableELements.Count <= 0)
         {
             RefillElements();
         }
         return _availableELements.Pop();
     }
 
+    public AlienContainer SpawnAlien()
+    {
+        var alien = new AlienContainer();
+        alien.Element = GetNextElement();
+        alien.AlienImage = GetRandomAlien(alien.Element);
+        alien.ElementImage = GetRandomIcon(alien.Element);
+        return alien;
+    }
+    
     public AlienContainer[] SpawnAliens(int playerCount)
     {
         var numberOfAliens = playerCount + 1;
         var aliens = new AlienContainer[numberOfAliens];
         for (int i = 0; i < numberOfAliens; i++)
         {
-            var alien = new AlienContainer();
-            alien.Element = GetNextElement();
-            alien.AlienImage = GetRandomAlien(alien.Element);
-            alien.ElementImage = GetRandomIcon(alien.Element);
-
-            aliens[i] = alien;
+            aliens[i] = SpawnAlien();
         }
 
         return aliens;

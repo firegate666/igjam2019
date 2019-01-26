@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
+        _planetOutlinePainter.gameObject.SetActive(false);
         StartUI.SetActive(true);
     }
 
@@ -73,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         StartUI.SetActive(false);
         _tileSystemPainter.gameObject.SetActive(true);
+        _planetOutlinePainter.gameObject.SetActive(true);
         _gameState = GameState.Planet;
     }
 
@@ -131,6 +133,9 @@ public class GameManager : MonoBehaviour
 		{
 			TheScore.addScore(alienPoints[allWinners[i]]);
 			Debug.Log(TheScore.getScore());
+			
+			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
+			AlienUI.AddAlien(AlienSpawner.Instance.SpawnAlien());
 		}
 
 		//_tileSystem.Dispose();

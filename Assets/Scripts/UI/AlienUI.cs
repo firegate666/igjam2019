@@ -7,7 +7,7 @@ public class AlienUI : MonoBehaviour
     public AlienUIElement ElementPrefab;
     private RectTransform _rectTransform;
 
-    private Dictionary<Elements, GameObject> _aliens;
+    private Dictionary<Elements, RectTransform> _aliens = new Dictionary<Elements, RectTransform>();
 
     private void Start()
     {
@@ -18,7 +18,7 @@ public class AlienUI : MonoBehaviour
     {
         foreach (var obj in _aliens)
         {
-            Destroy(obj.Value);
+            Destroy(obj.Value.gameObject);
         }
         
         _aliens.Clear();
@@ -26,27 +26,34 @@ public class AlienUI : MonoBehaviour
 
     public void RemoveAlien(AlienContainer alien)
     {
-        GameObject uiAlien;
+        RectTransform uiAlien;
         _aliens.TryGetValue(alien.Element, out uiAlien);
 
         if (uiAlien)
         {
-            Destroy(uiAlien);
+         
+            
+            Destroy(uiAlien.gameObject);
             _aliens.Remove(alien.Element);
         }
+    }
+
+    public void AddAlien(AlienContainer alien)
+    {
+        AlienUIElement alienUI = Instantiate(ElementPrefab);
+        alienUI.SetAlien(alien);
+        RectTransform alientRect = alienUI.GetComponent<RectTransform>();
+        alientRect.parent = _rectTransform;
+        alientRect.localScale = Vector3.one;
+            
+        _aliens.Add(alien.Element, alientRect);
     }
 
     public void AddAliens(AlienContainer[] aliens)
     {
         foreach (var alien in aliens)
         {
-            AlienUIElement alienUI = Instantiate(ElementPrefab);
-            alienUI.SetAlien(alien);
-            RectTransform alientRect = alienUI.GetComponent<RectTransform>();
-            alientRect.parent = _rectTransform;
-            alientRect.localScale = Vector3.one;
-            
-            _aliens.Add(alien.Element, alientRect.gameObject);
+            AddAlien(alien);
         }
     }
 }
