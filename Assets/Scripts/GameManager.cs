@@ -1,8 +1,6 @@
 ﻿using System;
 using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,8 +14,6 @@ public class GameManager : MonoBehaviour
     private TileSystem _tileSystem;
     [SerializeField] private TileSystemPainter _tileSystemPainter;
     [SerializeField] private PlanetOutlinePainter _planetOutlinePainter;
-
-	[SerializeField] private int planetsPast;
 
     public Transform OrbitPivot;
 
@@ -48,8 +44,6 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int numberOfPlayers)
     {
-		planetsPast = 0;
-
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
         AlienUI.AddAliens(_aliens);
         _playerControllers = new PlayerController[numberOfPlayers];
@@ -59,7 +53,6 @@ public class GameManager : MonoBehaviour
             player.SetPlayer(i + 1);
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
-            player.SetPositionAngle(Random.Range(0, 359));
 
             _playerControllers[i] = player;
         }
@@ -74,20 +67,8 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
+                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Apache_Helicopter);
             }
         }
     }
-    
-    public void Restart()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-
-    }
-
-	public void PlanetFull()
-	{
-
-	}
 }
