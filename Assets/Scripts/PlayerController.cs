@@ -23,7 +23,10 @@ public class PlayerController : MonoBehaviour
     public GameObject FireIcon;
 	public GameObject RocketShip; // 8========D~~~
 
+	private Vector3 lastPosition;
+
     public float positionAngle;
+	private float lastPositionAngle;
 
 	//public GameObject tileToDrop;
 
@@ -69,13 +72,14 @@ public class PlayerController : MonoBehaviour
 
     public void SetPositionAngle(float angle)
     {
-        positionAngle = angle;
+		positionAngle = angle;
         
         float positionX = Mathf.Sin(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
         float positionY = Mathf.Cos(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
 
-        transform.position = new Vector3(positionX + _xOffset, positionY, transform.position.z);
-    }
+		transform.position = new Vector3(positionX + _xOffset, positionY, transform.position.z);
+
+		}
 
 
 	public void SetElementToDrop(Elements element)
@@ -123,7 +127,13 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis(horizontalAxis);
         float y = Input.GetAxis(verticalAxis);
 
-        if (x > 0 || x < 0 || y > 0 || y < 0)
+		lastPositionAngle = positionAngle;
+		lastPosition = RocketShip.transform.position;
+
+		Quaternion targetRotation;
+		bool isMoving;
+
+		if (x > 0 || x < 0 || y > 0 || y < 0)
         {
             var rad = Mathf.Atan2(y, x); // In radians
             var deg = rad * (180 / Mathf.PI) + 90;
@@ -159,10 +169,25 @@ public class PlayerController : MonoBehaviour
                 positionAngle += 360;
             }
 
-            SetPositionAngle(positionAngle);
-        }
+			SetPositionAngle(positionAngle);
+			isMoving = true;
+		}
+		else
+		{
+			isMoving = false;
+		}
 
-        if (Input.GetButtonDown(dropButtonName))
+		if (isMoving && Mathf.Abs(lastPositionAngle - positionAngle) > 0.1f)
+		{
+			targetRotation = Quaternion.LookRotation(Vector3.forward, new Vector3(RocketShip.transform.position.x, RocketShip.transform.position.y, 0) - new Vector3(lastPosition.x, lastPosition.y, 0));
+		}
+		else
+		{
+			targetRotation = Quaternion.LookRotation(Vector3.forward, new Vector3(_xOffset, 0, 0) - new Vector3(RocketShip.transform.position.x, RocketShip.transform.position.y, 0));
+		}
+		RocketShip.transform.rotation = Quaternion.Lerp(RocketShip.transform.rotation, targetRotation, Time.deltaTime * 7);
+
+		if (Input.GetButtonDown(dropButtonName))
         {
             //Debug.Log("Drop button down");
 
