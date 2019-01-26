@@ -64,4 +64,14 @@ public class TileSystemPainter : MonoBehaviour
         tile.transform.GetChild(0).transform.localScale = Vector3.one / level;
     }
 
+    public void Reset()
+    {
+        foreach (GameObject levelContainer in _levelContainers)
+        {
+            foreach (Transform child in levelContainer.transform)
+            {
+                Destroy(child.gameObject);
+            }
+        }
+    }
 }

@@ -71,5 +71,13 @@ namespace DefaultNamespace
 				unitVectorOnAngle * endRadius
 			);
 		}
+
+		public void Reset()
+		{
+			foreach (Transform child in lineContainer.transform)
+			{
+				Destroy(child.gameObject);
+			}
+		}
 	}
 }

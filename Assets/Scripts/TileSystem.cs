@@ -6,7 +6,7 @@ using Random = UnityEngine.Random;
 
 class PlanetCycle
 {
-	private readonly List<PlanetRing> _rings = new List<PlanetRing>();
+	public readonly List<PlanetRing> _rings = new List<PlanetRing>();
 
 	public PlanetCycle()
 	{
@@ -146,18 +146,13 @@ public class PlanetPiece : IDisposable
 		underlayingPiece = piece;
 	}
 
-	~PlanetPiece()
-	{
-		Dispose();
-	}
-
 	public void Dispose()
 	{
 		underlayingPiece = null;
 	}
 }
 
-public class TileSystem
+public class TileSystem : IDisposable
 {
 	private readonly PlanetCycle _planetCycle = new PlanetCycle();
 	private readonly TileSystemPainter _tileSystemPainter;
@@ -228,5 +223,12 @@ public class TileSystem
 	public int CountElement(Elements elementToCount)
 	{
 		return _planetCycle.CountElement(elementToCount);
+	}
+
+	public void Dispose()
+	{
+		_planetCycle._rings.ForEach(r => r._pieces.ForEach(p => p.Dispose()));
+		_planetOutlinePainter.Reset();
+		_tileSystemPainter.Reset();
 	}
 }

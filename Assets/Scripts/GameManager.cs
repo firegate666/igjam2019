@@ -140,7 +140,7 @@ public class GameManager : MonoBehaviour
 			AlienUI.AddAlien(AlienSpawner.Instance.SpawnAlien());
 		}
 
-		//_tileSystem.Dispose();
+		_tileSystem.Dispose();
 		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 
 		planetsPast++;
