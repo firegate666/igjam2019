@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
 	public ScoreManager TheScore;
 
 	public UITimer Timer;
+	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
     public AlienUI AlienUI;
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
         StartUI.SetActive(false);
         _tileSystemPainter.gameObject.SetActive(true);
         _planetOutlineContainer.gameObject.SetActive(true);
+        MainUI.SetActive(true);
         gameState = GameState.Planet;
         Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
     }
