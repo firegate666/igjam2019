@@ -1,6 +1,8 @@
 ﻿using System;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
@@ -53,6 +55,7 @@ public class GameManager : MonoBehaviour
             player.SetPlayer(i + 1);
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
+            player.SetPositionAngle(Random.Range(0, 359));
 
             _playerControllers[i] = player;
         }
@@ -70,5 +73,12 @@ public class GameManager : MonoBehaviour
                 _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
             }
         }
+    }
+    
+    public void Restart()
+    {
+        Scene scene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(scene.name);
+
     }
 }
