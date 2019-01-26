@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
+                _tileSystem.DoDrop(_playerControllers[0].positionAngle, (Elements)Random.Range(0f,5f));
             }
         }
     }
