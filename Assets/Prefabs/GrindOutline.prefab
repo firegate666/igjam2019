@@ -71,7 +71,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.1
+    widthMultiplier: 0.2
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -85,7 +85,7 @@ LineRenderer:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 0.2
+        time: 0.1384613
         value: 1
         inSlope: 0
         outSlope: 0
@@ -94,7 +94,7 @@ LineRenderer:
         inWeight: 0
         outWeight: 0
       - serializedVersion: 3
-        time: 0.8
+        time: 0.8892334
         value: 1
         inSlope: 0
         outSlope: 0
@@ -116,8 +116,8 @@ LineRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0.7264151, g: 0.4940151, b: 0, a: 1}
-      key1: {r: 0.7264151, g: 0.4940151, b: 0, a: 1}
+      key0: {r: 0.81960785, g: 0.72156864, b: 0.60784316, a: 1}
+      key1: {r: 0.81960785, g: 0.72156864, b: 0.60784316, a: 1}
       key2: {r: 0, g: 0, b: 0, a: 0}
       key3: {r: 0, g: 0, b: 0, a: 0}
       key4: {r: 0, g: 0, b: 0, a: 0}

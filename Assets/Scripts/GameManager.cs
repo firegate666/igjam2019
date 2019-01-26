@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,6 +8,8 @@ using Random = UnityEngine.Random;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
+
+	public ScoreManager TheScore;
 
     public GameObject StartUI;
     public AlienUI AlienUI;
@@ -41,6 +44,9 @@ public class GameManager : MonoBehaviour
         {
             throw new Exception("Only one instance of GameManager!");
         }
+
+		TheScore = new ScoreManager();
+		TheScore.setScore(0);
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
@@ -98,6 +104,38 @@ public class GameManager : MonoBehaviour
 
 	public void PlanetFull()
 	{
+		// Check for winning alien
+		List<int> alienPoints = new List<int>();
+		foreach (AlienContainer alien in _aliens)
+		{
+			int points = _tileSystem.CountElement(alien.Element);
+			alienPoints.Add(points);
+		}
+		int maxPoints = 0;
+		List<int> allWinners = new List<int>();
+		for (int i = 0; i < alienPoints.Count; i++)
+		{
+			if (alienPoints[i] == 0)
+				continue;
+			if (alienPoints[i] > maxPoints)
+			{
+				allWinners.Clear();
+				allWinners.Add(i);
+				maxPoints = alienPoints[i];
+			} else if (alienPoints[i] == maxPoints)
+			{
+				allWinners.Add(i);
+			}
+		}
+		for (int i = 0; i < allWinners.Count; i++)
+		{
+			TheScore.addScore(alienPoints[allWinners[i]]);
+			Debug.Log(TheScore.getScore());
+		}
 
+		//_tileSystem.Dispose();
+		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
+
+		planetsPast++;
 	}
 }
