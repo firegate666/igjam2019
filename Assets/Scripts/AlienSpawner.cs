@@ -48,6 +48,8 @@ public class AlienSpawner : MonoBehaviour
             _availableELements.Push(_allowedElements[randomIndex]);
             _allowedElements.Remove(_allowedElements[randomIndex]);
         }
+
+        _allowedElements = _availableELements.ToArray().ToList();
     }
     
     private Elements GetNextElement()
