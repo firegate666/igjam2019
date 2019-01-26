@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
     public GameObject WaterIcon;
     public GameObject WoodIcon;
     public GameObject FireIcon;
+	public GameObject RocketShip; // 8========D~~~
 
     public float positionAngle;
 
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = "Xbox" + _player + "Horizontal";
         verticalAxis = "Xbox" + _player + "Vertical";
         dropButtonName = "Xbox" + _player + "Drop";
+
+		RocketShip.SetActive(true);
 
         _distanceToCenter = transform.position.y;
 
@@ -68,9 +71,7 @@ public class PlayerController : MonoBehaviour
         
         float positionX = Mathf.Sin(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
         float positionY = Mathf.Cos(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
-
-        transform.position = new Vector3(positionX, positionY, transform.position.z);
-    }
+	}
 
 	public void SetElementToDrop(Elements element)
 	{
