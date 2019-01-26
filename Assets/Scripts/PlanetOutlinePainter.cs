@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-	public class PlanetOutline : MonoBehaviour
+	public class PlanetOutlinePainter : MonoBehaviour
 	{
 		[SerializeField] private GameObject lineRendererPrefab;
-		private List<LineRenderer> _lineRenderers = new List<LineRenderer>();
+		private readonly List<LineRenderer> _lineRenderers = new List<LineRenderer>();
 
 		public void DrawOutLineForPiece(PlanetPiece planetPiece)
 		{

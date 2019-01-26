@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     string dropButtonName;
     private float _distanceToCenter;
 
-    public float _positionAngle;
+    public float positionAngle;
 
     public GameObject tileToDrop;
 
@@ -38,10 +38,10 @@ public class PlayerController : MonoBehaviour
 
     public void SetPositionAngle(float angle)
     {
-        _positionAngle = angle;
+        positionAngle = angle;
         
-        float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
-        float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
+        float positionX = Mathf.Sin(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
+        float positionY = Mathf.Cos(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
 
         transform.position = new Vector3(positionX, positionY, transform.position.z);
     }
@@ -62,38 +62,33 @@ public class PlayerController : MonoBehaviour
                 deg = 360 + deg;
             }
 
-            if (Mathf.Abs(deg - _positionAngle) > 0.1f * OrbitSpeed)
+            if (Mathf.Abs(deg - positionAngle) > 0.1f * OrbitSpeed)
             {
-                if (_positionAngle < deg && deg - _positionAngle < _positionAngle + 360 - deg) // right
+                if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
                 {
-                    _positionAngle += Time.deltaTime * OrbitSpeed;
-                } else if (_positionAngle < deg && deg - _positionAngle >= _positionAngle + 360 - deg)
+                    positionAngle += Time.deltaTime * OrbitSpeed;
+                } else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
                 {
-                    _positionAngle -= Time.deltaTime * OrbitSpeed;
-                } else if (_positionAngle >= deg && _positionAngle - deg < deg + 360 - _positionAngle)
+                    positionAngle -= Time.deltaTime * OrbitSpeed;
+                } else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
                 {
-                    _positionAngle -= Time.deltaTime * OrbitSpeed;
+                    positionAngle -= Time.deltaTime * OrbitSpeed;
                 }
                 else
                 {
-                    _positionAngle += Time.deltaTime * OrbitSpeed;
+                    positionAngle += Time.deltaTime * OrbitSpeed;
                 }
             }
 
-            if (_positionAngle >= 360)
+            if (positionAngle >= 360)
             {
-                _positionAngle -= 360;
-            } else if (_positionAngle < 0)
+                positionAngle -= 360;
+            } else if (positionAngle < 0)
             {
-                _positionAngle += 360;
+                positionAngle += 360;
             }
 
-            SetPositionAngle(_positionAngle);
-            /*
-            float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
-            float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
-
-            transform.position = new Vector3(positionX, positionY, transform.position.z);*/
+            SetPositionAngle(positionAngle);
         }
 
         if (Input.GetButtonDown(dropButtonName) || Input.GetButtonDown("Jump"))
