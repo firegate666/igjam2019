@@ -118,5 +118,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07317b6356c544aacb07fd08c89f5270, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TimeToFly: 0
+  TimeToFly: 0.5
   DestroyOnArrive: 0

@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour
     string horizontalAxis;
     string verticalAxis;
     string dropButtonName;
+    private float _distanceToCenter;
 
     public float _positionAngle;
 
@@ -22,6 +23,8 @@ public class PlayerController : MonoBehaviour
         horizontalAxis = "Xbox" + _player + "Horizontal";
         verticalAxis = "Xbox" + _player + "Vertical";
         dropButtonName = "Xbox" + _player + "Drop";
+
+        _distanceToCenter = transform.position.y;
     }
 
     public Transform OrbitPivot;   // The transform that this object will orbit around
@@ -75,8 +78,8 @@ public class PlayerController : MonoBehaviour
                 _positionAngle += 360;
             }
 
-            float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * (OrbitPivot.localScale.x / 2);
-            float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * (OrbitPivot.localScale.x / 2);
+            float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
+            float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
 
             transform.position = new Vector3(positionX, positionY, transform.position.z);
         }
@@ -91,7 +94,6 @@ public class PlayerController : MonoBehaviour
             tile.transform.LookAt(lookAt);
 
             FlyingTo fly = tile.GetComponent<FlyingTo>();
-            fly.TimeToFly = 2;
             fly.FlyTo(lookAt);
         }
     }

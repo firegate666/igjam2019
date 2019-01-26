@@ -30,8 +30,6 @@ public class FlyingTo : MonoBehaviour
     {
         _targetPosition = position;
         _isActive = true;
-
-
     }
 
     private void Update()
