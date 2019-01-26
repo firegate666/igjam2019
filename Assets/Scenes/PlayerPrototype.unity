@@ -906,7 +906,7 @@ MonoBehaviour:
   lineRendererPrefab: {fileID: 4070562035482118493, guid: 109ab103fbf93479aa3e89d32aba020a,
     type: 3}
   lineContainer: {fileID: 1829134612}
-  size: 2.5
+  size: 2.57
 --- !u!4 &1017532483
 Transform:
   m_ObjectHideFlags: 0
