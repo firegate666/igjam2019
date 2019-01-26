@@ -220,7 +220,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 5985967463359177320, guid: 1d0d96d2e89366a46a798e720bab5122,
     type: 3}
-  _elementTextures: []
+  _elementTextures:
+  - {fileID: 21300000, guid: d02e10bf78c9849489a856b708b74cd8, type: 3}
+  - {fileID: 21300000, guid: 2551a8af5b99941c7afe402abb6e1b64, type: 3}
+  - {fileID: 21300000, guid: 80c1eceff615440368e5ebd0779af694, type: 3}
+  - {fileID: 21300000, guid: 16f38fb0dd6574db4839be12f3df0ce5, type: 3}
+  - {fileID: 21300000, guid: 94eee6dd3da744c1fbca90fd4bb76e2e, type: 3}
   _levelContainerPrefab: {fileID: 2146513996407036408, guid: 65c806a5729cf5349ac452b126bc8ad8,
     type: 3}
 --- !u!224 &281704048
