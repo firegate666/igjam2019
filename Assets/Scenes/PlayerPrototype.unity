@@ -1886,13 +1886,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6fa4a8e4874c4f178edfed5d11fc64d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TheScore: {fileID: 0}
   Timer: {fileID: 352530189}
   StartUI: {fileID: 19751934}
   GameOverUI: {fileID: 102416840}
   AlienUI: {fileID: 337129815}
   _tileSystemPainter: {fileID: 281704047}
   _planetOutlinePainter: {fileID: 1017532482}
+  _planetOutlineContainer: {fileID: 1829134612}
   planetsPast: 0
   OrbitPivot: {fileID: 945296807}
   PlayerPrefab: {fileID: 2263355293742998940, guid: b3e1c41b6c94441c19794cd23b003f64,

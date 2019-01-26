@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     private TileSystem _tileSystem;
     [SerializeField] private TileSystemPainter _tileSystemPainter;
     [SerializeField] private PlanetOutlinePainter _planetOutlinePainter;
+    [SerializeField] private Transform _planetOutlineContainer;
 
 	[SerializeField] private int planetsPast;
 
@@ -54,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
-        _planetOutlinePainter.gameObject.SetActive(false);
+        _planetOutlineContainer.gameObject.SetActive(false);
         StartUI.SetActive(true);
     }
 
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
 
         StartUI.SetActive(false);
         _tileSystemPainter.gameObject.SetActive(true);
-        _planetOutlinePainter.gameObject.SetActive(true);
+        _planetOutlineContainer.gameObject.SetActive(true);
         _gameState = GameState.Planet;
         Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
     }
