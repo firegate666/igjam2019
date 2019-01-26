@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DefaultNamespace;
+using ProBuilder2.Common;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -28,9 +30,9 @@ public class GameManager : MonoBehaviour
     public PlayerController PlayerPrefab;
     public Vector3 StartPosition;
 
-    private AlienContainer[] _aliens;
+    private List<AlienContainer> _aliens;
 
-    public AlienContainer[] GetAliens()
+    public List<AlienContainer> GetAliens()
     {
         return _aliens;
     }
@@ -59,8 +61,8 @@ public class GameManager : MonoBehaviour
     {
 		planetsPast = 0;
 
-        _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
-        AlienUI.AddAliens(_aliens);
+        _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers).ToList();
+        AlienUI.AddAliens(_aliens.ToArray());
         _playerControllers = new PlayerController[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++)
         {
@@ -79,17 +81,6 @@ public class GameManager : MonoBehaviour
         _gameState = GameState.Planet;
         Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
     }
-
-    private void Update()
-    {
-    /*    if (_gameState == GameState.Planet)
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
-            }
-        }*/
-    }
     
 	public void doDrop(float playerPosition, int playerNo, Elements element)
 	{
@@ -103,7 +94,6 @@ public class GameManager : MonoBehaviour
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
-
     }
 
 	public void PlanetFull()
@@ -120,24 +110,34 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < alienPoints.Count; i++)
 		{
 			if (alienPoints[i] == 0)
+			{
+				Debug.Log("zero points");
 				continue;
+			}
+
 			if (alienPoints[i] > maxPoints)
 			{
+				Debug.Log("new winnner");
 				allWinners.Clear();
 				allWinners.Add(i);
 				maxPoints = alienPoints[i];
 			} else if (alienPoints[i] == maxPoints)
 			{
+				Debug.Log("Additional winner");
 				allWinners.Add(i);
 			}
 		}
 		for (int i = 0; i < allWinners.Count; i++)
 		{
+			Debug.Log("Winner declared");
 			TheScore.addScore(alienPoints[allWinners[i]]);
 			Debug.Log(TheScore.getScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
-			AlienUI.AddAlien(AlienSpawner.Instance.SpawnAlien());
+			_aliens.Remove(_aliens[allWinners[i]]);
+			AlienContainer newAlien = AlienSpawner.Instance.SpawnAlien();
+			AlienUI.AddAlien(newAlien);
+			_aliens.Add(newAlien);
 		}
 
 		//_tileSystem.Dispose();

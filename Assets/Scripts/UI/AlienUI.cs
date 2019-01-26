@@ -26,6 +26,7 @@ public class AlienUI : MonoBehaviour
 
     public void RemoveAlien(AlienContainer alien)
     {
+        Debug.Log("Remove alien " + alien.Id);
         RectTransform uiAlien;
         _aliens.TryGetValue(alien.Id, out uiAlien);
 
@@ -44,6 +45,7 @@ public class AlienUI : MonoBehaviour
         alientRect.parent = _rectTransform;
         alientRect.localScale = Vector3.one;
             
+        Debug.Log("Add Alien " + alien.Id);
         _aliens.Add(alien.Id, alientRect);
     }
 
