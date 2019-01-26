@@ -18,7 +18,7 @@ public class UITimer : MonoBehaviour
     public  bool _isRunning;
     private Action _callback;
 
-    public TextMeshPro TimerDisplay;
+    public TextMeshProUGUI TimerDisplay;
     
     // Update is called once per frame
     void Update()
