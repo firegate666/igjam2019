@@ -1,7 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
+using DefaultNamespace;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,6 +8,12 @@ public class GameManager : MonoBehaviour
 
     public GameObject StartUI;
     public AlienUI AlienUI;
+    private GameState _gameState = GameState.MainMenu;
+
+    private PlayerController[] _playerControllers;
+    private TileSystem _tileSystem;
+    [SerializeField] private TileSystemPainter _tileSystemPainter;
+    [SerializeField] private PlanetOutlinePainter _planetOutlinePainter;
 
     public Transform OrbitPivot;
 
@@ -21,40 +26,49 @@ public class GameManager : MonoBehaviour
     {
         return _aliens;
     }
-    
-    
-    // Start is called before the first frame update
-    void Awake()
+
+    void Start()
     {
         if (Instance == null)
         {
             Instance = this;
         }
+        else
+        {
+            throw new Exception("Only one instance of GameManager!");
+        }
 
-        StartUI.SetActive((true));
-    }
-
-    public void Restart()
-    {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-
+        _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
+        StartUI.SetActive(true);
     }
 
     public void StartGame(int numberOfPlayers)
     {
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
         AlienUI.AddAliens(_aliens);
-        
+        _playerControllers = new PlayerController[numberOfPlayers];
         for (int i = 0; i < numberOfPlayers; i++)
         {
             PlayerController player = Instantiate(PlayerPrefab, StartPosition, Quaternion.identity, null);
-            player.SetPlayer(i+1);
+            player.SetPlayer(i + 1);
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
-            player.SetPositionAngle(Random.Range(0, 359));
+
+            _playerControllers[i] = player;
         }
-        
+
         StartUI.SetActive(false);
+        _gameState = GameState.Planet;
+    }
+
+    private void Update()
+    {
+        if (_gameState == GameState.Planet)
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Apache_Helicopter);
+            }
+        }
     }
 }
