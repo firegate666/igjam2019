@@ -73,13 +73,10 @@ public class PlayerController : MonoBehaviour
         
         float positionX = Mathf.Sin(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
         float positionY = Mathf.Cos(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
-<<<<<<< HEAD
-	}
-=======
 
         transform.position = new Vector3(positionX + _xOffset, positionY, transform.position.z);
     }
->>>>>>> 4722863614eccf3c06a8f789ca4702bdabb41897
+
 
 	public void SetElementToDrop(Elements element)
 	{
