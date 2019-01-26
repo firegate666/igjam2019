@@ -122,6 +122,7 @@ public class PlanetPiece : IDisposable
 	public readonly float angleSize;
 	public readonly int indexOnRing;
 	private PlanetPiece underlayingPiece = null;
+	public GameObject viewObject;
 
 	public PlanetPiece(int level, float angleSize, int indexOnRing)
 	{
@@ -189,10 +190,48 @@ public class TileSystem
 			GameManager.Instance.PlanetFull();
 		}
 
+		bool elementReacted = CheckFusionRule(planetPiece);
+
+		if (elementReacted == false)
+		{
+			_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+		}
+		else
+		{
+			_tileSystemPainter.DrawTile(planetPiece.GetUnderlayingPiece());
+		}
+
 		_tileSystemPainter.DrawTile(planetPiece);
-		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 
 		return true;
+	}
+
+	private bool CheckFusionRule(PlanetPiece planetPiece)
+	{
+		bool weDidIt = false;
+		if (planetPiece.GetUnderlayingPiece() != null)
+		{
+			weDidIt = TryPerformFusion(
+				planetPiece.element, planetPiece.GetUnderlayingPiece().element,
+				planetPiece.GetUnderlayingPiece()
+			);
+			CheckFusionRule(planetPiece.GetUnderlayingPiece());
+		}
+
+		return weDidIt;
+	}
+
+	private bool TryPerformFusion(Elements dropped, Elements receiver, PlanetPiece receivingPiece)
+	{
+		Elements possibleFusionElement = Elements.NotSet;
+		GlobalConfig.PossibleFusions.TryGetValue(dropped, out possibleFusionElement);
+		if (possibleFusionElement == receiver)
+		{
+			receivingPiece.element = dropped;
+			return true;
+		}
+
+		return false;
 	}
 
 	public int CountElement(Elements elementToCount)

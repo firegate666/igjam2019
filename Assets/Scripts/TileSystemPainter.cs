@@ -30,17 +30,35 @@ public class TileSystemPainter : MonoBehaviour
 
     public void DrawTile(PlanetPiece planetPiece)
     {
+        if (planetPiece.element == Elements.NotSet)
+        {
+            if (planetPiece.viewObject != null)
+            {
+                Destroy(planetPiece.viewObject);
+                planetPiece.viewObject = null;
+            }
+
+            return;
+        }
+
         int level = planetPiece.level;
         int index = planetPiece.indexOnRing;
         float size = planetPiece.angleSize;
 
-        GameObject tile = Instantiate(_tilePrefab, _levelContainers[level - 1].transform);
-        Image img = tile.transform.GetChild(0).GetComponent<Image>(); 
+        GameObject tile = planetPiece.viewObject;
+        if (planetPiece.viewObject == null)
+        {
+            tile = Instantiate(_tilePrefab, _levelContainers[level - 1].transform);
+            planetPiece.viewObject = tile;
+        }
+        Image img = tile.transform.GetChild(0).GetComponent<Image>();
         img.sprite = _elementTextures[(int) planetPiece.element];
 
         Image mask = tile.GetComponent<Image>();
         mask.fillAmount = size / 360;
-        tile.transform.Rotate(0, 0, index * -size); 
+        tile.transform.rotation = Quaternion.identity;
+        tile.transform.Rotate(0, 0, index * -size);
+        tile.transform.GetChild(0).transform.rotation = Quaternion.identity;
         tile.transform.GetChild(0).transform.Rotate(0, 0, index * size); //Rotate the texture back again
         tile.transform.localScale *= level;
         tile.transform.GetChild(0).transform.localScale /= level;
