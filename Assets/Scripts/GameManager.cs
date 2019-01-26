@@ -60,6 +60,7 @@ public class GameManager : MonoBehaviour
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
             player.SetPositionAngle(Random.Range(0, 359));
+			player.SetElementToDrop(Elements.Stone);
 
             _playerControllers[i] = player;
         }
@@ -70,16 +71,24 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (_gameState == GameState.Planet)
+    /*    if (_gameState == GameState.Planet)
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _tileSystem.DoDrop(_playerControllers[0].positionAngle, (Elements)Random.Range(0f,5f));
+                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
             }
-        }
+        }*/
     }
     
-    public void Restart()
+	public void doDrop(float playerPosition, int playerNo, Elements element)
+	{
+		if (_tileSystem.DoDrop(playerPosition, element))
+		{
+
+		}
+	}
+
+	public void Restart()
     {
         Scene scene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(scene.name);
