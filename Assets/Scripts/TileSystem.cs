@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -182,7 +183,7 @@ public class TileSystem : IDisposable
 
 		planetPiece.element = element;
 
-		OperateOnElements(planetPiece); //plus drawing, now 20% off !
+		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
 		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 
 		if (_planetCycle.IsPlanetFull())
@@ -193,7 +194,7 @@ public class TileSystem : IDisposable
 		return true;
 	}
 
-	private bool OperateOnElements(PlanetPiece planetPiece)
+	private bool OperateOnElements(PlanetPiece planetPiece, bool isFirstRecursionStep = false)
 	{
 		bool thereWasAReaction = false;
 		if (planetPiece.GetUnderlayingPiece() != null)
@@ -202,9 +203,9 @@ public class TileSystem : IDisposable
 				planetPiece.element, planetPiece.GetUnderlayingPiece().element,
 				planetPiece.GetUnderlayingPiece()
 			);
-			OperateOnElements(planetPiece.GetUnderlayingPiece());
+			 OperateOnElements(planetPiece.GetUnderlayingPiece());
 		}
-		_tileSystemPainter.DrawTile(planetPiece);
+		_tileSystemPainter.DrawTile(planetPiece, isFirstRecursionStep);
 
 		return thereWasAReaction;
 	}

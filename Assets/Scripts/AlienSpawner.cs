@@ -13,6 +13,7 @@ public class AlienContainer
     public Elements Element;
     public Image AlienImage;
     public Image ElementImage;
+    public Image UIElementImage;
 }
 
 public class AlienSpawner : MonoBehaviour
@@ -24,6 +25,10 @@ public class AlienSpawner : MonoBehaviour
     public Image[] WaterIcons;
     public Image[] FireIcons;
     public Image[] WoodIcon;
+    
+    public Image[] WaterUIIcons;
+    public Image[] FireUIIcons;
+    public Image[] WoodUIIcon;
 
     public static AlienSpawner Instance;
 
@@ -71,6 +76,7 @@ public class AlienSpawner : MonoBehaviour
         alien.Element = GetNextElement();
         alien.AlienImage = GetRandomAlien(alien.Element);
         alien.ElementImage = GetRandomIcon(alien.Element);
+        alien.UIElementImage = GetRandomUIIcon(alien.Element);
         return alien;
     }
     
@@ -100,6 +106,24 @@ public class AlienSpawner : MonoBehaviour
         else if (element == Elements.Water)
         {
             return WaterIcons[Random.Range(0, WaterIcons.Length)];
+        }
+        
+        throw new Exception("invalid element picked " + element);
+    }
+    
+    private Image GetRandomUIIcon(Elements element)
+    {
+        if (element == Elements.Fire)
+        {
+            return FireUIIcons[Random.Range(0, FireUIIcons.Length)];
+        } 
+        else if (element == Elements.Wood)
+        {
+            return WoodUIIcon[Random.Range(0, WoodUIIcon.Length)];
+        }
+        else if (element == Elements.Water)
+        {
+            return WaterUIIcons[Random.Range(0, WaterUIIcons.Length)];
         }
         
         throw new Exception("invalid element picked " + element);

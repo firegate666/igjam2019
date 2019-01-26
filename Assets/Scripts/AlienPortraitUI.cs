@@ -5,13 +5,15 @@ using UnityEngine.UI;
 
 public class AlienPortraitUI : MonoBehaviour
 {
-    private Image portrait;
-    private Image element_1;
-    private Image element_2;
+    public Image portrait;
+    public Image element_1;
+    public Image element_2;
     
     public void AddAlien(AlienContainer alien)
     {
         portrait.sprite = alien.AlienImage.sprite;
-        element_1.sprite = alien.ElementImage.sprite;
+        portrait.gameObject.SetActive(true);
+        element_1.sprite = alien.UIElementImage.sprite;
+        element_1.gameObject.SetActive(true);
     }
 }
