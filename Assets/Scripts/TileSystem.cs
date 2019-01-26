@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 
-class PlanetCycle
+public class PlanetCycle
 {
 	private readonly List<PlanetRing> _rings = new List<PlanetRing>();
 
 	public PlanetCycle()
 	{
-		for (int i = GlobalConfig.PlanetLevelHeight; i > 0 ; i--)
+		for (int i = GlobalConfig.PlanetLevelHeight; i > 0; i--)
 		{
 			_rings.Add(new PlanetRing(i));
 		}
@@ -41,16 +41,20 @@ class PlanetCycle
 class PlanetRing
 {
 	private readonly int _level;
-
+	private readonly float _anglePerPieceOnThisLevel;
 	private readonly List<PlanetPiece> _pieces;
 
 	public PlanetRing(int level)
 	{
 		_level = level;
 		_pieces = new List<PlanetPiece>();
+
+		//total radius / base count / pow2 steps per level (1,2,4,8)->(a third of our cycle) 
+		_anglePerPieceOnThisLevel = 360f / GlobalConfig.PlanetBaseLevelSize / Mathf.Pow(2f, _level - 1);
+
 		for (int i = 0; i < GlobalConfig.PlanetBaseLevelSize * Mathf.Pow(2, level - 1); i++)
 		{
-			_pieces.Add(new PlanetPiece());
+			_pieces.Add(new PlanetPiece(_level, _anglePerPieceOnThisLevel, i));
 		}
 	}
 
@@ -61,23 +65,41 @@ class PlanetRing
 
 	private int CalculateIndex(float angle)
 	{
-		//total radius / base count / pow2 steps per level (1,2,4,8)->(a third of our cycle) 
-		float anglePerPieceOnThisLevel = 360f / GlobalConfig.PlanetBaseLevelSize / Mathf.Pow(2f, _level - 1);
-		return Mathf.FloorToInt(angle / anglePerPieceOnThisLevel);
+		return Mathf.FloorToInt(angle / _anglePerPieceOnThisLevel);
 	}
 }
 
-class PlanetPiece
+public class PlanetPiece
 {
 	public Elements element = Elements.NotSet;
+	public readonly int level;
+	public readonly float angleSize;
+	public readonly int indexOnRing;
+
+	public PlanetPiece(int level, float angleSize, int indexOnRing)
+	{
+		this.level = level;
+		this.angleSize = angleSize;
+		this.indexOnRing = indexOnRing;
+	}
+
+	public bool HasRightNeighbor()
+	{
+		return true;
+	}
+
+	public bool HasLeftNeighbor()
+	{
+		return true;
+	}
 }
 
 public class TileSystem
 {
-	private readonly PlanetCycle _planetCycle = new PlanetCycle();
+	public readonly PlanetCycle planetCycle = new PlanetCycle();
 
 	public void DoDrop(float angle, Elements element)
 	{
-		_planetCycle.GetFirstFreeAtAngle(angle).element = element;
+		planetCycle.GetFirstFreeAtAngle(angle).element = element;
 	}
 }
