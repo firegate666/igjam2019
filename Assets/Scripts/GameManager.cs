@@ -7,15 +7,23 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject StartUI;
+    public GameObject AlienUI;
 
     public Transform OrbitPivot;
 
     public PlayerController PlayerPrefab;
     public Vector3 StartPosition;
 
+    private AlienContainer[] _aliens;
 
+    public AlienContainer[] GetAliens()
+    {
+        return _aliens;
+    }
+    
+    
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         if (Instance == null)
         {
@@ -27,6 +35,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int numberOfPlayers)
     {
+        _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
+        
         for (int i = 0; i < numberOfPlayers; i++)
         {
             PlayerController player = Instantiate(PlayerPrefab, StartPosition, Quaternion.identity, null);

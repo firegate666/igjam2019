@@ -10,10 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6011978202003374099}
   - component: {fileID: 9131735962670954452}
+  - component: {fileID: 4492471664909191975}
   - component: {fileID: 8669700269146520692}
   - component: {fileID: 1549183424631263093}
   m_Layer: 5
-  m_Name: FireAlien
+  m_Name: AlienUIElementPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,6 +51,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3311996205642195395}
   m_CullTransparentMesh: 0
+--- !u!114 &4492471664909191975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3311996205642195395}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d413d0692e1d4eb7a68fdcb68ecc38c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8669700269146520692
 MonoBehaviour:
   m_ObjectHideFlags: 0
