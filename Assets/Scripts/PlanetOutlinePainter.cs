@@ -7,6 +7,7 @@ namespace DefaultNamespace
 	{
 		[SerializeField] private GameObject lineRendererPrefab;
 		[SerializeField] private Transform lineContainer;
+		[SerializeField] private float size = 1;
 		private readonly List<LineRenderer> _lineRenderers = new List<LineRenderer>();
 
 		public void DrawOutLineForPiece(PlanetPiece planetPiece)
@@ -14,11 +15,11 @@ namespace DefaultNamespace
 			float leftEdgeAngle = planetPiece.angleSize * planetPiece.indexOnRing;
 			float rightEdgeAngle = planetPiece.angleSize * (planetPiece.indexOnRing + 1f);
 
-			DrawCycleSegment(planetPiece.level, leftEdgeAngle, rightEdgeAngle);
-			DrawRayEdge(planetPiece.level - 1, planetPiece.level, rightEdgeAngle);
+			DrawCycleSegment(planetPiece.level *size, leftEdgeAngle, rightEdgeAngle);
+			DrawRayEdge((planetPiece.level - 1) *size, planetPiece.level *size, rightEdgeAngle);
 			if (planetPiece.HasLeftNeighbor() == false)
 			{
-				DrawRayEdge(planetPiece.level - 1, planetPiece.level, leftEdgeAngle);
+				DrawRayEdge((planetPiece.level - 1) *size, planetPiece.level *size, leftEdgeAngle);
 			}
 		}
 
