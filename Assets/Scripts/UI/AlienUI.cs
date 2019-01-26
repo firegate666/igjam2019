@@ -41,7 +41,7 @@ public class AlienUI : MonoBehaviour
         AlienUIElement alienUI = Instantiate(ElementPrefab);
         alienUI.SetAlien(alien);
         RectTransform alientRect = alienUI.GetComponent<RectTransform>();
-        alientRect.parent = _rectTransform;
+        alientRect.SetParent(_rectTransform);
         alientRect.localScale = Vector3.one;
             
         _aliens.Add(alien.Id, alientRect);
