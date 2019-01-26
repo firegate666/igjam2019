@@ -43,6 +43,7 @@ public class TileSystemPainter : MonoBehaviour
         tile.transform.Rotate(0, 0, index * -size); 
         tile.transform.GetChild(0).transform.Rotate(0, 0, index * size); //Rotate the texture back again
         tile.transform.localScale *= level;
+        tile.transform.GetChild(0).transform.localScale /= level;
     }
 
 }
