@@ -6,6 +6,7 @@ namespace DefaultNamespace
 	public class PlanetOutlinePainter : MonoBehaviour
 	{
 		[SerializeField] private GameObject lineRendererPrefab;
+		[SerializeField] private Transform lineContainer;
 		private readonly List<LineRenderer> _lineRenderers = new List<LineRenderer>();
 
 		public void DrawOutLineForPiece(PlanetPiece planetPiece)
@@ -25,6 +26,7 @@ namespace DefaultNamespace
 		{
 			LineRenderer lineRenderer = Instantiate(lineRendererPrefab).GetComponent<LineRenderer>();
 			_lineRenderers.Add(lineRenderer);
+			lineRenderer.transform.parent = lineContainer;
 
 			lineRenderer.positionCount = GlobalConfig.CycleSegmentOutlineSoftness + 1;
 			for (int i = 0; i <= GlobalConfig.CycleSegmentOutlineSoftness; i++)
@@ -41,6 +43,7 @@ namespace DefaultNamespace
 		{
 			LineRenderer lineRenderer = Instantiate(lineRendererPrefab).GetComponent<LineRenderer>();
 			_lineRenderers.Add(lineRenderer);
+			lineRenderer.transform.parent = lineContainer;
 
 			lineRenderer.positionCount = 4;
 
