@@ -60,7 +60,6 @@ public class GameManager : MonoBehaviour
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
             player.SetPositionAngle(Random.Range(0, 359));
-			player.SetElementToDrop(Elements.Stone);
 
             _playerControllers[i] = player;
         }
@@ -84,7 +83,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
-
+			_playerControllers[playerNo - 1].assignRandomElement();
 		}
 	}
 
