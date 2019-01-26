@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         }
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
+        _tileSystemPainter.gameObject.SetActive(false);
         StartUI.SetActive(true);
     }
 
@@ -65,6 +66,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartUI.SetActive(false);
+        _tileSystemPainter.gameObject.SetActive(true);
         _gameState = GameState.Planet;
     }
 
