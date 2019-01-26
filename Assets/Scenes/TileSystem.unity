@@ -132,6 +132,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tilePrefab: {fileID: 5985967463359177320, guid: 1d0d96d2e89366a46a798e720bab5122,
     type: 3}
+--- !u!114 &632408627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632408621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4fd079a7ba3244e4bca4999cb4186ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tileSystemPainter: {fileID: 632408622}
 --- !u!1 &1998268289
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,23 +8,27 @@ using Vector3 = UnityEngine.Vector3;
 public class TileSystemPainter : MonoBehaviour
 {
 	[SerializeField] private GameObject _tilePrefab;
-//	[SerializeField] private Transform _tileContainer;
 	
-	private List<GameObject> gameObjects; 
+	private GameObject[] tileContainer; 
 	private void Start()
 	{
-		gameObjects = new List<GameObject>();
-		for (int i = 1; i <= GlobalConfig.PlanetLevelHeight; i++)
+		tileContainer = new GameObject[GlobalConfig.PlanetLevelHeight];
+		
+		for (int i = GlobalConfig.PlanetLevelHeight; i > 0 ; i--)
 		{
-			gameObjects.Add(Instantiate(new GameObject("Level" + i), transform));
+			tileContainer[i -1] = Instantiate(new GameObject("Level" + i), transform);
 		}
 	}
 
-	public void DrawTile(int level, int index, float size)
+	public void DrawTile(PlanetPiece planetPiece)
 	{
-		GameObject tile = Instantiate(_tilePrefab, gameObjects[level].transform);
+		int level = planetPiece.level;
+		int index = planetPiece.indexOnRing;
+		float size = planetPiece.angleSize;
+		
+		GameObject tile = Instantiate(_tilePrefab, tileContainer[level-1].transform);
 		tile.GetComponent<Image>().fillAmount = size / 360;
-		tile.transform.Rotate(0, 0, index * size);
+		tile.transform.Rotate(0, 0, index * -size);
 		tile.transform.localScale *= level;
 	}
 }
