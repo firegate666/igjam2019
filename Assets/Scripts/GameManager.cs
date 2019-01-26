@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject StartUI;
-    public GameObject AlienUI;
+    public AlienUI AlienUI;
 
     public Transform OrbitPivot;
 
@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(int numberOfPlayers)
     {
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
+        AlienUI.AddAliens(_aliens);
         
         for (int i = 0; i < numberOfPlayers; i++)
         {
@@ -43,6 +44,7 @@ public class GameManager : MonoBehaviour
             player.SetPlayer(i+1);
             player.OrbitPivot = OrbitPivot;
             player.gameObject.SetActive(true);
+            player.SetPositionAngle(Random.Range(0, 359));
         }
         
         StartUI.SetActive(false);

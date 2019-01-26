@@ -35,6 +35,16 @@ public class PlayerController : MonoBehaviour
         _player = player;
         PlayerNumberLabel.text = player.ToString();
     }
+
+    public void SetPositionAngle(float angle)
+    {
+        _positionAngle = angle;
+        
+        float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
+        float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
+
+        transform.position = new Vector3(positionX, positionY, transform.position.z);
+    }
     
     // Update is called once per frame
     void Update()
@@ -78,10 +88,12 @@ public class PlayerController : MonoBehaviour
                 _positionAngle += 360;
             }
 
+            SetPositionAngle(_positionAngle);
+            /*
             float positionX = Mathf.Sin(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
             float positionY = Mathf.Cos(_positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
 
-            transform.position = new Vector3(positionX, positionY, transform.position.z);
+            transform.position = new Vector3(positionX, positionY, transform.position.z);*/
         }
 
         if (Input.GetButtonDown(dropButtonName) || Input.GetButtonDown("Jump"))
