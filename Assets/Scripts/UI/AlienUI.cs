@@ -1,11 +1,15 @@
 ﻿using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AlienUI : MonoBehaviour
 {
     public AlienUIElement ElementPrefab;
     private RectTransform _rectTransform;
+
+    private AlienPortraitUI _portrait1;
+    private AlienPortraitUI _portrait2;
 
     private Dictionary<int, RectTransform> _aliens = new Dictionary<int, RectTransform>();
 

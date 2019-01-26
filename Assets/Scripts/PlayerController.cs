@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     string verticalAxis;
     string dropButtonName;
     private float _distanceToCenter;
+    private float _xOffset;
 
     public GameObject StoneIcon;
     public GameObject WaterIcon;
@@ -38,6 +39,7 @@ public class PlayerController : MonoBehaviour
         dropButtonName = "Xbox" + _player + "Drop";
 
         _distanceToCenter = transform.position.y;
+        _xOffset = transform.position.x;
 
 		elementToDrop = Elements.Stone;
 		lastDroppedElement = Elements.NotSet;
@@ -69,7 +71,7 @@ public class PlayerController : MonoBehaviour
         float positionX = Mathf.Sin(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
         float positionY = Mathf.Cos(positionAngle / (180 / Mathf.PI)) * _distanceToCenter;
 
-        transform.position = new Vector3(positionX, positionY, transform.position.z);
+        transform.position = new Vector3(positionX + _xOffset, positionY, transform.position.z);
     }
 
 	public void SetElementToDrop(Elements element)
