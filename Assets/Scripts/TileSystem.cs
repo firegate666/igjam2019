@@ -107,13 +107,25 @@ public class TileSystem
 		_planetOutlinePainter = planetOutlinePainter;
 	}
 
-	public void DoDrop(float angle, Elements element)
+	public bool DoDrop(float angle, Elements element)
 	{
 		Debug.Log("Draw new Tile " + element + " at Angle: " + angle);
 		PlanetPiece planetPiece = planetCycle.GetFirstFreeAtAngle(angle);
+		if (planetPiece == null)
+		{
+			return false;
+		}
+
 		planetPiece.element = element;
 
 		_tileSystemPainter.DrawTile(planetPiece);
 		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+
+		return true;
+	}
+
+	public int CountElement(Elements elementToCount)
+	{
+		return (int) elementToCount;
 	}
 }
