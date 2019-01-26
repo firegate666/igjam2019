@@ -149,6 +149,7 @@ public class PlanetPiece : IDisposable
 	public void Dispose()
 	{
 		underlayingPiece = null;
+		viewObject = null;
 	}
 }
 
@@ -180,13 +181,14 @@ public class TileSystem : IDisposable
 		}
 
 		planetPiece.element = element;
+
+		OperateOnElements(planetPiece); //plus drawing, now 20% off !
+		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+
 		if (_planetCycle.IsPlanetFull())
 		{
 			GameManager.Instance.PlanetFull();
 		}
-
-		OperateOnElements(planetPiece); //plus drawing, now 20% off !
-		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 
 		return true;
 	}
