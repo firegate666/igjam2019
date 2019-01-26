@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TileSystemPainter _tileSystemPainter;
     [SerializeField] private PlanetOutlinePainter _planetOutlinePainter;
 
+	[SerializeField] private int planetsPast;
+
     public Transform OrbitPivot;
 
     public PlayerController PlayerPrefab;
@@ -46,6 +48,8 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int numberOfPlayers)
     {
+		planetsPast = 0;
+
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers);
         AlienUI.AddAliens(_aliens);
         _playerControllers = new PlayerController[numberOfPlayers];
@@ -81,4 +85,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(scene.name);
 
     }
+
+	public void PlanetFull()
+	{
+
+	}
 }
