@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public GameObject StartUI;
     public GameObject GameOverUI;
     public AlienUI AlienUI;
-    private GameState _gameState = GameState.MainMenu;
+    public GameState gameState = GameState.MainMenu;
 
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
         StartUI.SetActive(false);
         _tileSystemPainter.gameObject.SetActive(true);
         _planetOutlineContainer.gameObject.SetActive(true);
-        _gameState = GameState.Planet;
+        gameState = GameState.Planet;
         Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
     }
 
