@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 
@@ -13,7 +14,9 @@ public class PlayerController : MonoBehaviour
 
     public float positionAngle;
 
-    public GameObject tileToDrop;
+	//public GameObject tileToDrop;
+
+	public Elements elementToDrop;
 
     public TextMeshPro PlayerNumberLabel;
 
@@ -45,9 +48,11 @@ public class PlayerController : MonoBehaviour
 
         transform.position = new Vector3(positionX, positionY, transform.position.z);
     }
-    
-    // Update is called once per frame
-    void Update()
+
+	public void SetElementToDrop(Elements element) => elementToDrop = element;
+
+	// Update is called once per frame
+	void Update()
     {
         float x = Input.GetAxis(horizontalAxis);
         float y = Input.GetAxis(verticalAxis);
@@ -91,17 +96,19 @@ public class PlayerController : MonoBehaviour
             SetPositionAngle(positionAngle);
         }
 
-        if (Input.GetButtonDown(dropButtonName) || Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown(dropButtonName))
         {
             Debug.Log("Drop button down");
 
-            GameObject tile = Instantiate(tileToDrop, transform.position, Quaternion.identity, null);
+			/*GameObject tile = Instantiate(tileToDrop, transform.position, Quaternion.identity, null);
             Vector3 lookAt = OrbitPivot.position;
             lookAt.z = transform.position.z;
             tile.transform.LookAt(lookAt);
 
             FlyingTo fly = tile.GetComponent<FlyingTo>();
-            fly.FlyTo(lookAt);
+            fly.FlyTo(lookAt);*/
+
+			GameManager.Instance.doDrop(positionAngle, _player, elementToDrop);
         }
     }
 }
