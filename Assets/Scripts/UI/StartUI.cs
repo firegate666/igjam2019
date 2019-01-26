@@ -9,6 +9,8 @@ public class StartUI : MonoBehaviour
     private int _activeButton;
     private bool _isSwitching;
 
+    public GameObject TutorialOverlay;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,7 +33,7 @@ public class StartUI : MonoBehaviour
     
     public void ShowOptions()
     {
-        Debug.Log("Show options");
+        TutorialOverlay.SetActive(true);
     }
     
     public void ShowHelp()
@@ -68,23 +70,32 @@ public class StartUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float y = Input.GetAxis("Xbox1Vertical");
-        if (!_isSwitching && y > 0)
+        if (TutorialOverlay.activeSelf)
         {
-            _isSwitching = true;
-            ButtonDown();
-        } else if (!_isSwitching && y < 0)
-        {
-            _isSwitching = true;
-            ButtonUp();
-        } else if (_isSwitching && y == 0f)
-        {
-            _isSwitching = false;
+            // start menu blocked if overlay
         }
-
-        if (Input.GetButtonDown("Xbox1Drop"))
+        else
         {
-            Buttons[_activeButton].TriggerAction();
+            float y = Input.GetAxis("Xbox1Vertical");
+            if (!_isSwitching && y > 0)
+            {
+                _isSwitching = true;
+                ButtonDown();
+            }
+            else if (!_isSwitching && y < 0)
+            {
+                _isSwitching = true;
+                ButtonUp();
+            }
+            else if (_isSwitching && y == 0f)
+            {
+                _isSwitching = false;
+            }
+
+            if (Input.GetButtonDown("Xbox1Drop"))
+            {
+                Buttons[_activeButton].TriggerAction();
+            }
         }
     }
 }
