@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             transform.position = new Vector3(positionX, positionY, transform.position.z);
         }
 
-        if (Input.GetButtonDown(dropButtonName))
+        if (Input.GetButtonDown(dropButtonName) || Input.GetButtonDown("Jump"))
         {
             Debug.Log("Drop button down");
 
@@ -89,6 +89,10 @@ public class PlayerController : MonoBehaviour
             Vector3 lookAt = OrbitPivot.position;
             lookAt.z = transform.position.z;
             tile.transform.LookAt(lookAt);
+
+            FlyingTo fly = tile.GetComponent<FlyingTo>();
+            fly.TimeToFly = 2;
+            fly.FlyTo(lookAt);
         }
     }
 }
