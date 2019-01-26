@@ -19,7 +19,14 @@ public class UITimer : MonoBehaviour
     private Action _callback;
 
     public TextMeshProUGUI TimerDisplay;
-    
+
+    private AudioSource _audioSource;
+
+    private void Awake()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -48,6 +55,7 @@ public class UITimer : MonoBehaviour
         {
             _isRunning = false;
             _callback.Invoke();
+            _audioSource.Stop();
         }
     }
 
@@ -56,5 +64,6 @@ public class UITimer : MonoBehaviour
         TimeInSeconds = timeInSeconds;
         _isRunning = true;
         _callback = callback;
+        _audioSource.Play();
     }
 }

@@ -1,17 +1,17 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class AlienUI : MonoBehaviour
 {
-    public AlienUIElement ElementPrefab;
     private RectTransform _rectTransform;
 
-    private AlienPortraitUI _portrait1;
-    private AlienPortraitUI _portrait2;
+    public AlienPortraitUI _portrait1;
+    public AlienPortraitUI _portrait2;
 
-    private Dictionary<int, RectTransform> _aliens = new Dictionary<int, RectTransform>();
+    private Dictionary<int, AlienPortraitUI> _aliens = new Dictionary<int, AlienPortraitUI>();
 
     private void Start()
     {
@@ -31,26 +31,37 @@ public class AlienUI : MonoBehaviour
     public void RemoveAlien(AlienContainer alien)
     {
         Debug.Log("Remove alien " + alien.Id);
-        RectTransform uiAlien;
+        AlienPortraitUI uiAlien;
         _aliens.TryGetValue(alien.Id, out uiAlien);
 
         if (uiAlien)
         {
-            Destroy(uiAlien.gameObject);
+            uiAlien.gameObject.SetActive(false);
             _aliens.Remove(alien.Id);
         }
     }
 
+    private AlienPortraitUI GetFreePortrait()
+    {
+        if (!_portrait1.gameObject.activeSelf)
+        {
+            return _portrait1;
+        } else if (!_portrait2.gameObject.activeSelf)
+        {
+            return _portrait2;
+        }
+        
+        throw new Exception("only 2 portraits supported");
+    }
+    
     public void AddAlien(AlienContainer alien)
     {
-        AlienUIElement alienUI = Instantiate(ElementPrefab);
-        alienUI.SetAlien(alien);
-        RectTransform alientRect = alienUI.GetComponent<RectTransform>();
-        alientRect.SetParent(_rectTransform);
-        alientRect.localScale = Vector3.one;
+        AlienPortraitUI alienUI = GetFreePortrait();
+        alienUI.AddAlien(alien);
+        alienUI.gameObject.SetActive(true);
             
         Debug.Log("Add Alien " + alien.Id);
-        _aliens.Add(alien.Id, alientRect);
+        _aliens.Add(alien.Id, alienUI);
     }
 
     public void AddAliens(AlienContainer[] aliens)
