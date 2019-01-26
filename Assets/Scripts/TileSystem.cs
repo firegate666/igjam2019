@@ -190,35 +190,26 @@ public class TileSystem
 			GameManager.Instance.PlanetFull();
 		}
 
-		bool elementReacted = CheckFusionRule(planetPiece);
-
-		if (elementReacted == false)
-		{
-			_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
-		}
-		else
-		{
-			_tileSystemPainter.DrawTile(planetPiece.GetUnderlayingPiece());
-		}
-
-		_tileSystemPainter.DrawTile(planetPiece);
+		OperateOnElements(planetPiece); //plus drawing, now 20% off !
+		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 
 		return true;
 	}
 
-	private bool CheckFusionRule(PlanetPiece planetPiece)
+	private bool OperateOnElements(PlanetPiece planetPiece)
 	{
-		bool weDidIt = false;
+		bool thereWasAReaction = false;
 		if (planetPiece.GetUnderlayingPiece() != null)
 		{
-			weDidIt = TryPerformFusion(
+			thereWasAReaction = TryPerformFusion(
 				planetPiece.element, planetPiece.GetUnderlayingPiece().element,
 				planetPiece.GetUnderlayingPiece()
 			);
-			CheckFusionRule(planetPiece.GetUnderlayingPiece());
+			OperateOnElements(planetPiece.GetUnderlayingPiece());
 		}
+		_tileSystemPainter.DrawTile(planetPiece);
 
-		return weDidIt;
+		return thereWasAReaction;
 	}
 
 	private bool TryPerformFusion(Elements dropped, Elements receiver, PlanetPiece receivingPiece)

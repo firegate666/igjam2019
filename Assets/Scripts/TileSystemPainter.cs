@@ -60,8 +60,8 @@ public class TileSystemPainter : MonoBehaviour
         tile.transform.Rotate(0, 0, index * -size);
         tile.transform.GetChild(0).transform.rotation = Quaternion.identity;
         tile.transform.GetChild(0).transform.Rotate(0, 0, index * size); //Rotate the texture back again
-        tile.transform.localScale *= level;
-        tile.transform.GetChild(0).transform.localScale /= level;
+        tile.transform.localScale = Vector3.one * level;
+        tile.transform.GetChild(0).transform.localScale = Vector3.one / level;
     }
 
 }
