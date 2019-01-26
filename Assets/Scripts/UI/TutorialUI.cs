@@ -9,7 +9,7 @@ public class TutorialUI : MonoBehaviour
     private int _numberOfSlides;
     private int _currentSlide;
 
-    private void Start()
+    private void OnEnable()
     {
         _currentSlide = 0;
         _numberOfSlides = Slides.Length;
