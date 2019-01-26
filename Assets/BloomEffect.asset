@@ -80,14 +80,14 @@ MonoBehaviour:
   motionBlur:
     m_Enabled: 1
     m_Settings:
-      shutterAngle: 220
+      shutterAngle: 246
       sampleCount: 10
       frameBlending: 0
   eyeAdaptation:
     m_Enabled: 1
     m_Settings:
       lowPercent: 9.09483
-      highPercent: 68.81034
+      highPercent: 64.16379
       minLuminance: -5
       maxLuminance: 1
       keyValue: 0.25
@@ -103,8 +103,8 @@ MonoBehaviour:
       bloom:
         intensity: 0.5
         threshold: 1.1
-        softKnee: 0.785
-        radius: 4.67
+        softKnee: 1
+        radius: 4.2
         antiFlicker: 0
       lensDirt:
         texture: {fileID: 0}
