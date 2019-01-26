@@ -13,12 +13,13 @@ public class AdvertisementsUI : MonoBehaviour
     {
         _currentSlide = 0;
         _numberOfSlides = Slides.Length;
-        Slides[_currentSlide].gameObject.SetActive(true);
+        
         
     }
 
     private void OnEnable()
     {
+        Slides[_currentSlide].gameObject.SetActive(true);
         StartCoroutine(ScheduleNext());
     }
 
@@ -26,20 +27,30 @@ public class AdvertisementsUI : MonoBehaviour
     {
         yield return new WaitForSeconds(2);
         Slides[GetCurrentSlideIndex()].gameObject.SetActive(false);
-        Slides[GetNextSlideIndex()].gameObject.SetActive(true);
 
+        IncrementSlide();
+        
+        Slides[GetCurrentSlideIndex()].gameObject.SetActive(true);
+
+        StartCoroutine(Stop());
+    }
+
+    void IncrementSlide()
+    {
         _currentSlide++;
         if (_currentSlide >= _numberOfSlides)
         {
             _currentSlide = 0;
         }
-
-        StartCoroutine(Stop());
     }
 
     IEnumerator Stop()
     {
         yield return new WaitForSeconds(2);
+        
+        Slides[GetCurrentSlideIndex()].gameObject.SetActive(false);
+        IncrementSlide();
+        
         gameObject.SetActive(false);
     }
 

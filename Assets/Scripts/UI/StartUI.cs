@@ -33,12 +33,12 @@ public class StartUI : MonoBehaviour
     
     public void ShowOptions()
     {
-        TutorialOverlay.SetActive(true);
+        Debug.Log("Show options");
     }
     
     public void ShowHelp()
     {
-        Debug.Log("Show help");
+        TutorialOverlay.SetActive(true);
     }
     
     void ButtonDown()
