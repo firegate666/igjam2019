@@ -2,20 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public enum AlienElement
-{
-    Water = 0,
-    Fire = 1,
-    Wood = 2
-}
-
 public class AlienContainer
 {
-    public AlienElement Element;
+    public Elements Element;
     public Image AlienImage;
     public Image ElementImage;
 }
@@ -32,7 +26,7 @@ public class AlienSpawner : MonoBehaviour
 
     public static AlienSpawner Instance;
 
-    private Stack<AlienElement> _availableELements = new Stack<AlienElement>();
+    private Stack<Elements> _availableELements = new Stack<Elements>();
 
     void Awake()
     {
@@ -44,13 +38,13 @@ public class AlienSpawner : MonoBehaviour
 
     private void RefillElements()
     {
-        foreach (AlienElement elem in Enum.GetValues(typeof(AlienElement)))
+        foreach (Elements elem in new List<Elements>() { Elements.Fire, Elements.Wood, Elements.Water})
         {
             _availableELements.Push(elem);
         }
     }
     
-    private AlienElement GetNextElement()
+    private Elements GetNextElement()
     {
         if (_availableELements.Count == 0)
         {
@@ -76,17 +70,17 @@ public class AlienSpawner : MonoBehaviour
         return aliens;
     }
 
-    private Image GetRandomIcon(AlienElement element)
+    private Image GetRandomIcon(Elements element)
     {
-        if (element == AlienElement.Fire)
+        if (element == Elements.Fire)
         {
             return FireIcons[Random.Range(0, FireIcons.Length)];
         } 
-        else if (element == AlienElement.Wood)
+        else if (element == Elements.Wood)
         {
             return WoodIcon[Random.Range(0, WoodIcon.Length)];
         }
-        else if (element == AlienElement.Water)
+        else if (element == Elements.Water)
         {
             return WaterIcons[Random.Range(0, WaterIcons.Length)];
         }
@@ -94,17 +88,17 @@ public class AlienSpawner : MonoBehaviour
         throw new Exception("invalid element picked " + element);
     }
     
-    private Image GetRandomAlien(AlienElement element)
+    private Image GetRandomAlien(Elements element)
     {
-        if (element == AlienElement.Fire)
+        if (element == Elements.Fire)
         {
             return FireAliens[Random.Range(0, FireAliens.Length)];
         } 
-        else if (element == AlienElement.Wood)
+        else if (element == Elements.Wood)
         {
             return WoodAliens[Random.Range(0, WoodAliens.Length)];
         }
-        else if (element == AlienElement.Water)
+        else if (element == Elements.Water)
         {
             return WaterAliens[Random.Range(0, WaterAliens.Length)];
         }

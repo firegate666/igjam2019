@@ -2,9 +2,10 @@ namespace DefaultNamespace
 {
 	public enum Elements
 	{
-		NotSet,
-		Fire,
-		Earth,
-		Apache_Helicopter
+		NotSet = 0,
+		Water = 1,
+		Fire = 2,
+		Wood = 3,
+		Stone = 4
 	}
 }

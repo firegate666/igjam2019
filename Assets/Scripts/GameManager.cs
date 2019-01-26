@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Apache_Helicopter);
+                _tileSystem.DoDrop(_playerControllers[0].positionAngle, Elements.Stone);
             }
         }
     }
