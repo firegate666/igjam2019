@@ -1208,6 +1208,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1265568763 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5686102194287613800, guid: 7c7c6092b5e6a496ca618f2d7f20022c,
+    type: 3}
+  m_PrefabInstance: {fileID: 5686102193763408422}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff01f7c6cb22a48a78f962d96c630af7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1391096533
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,6 +1601,7 @@ MonoBehaviour:
   MainUI: {fileID: 490067661}
   StartUI: {fileID: 869845229}
   GameOverUI: {fileID: 102416840}
+  AdvertisementUI: {fileID: 1265568763}
   AlienUI: {fileID: 337129815}
   gameState: 0
   _tileSystemPainter: {fileID: 281704047}
