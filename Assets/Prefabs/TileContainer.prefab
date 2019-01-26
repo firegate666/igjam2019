@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4566662950065334939}
   - component: {fileID: 4566662950065334916}
   - component: {fileID: 4566662950065334917}
+  - component: {fileID: 6124368754713720034}
   m_Layer: 5
   m_Name: TileContainer
   m_TagString: Untagged
@@ -98,3 +99,22 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &6124368754713720034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4566662950065334918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 902b1ad4ea2c9c54b864584e141d5021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _tilePrefab: {fileID: 5985967463359177320, guid: 1d0d96d2e89366a46a798e720bab5122,
+    type: 3}
+  _elementTextures:
+  - {fileID: 21300000, guid: 16f38fb0dd6574db4839be12f3df0ce5, type: 3}
+  - {fileID: 21300000, guid: 80c1eceff615440368e5ebd0779af694, type: 3}
+  - {fileID: 21300000, guid: 94eee6dd3da744c1fbca90fd4bb76e2e, type: 3}
+  - {fileID: 21300000, guid: 2551a8af5b99941c7afe402abb6e1b64, type: 3}

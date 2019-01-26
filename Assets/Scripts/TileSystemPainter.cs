@@ -8,6 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 public class TileSystemPainter : MonoBehaviour
 {
 	[SerializeField] private GameObject _tilePrefab;
+	[SerializeField] private Sprite[] _elementTextures; 
 	
 	private GameObject[] tileContainer; 
 	private void Start()
@@ -27,7 +28,9 @@ public class TileSystemPainter : MonoBehaviour
 		float size = planetPiece.angleSize;
 		
 		GameObject tile = Instantiate(_tilePrefab, tileContainer[level-1].transform);
-		tile.GetComponent<Image>().fillAmount = size / 360;
+		Image img = tile.GetComponent<Image>();
+		img.sprite = _elementTextures[(int)planetPiece.element];
+		img.fillAmount = size / 360;
 		tile.transform.Rotate(0, 0, index * -size);
 		tile.transform.localScale *= level;
 	}
