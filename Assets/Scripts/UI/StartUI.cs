@@ -29,6 +29,11 @@ public class StartUI : MonoBehaviour
         Debug.Log("Show credits");
     }
     
+    public void ShowOptions()
+    {
+        Debug.Log("Show options");
+    }
+    
     public void ShowHelp()
     {
         Debug.Log("Show help");
