@@ -123,7 +123,7 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown(dropButtonName))
         {
-            Debug.Log("Drop button down");
+            //Debug.Log("Drop button down");
 
 			/*GameObject tile = Instantiate(tileToDrop, transform.position, Quaternion.identity, null);
             Vector3 lookAt = OrbitPivot.position;
