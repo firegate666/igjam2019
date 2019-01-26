@@ -7,7 +7,7 @@ public class AlienUI : MonoBehaviour
     public AlienUIElement ElementPrefab;
     private RectTransform _rectTransform;
 
-    private Dictionary<Elements, RectTransform> _aliens = new Dictionary<Elements, RectTransform>();
+    private Dictionary<int, RectTransform> _aliens = new Dictionary<int, RectTransform>();
 
     private void Start()
     {
@@ -27,14 +27,12 @@ public class AlienUI : MonoBehaviour
     public void RemoveAlien(AlienContainer alien)
     {
         RectTransform uiAlien;
-        _aliens.TryGetValue(alien.Element, out uiAlien);
+        _aliens.TryGetValue(alien.Id, out uiAlien);
 
         if (uiAlien)
         {
-         
-            
             Destroy(uiAlien.gameObject);
-            _aliens.Remove(alien.Element);
+            _aliens.Remove(alien.Id);
         }
     }
 
@@ -46,7 +44,7 @@ public class AlienUI : MonoBehaviour
         alientRect.parent = _rectTransform;
         alientRect.localScale = Vector3.one;
             
-        _aliens.Add(alien.Element, alientRect);
+        _aliens.Add(alien.Id, alientRect);
     }
 
     public void AddAliens(AlienContainer[] aliens)

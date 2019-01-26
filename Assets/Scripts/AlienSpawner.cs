@@ -9,6 +9,7 @@ using Random = UnityEngine.Random;
 
 public class AlienContainer
 {
+    public int Id;
     public Elements Element;
     public Image AlienImage;
     public Image ElementImage;
@@ -28,6 +29,8 @@ public class AlienSpawner : MonoBehaviour
 
     private List<Elements> _allowedElements = new List<Elements>() { Elements.Fire, Elements.Wood, Elements.Water};
     private Stack<Elements> _availableELements = new Stack<Elements>();
+
+    private int _nextAlienID = 0;
 
     void Awake()
     {
@@ -64,6 +67,7 @@ public class AlienSpawner : MonoBehaviour
     public AlienContainer SpawnAlien()
     {
         var alien = new AlienContainer();
+        alien.Id = _nextAlienID++;
         alien.Element = GetNextElement();
         alien.AlienImage = GetRandomAlien(alien.Element);
         alien.ElementImage = GetRandomIcon(alien.Element);
@@ -76,7 +80,8 @@ public class AlienSpawner : MonoBehaviour
         var aliens = new AlienContainer[numberOfAliens];
         for (int i = 0; i < numberOfAliens; i++)
         {
-            aliens[i] = SpawnAlien();
+            var alien = SpawnAlien();
+            aliens[alien.Id] = alien;
         }
 
         return aliens;

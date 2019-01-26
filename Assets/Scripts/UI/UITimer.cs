@@ -47,11 +47,7 @@ public class UITimer : MonoBehaviour
         if (TimeInSeconds < 0)
         {
             _isRunning = false;
-
-            if (_callback != null)
-            {
-                _callback();
-            }
+            _callback.Invoke();
         }
     }
 
@@ -59,5 +55,6 @@ public class UITimer : MonoBehaviour
     {
         TimeInSeconds = timeInSeconds;
         _isRunning = true;
+        _callback = callback;
     }
 }
