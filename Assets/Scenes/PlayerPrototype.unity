@@ -517,7 +517,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1980, y: 1050}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -994,7 +994,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   lineRendererPrefab: {fileID: 4070562035482118493, guid: 109ab103fbf93479aa3e89d32aba020a,
     type: 3}
   lineContainer: {fileID: 1829134612}
-  size: 2.57
+  size: 2.1
 --- !u!4 &1017532483
 Transform:
   m_ObjectHideFlags: 0

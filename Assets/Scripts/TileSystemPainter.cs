@@ -21,7 +21,7 @@ public class TileSystemPainter : MonoBehaviour
         for (int i = GlobalConfig.PlanetLevelHeight; i > 0; i--)
         {
             GameObject levelContainer = Instantiate(_levelContainerPrefab);
-            levelContainer.GetComponent<RectTransform>().parent = _rectTransform;
+            levelContainer.GetComponent<RectTransform>().SetParent(_rectTransform);
             levelContainer.GetComponent<RectTransform>().localScale = Vector3.one;
             levelContainer.name = "Level " + i;
             _levelContainers[i - 1] = levelContainer;
