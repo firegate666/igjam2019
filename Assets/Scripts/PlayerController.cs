@@ -1,8 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 	//public GameObject tileToDrop;
 
 	public Elements elementToDrop;
+	public Elements lastDroppedElement;
 
     public TextMeshPro PlayerNumberLabel;
 
@@ -28,6 +29,11 @@ public class PlayerController : MonoBehaviour
         dropButtonName = "Xbox" + _player + "Drop";
 
         _distanceToCenter = transform.position.y;
+
+		elementToDrop = Elements.Stone;
+		lastDroppedElement = Elements.NotSet;
+
+		assignRandomElement();
     }
 
     public Transform OrbitPivot;   // The transform that this object will orbit around
@@ -49,7 +55,26 @@ public class PlayerController : MonoBehaviour
         transform.position = new Vector3(positionX, positionY, transform.position.z);
     }
 
-	public void SetElementToDrop(Elements element) => elementToDrop = element;
+	public void SetElementToDrop(Elements element)
+	{
+		lastDroppedElement = elementToDrop;
+		elementToDrop = element;
+	}
+
+	public void assignRandomElement()
+	{
+		Array elements = Enum.GetValues(typeof(Elements));
+		int count = 0;
+		Elements element;
+
+		do
+		{
+			element = (Elements) elements.GetValue(Random.Range(1, elements.Length - 1));
+			count++;
+		} while (count < 2 && element == lastDroppedElement);
+
+		SetElementToDrop(element);
+	}
 
 	// Update is called once per frame
 	void Update()
