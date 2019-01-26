@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System.Collections;
+using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.UI;
 using Vector3 = UnityEngine.Vector3;
@@ -28,7 +29,7 @@ public class TileSystemPainter : MonoBehaviour
         }
     }
 
-    public void DrawTile(PlanetPiece planetPiece)
+    public void DrawTile(PlanetPiece planetPiece, bool animate)
     {
         if (planetPiece.element == Elements.NotSet)
         {
@@ -60,12 +61,21 @@ public class TileSystemPainter : MonoBehaviour
         tile.transform.Rotate(0, 0, index * -size);
         tile.transform.GetChild(0).transform.rotation = Quaternion.identity;
         tile.transform.GetChild(0).transform.Rotate(0, 0, index * size); //Rotate the texture back again
+
+        if (animate && GameManager.Instance.gameState == GameState.Planet)
+        {
+        StartCoroutine(AnimateTile(tile.transform, level, 1f));
+        }
+        else
+        {
         tile.transform.localScale = Vector3.one * level;
         tile.transform.GetChild(0).transform.localScale = Vector3.one / level;
+        }
     }
 
     public void Reset()
     {
+        StopAllCoroutines();
         foreach (GameObject levelContainer in _levelContainers)
         {
             foreach (Transform child in levelContainer.transform)
@@ -74,4 +84,21 @@ public class TileSystemPainter : MonoBehaviour
             }
         }
     }
+
+    IEnumerator AnimateTile(Transform tile, int level, float time)
+    {
+        float elapsedTime = 0;
+        
+        while (elapsedTime < time)
+        {
+            float scalar = (Mathf.Clamp(level - 1, 0.1f,1000f) + (elapsedTime/time));
+            tile.transform.localScale = Vector3.one * scalar;
+            tile.transform.GetChild(0).transform.localScale = Vector3.one / scalar;
+            
+            
+            elapsedTime += Time.deltaTime;
+            yield return  new WaitForEndOfFrame();
+        }
+    }
+    
 }
