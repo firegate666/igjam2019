@@ -12,6 +12,7 @@
 .vs/
 /.idea/
 /Assets/Plugins/Editor/JetBrains/
+/Assets/Plugins/Editor/JetBrains.meta
 
 # Gradle cache directory
 .gradle/
