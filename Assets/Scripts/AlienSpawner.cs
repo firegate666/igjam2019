@@ -26,6 +26,7 @@ public class AlienSpawner : MonoBehaviour
 
     public static AlienSpawner Instance;
 
+    private List<Elements> _allowedElements = new List<Elements>() { Elements.Fire, Elements.Wood, Elements.Water};
     private Stack<Elements> _availableELements = new Stack<Elements>();
 
     void Awake()
@@ -38,9 +39,14 @@ public class AlienSpawner : MonoBehaviour
 
     private void RefillElements()
     {
-        foreach (Elements elem in new List<Elements>() { Elements.Fire, Elements.Wood, Elements.Water})
+        _availableELements.Clear();
+
+        int size = _allowedElements.Count;
+        for (int i = 0; i < size; i++)
         {
-            _availableELements.Push(elem);
+            int randomIndex = Random.Range(0, _allowedElements.Count);
+            _availableELements.Push(_allowedElements[randomIndex]);
+            _allowedElements.Remove(_allowedElements[randomIndex]);
         }
     }
     
