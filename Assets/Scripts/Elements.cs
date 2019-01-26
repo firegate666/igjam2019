@@ -1,5 +1,8 @@
+using System;
+
 namespace DefaultNamespace
 {
+	[Serializable]
 	public enum Elements
 	{
 		NotSet = 0,

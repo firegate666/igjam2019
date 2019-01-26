@@ -1,8 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO.IsolatedStorage;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using Random = UnityEngine.Random;
+
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -12,6 +16,11 @@ public class PlayerController : MonoBehaviour
     string dropButtonName;
     private float _distanceToCenter;
 
+    public GameObject StoneIcon;
+    public GameObject WaterIcon;
+    public GameObject WoodIcon;
+    public GameObject FireIcon;
+
     public float positionAngle;
 
 	//public GameObject tileToDrop;
@@ -20,7 +29,7 @@ public class PlayerController : MonoBehaviour
 	public Elements lastDroppedElement;
 
     public TextMeshPro PlayerNumberLabel;
-
+    
     // Start is called before the first frame update
     private void OnEnable()
     {
@@ -39,6 +48,14 @@ public class PlayerController : MonoBehaviour
     public Transform OrbitPivot;   // The transform that this object will orbit around
     public float OrbitSpeed = 100f;
 
+    private void DeactivateIcons()
+    {
+	    StoneIcon.SetActive(false);
+	    WaterIcon.SetActive(false);
+	    WoodIcon.SetActive(false);
+	    FireIcon.SetActive(false);
+    }
+    
     public void SetPlayer(int player)
     {
         _player = player;
@@ -59,6 +76,24 @@ public class PlayerController : MonoBehaviour
 	{
 		lastDroppedElement = elementToDrop;
 		elementToDrop = element;
+
+		DeactivateIcons();
+		switch (element)
+		{
+			case Elements.Fire:
+				FireIcon.SetActive(true);
+				break;
+			case Elements.Wood:
+				WoodIcon.SetActive(true);
+				break;
+			case Elements.Stone:
+				StoneIcon.SetActive(true);
+				break;
+			case Elements.Water:
+				WaterIcon.SetActive(true);
+				break;
+				
+		}
 	}
 
 	public void assignRandomElement()
