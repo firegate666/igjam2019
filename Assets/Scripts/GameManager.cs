@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
@@ -17,6 +18,7 @@ public class GameManager : MonoBehaviour
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
+    public AdvertisementsUI AdvertisementUI;
     public AlienUI AlienUI;
     public GameState gameState = GameState.MainMenu;
 
@@ -153,10 +155,24 @@ public class GameManager : MonoBehaviour
 			AlienUI.AddAlien(newAlien);
 			_aliens.Add(newAlien);
 		}
+		planetsPast++;
 
+		StartCoroutine(TriggerAdvertisements());
+	}
+
+	IEnumerator TriggerAdvertisements()
+	{
+		yield return new WaitForSeconds(1);
+		Timer.Pause();
+		AdvertisementUI.gameObject.SetActive(true);
+		yield return new WaitForSeconds(4);
+		Timer.Unpause();
+		ClearPlanet();
+	}
+	
+	public void ClearPlanet()
+	{
 		_tileSystem.Dispose();
 		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
-
-		planetsPast++;
 	}
 }
