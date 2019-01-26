@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
@@ -31,22 +32,41 @@ public class AlienSpawner : MonoBehaviour
 
     public static AlienSpawner Instance;
 
+    private Stack<AlienElement> _availableELements = new Stack<AlienElement>();
+
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
+        }        
+    }
+
+    private void RefillElements()
+    {
+        foreach (AlienElement elem in Enum.GetValues(typeof(AlienElement)))
+        {
+            _availableELements.Push(elem);
         }
+    }
+    
+    private AlienElement GetNextElement()
+    {
+        if (_availableELements.Count == 0)
+        {
+            RefillElements();
+        }
+        return _availableELements.Pop();
     }
 
     public AlienContainer[] SpawnAliens(int playerCount)
     {
-        var numberOfALiens = playerCount + 1;
-        var aliens = new AlienContainer[numberOfALiens];
-        for (int i = 0; i < numberOfALiens; i++)
+        var numberOfAliens = playerCount + 1;
+        var aliens = new AlienContainer[numberOfAliens];
+        for (int i = 0; i < numberOfAliens; i++)
         {
             var alien = new AlienContainer();
-            alien.Element = (AlienElement) Random.Range(0, 2);
+            alien.Element = GetNextElement();
             alien.AlienImage = GetRandomAlien(alien.Element);
             alien.ElementImage = GetRandomIcon(alien.Element);
 
