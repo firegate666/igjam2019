@@ -7,21 +7,27 @@ public class AdvertisementsUI : MonoBehaviour
     public Image[] Slides;
     private int _numberOfSlides;
     private int _currentSlide;
+    private Remote _remote;
 
     private void Awake()
     {
         _currentSlide = Random.Range(0, Slides.Length);
         _numberOfSlides = Slides.Length;
+        _remote = GetComponentInChildren<Remote>();
+        _remote.GetComponent<RectTransform>().parent = GetComponent<RectTransform>().parent;
     }
 
     private void OnEnable()
     {
         Slides[_currentSlide].gameObject.SetActive(true);
+        _remote.gameObject.SetActive(true);
+        
     }
 
     private void OnDisable()
     {
         GameManager.Instance.LeaveAdvertisements();
+        _remote.gameObject.SetActive(false);
     }
 
     private void Update()
