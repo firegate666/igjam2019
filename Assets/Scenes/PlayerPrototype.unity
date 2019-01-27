@@ -3450,6 +3450,10 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 869845231, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
+      propertyPath: BypassListenerEffects
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
 --- !u!1001 &8114988517106697097
