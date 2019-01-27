@@ -10,8 +10,8 @@ public class QuotePanelUI : MonoBehaviour
 
 	public void SetStars(int stars)
 	{
-		Star1Quote.SetActive(stars >= 1);
-		Star2Quote.SetActive(stars >= 2);
-		Star3Quote.SetActive(stars >= 3);
+		Star1Quote.SetActive(stars == 1);
+		Star2Quote.SetActive(stars == 2);
+		Star3Quote.SetActive(stars == 3);
 	}
 }
