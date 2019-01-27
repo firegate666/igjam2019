@@ -1845,6 +1845,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameOverUI
       objectReference: {fileID: 0}
+    - target: {fileID: 1971872769806331179, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 144214679214473718, guid: bcced4ae4e3364f03b5b659768b8aa9b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1950,10 +1955,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1598316772983915207, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 382
+      objectReference: {fileID: 0}
     - target: {fileID: 998316701291164042, guid: bcced4ae4e3364f03b5b659768b8aa9b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -86
+      objectReference: {fileID: 0}
+    - target: {fileID: 1811352448619803599, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcced4ae4e3364f03b5b659768b8aa9b, type: 3}
