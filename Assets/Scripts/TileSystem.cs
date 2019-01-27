@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using DefaultNamespace;
@@ -183,8 +184,7 @@ public class TileSystem : IDisposable
 
 		planetPiece.element = element;
 
-		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
-		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+		CoroutineProvider.Instance.RunCoroutine(OperateOnElementsAfterSeconds(planetPiece, .5f)); //plus drawing, now 20% off !
 
 		if (_planetCycle.IsPlanetFull())
 		{
@@ -194,6 +194,13 @@ public class TileSystem : IDisposable
 		return true;
 	}
 
+	IEnumerator OperateOnElementsAfterSeconds(PlanetPiece planetPiece, float waitSec)
+	{
+		yield return	new WaitForSeconds(waitSec);
+		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
+		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+	}
+	
 	private bool OperateOnElements(PlanetPiece planetPiece, bool isFirstRecursionStep = false)
 	{
 		bool thereWasAReaction = false;

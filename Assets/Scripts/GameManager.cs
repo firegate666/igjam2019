@@ -105,12 +105,15 @@ public class GameManager : MonoBehaviour
 	    }
     }
     
-	public void doDrop(float playerPosition, int playerNo, Elements element)
+	public bool doDrop(float playerPosition, int playerNo, Elements element)
 	{
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
 			_playerControllers[playerNo - 1].assignRandomElement();
+			return true;
 		}
+
+		return false;
 	}
 
 	public void Restart()
