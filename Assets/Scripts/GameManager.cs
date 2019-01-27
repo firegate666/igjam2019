@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using ProBuilder2.Common;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -25,6 +26,8 @@ public class GameManager : MonoBehaviour
     public ParticleSystem PlanetFishedFX;
     public ParticleSystem PlanetCompleteFX;
     public ParticleSystem NextPlanetFX;
+
+    public Animator PlanetAnimatior;
 
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
@@ -174,7 +177,9 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator TriggerAdvertisements()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1);
+		PlanetAnimatior.SetTrigger("planetOut");
+		yield return new WaitForSeconds(2);
 		Timer.Pause();
 		_tileSystemPainter.gameObject.SetActive(false);
 		_planetOutlineContainer.gameObject.SetActive(false);
@@ -182,11 +187,11 @@ public class GameManager : MonoBehaviour
 		PlanetFishedFX.Stop();
 		PlanetCompleteFX.Stop();
 		yield return new WaitForSeconds(4);
+		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
-		Timer.Unpause();
 		ClearPlanet();
-		
+		Timer.Unpause();
 		NextPlanetFX.Play();
 
 		StartCoroutine(StopNextPlanetFXDelayed());
