@@ -420,6 +420,8 @@ MonoBehaviour:
   WoodIcon: {fileID: 4240679934518268956}
   FireIcon: {fileID: 995034438550570165}
   RocketShip: {fileID: 3169929222703505388}
+  ProjectilePrefab: {fileID: 7614473424173077468, guid: ea319b0e8735f4227ac15ccf265e3251,
+    type: 3}
   positionAngle: 0
   elementToDrop: 0
   lastDroppedElement: 0

@@ -88,14 +88,13 @@ public class TileSystemPainter : MonoBehaviour
     IEnumerator AnimateTile(Transform tile, int level, float time)
     {
         float elapsedTime = 0;
-        
+
         while (elapsedTime < time)
         {
             float scalar = (Mathf.Clamp(level - 1, 0.1f,1000f) + (elapsedTime/time));
             tile.transform.localScale = Vector3.one * scalar;
             tile.transform.GetChild(0).transform.localScale = Vector3.one / scalar;
-            
-            
+
             elapsedTime += Time.deltaTime;
             yield return  new WaitForEndOfFrame();
         }

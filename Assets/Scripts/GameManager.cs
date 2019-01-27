@@ -87,11 +87,14 @@ public class GameManager : MonoBehaviour
         _planetOutlineContainer.gameObject.SetActive(true);
         MainUI.SetActive(true);
         gameState = GameState.Planet;
-        Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
+        Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
     }
 
     public void GameOver()
     {
+	    _tileSystemPainter.gameObject.SetActive(false);
+	    _planetOutlineContainer.gameObject.SetActive(false);
+	    
 	    GameOverUI.SetActive(true);
 
 	    foreach (var player in _playerControllers)
@@ -100,12 +103,15 @@ public class GameManager : MonoBehaviour
 	    }
     }
     
-	public void doDrop(float playerPosition, int playerNo, Elements element)
+	public bool doDrop(float playerPosition, int playerNo, Elements element)
 	{
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
 			_playerControllers[playerNo - 1].assignRandomElement();
+			return true;
 		}
+
+		return false;
 	}
 
 	public void Restart()
