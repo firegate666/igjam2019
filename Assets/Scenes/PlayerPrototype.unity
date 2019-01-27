@@ -2065,7 +2065,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 2aefc657cb5b74b81b2ce96d742ac531,
+      objectReference: {fileID: 21300000, guid: d635b4eb810cd4d478753f4739687120,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcced4ae4e3364f03b5b659768b8aa9b, type: 3}
@@ -3430,16 +3430,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 6898746144817789923, guid: 7865eec418c29426a8d4e26a2156ab78,
-        type: 3}
-      propertyPath: TutorialOverlay
-      value: 
-      objectReference: {fileID: 1121366777}
-    - target: {fileID: 6898746144817789923, guid: 7865eec418c29426a8d4e26a2156ab78,
-        type: 3}
-      propertyPath: CreditsOverlay
-      value: 
-      objectReference: {fileID: 952433911}
     - target: {fileID: 4191051780396350177, guid: 7865eec418c29426a8d4e26a2156ab78,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -3450,6 +3440,16 @@ PrefabInstance:
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6898746144817789923, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: TutorialOverlay
+      value: 
+      objectReference: {fileID: 1121366777}
+    - target: {fileID: 6898746144817789923, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: CreditsOverlay
+      value: 
+      objectReference: {fileID: 952433911}
     - target: {fileID: 869845231, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
       propertyPath: BypassListenerEffects
       value: 0
