@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
     public GameState gameState = GameState.MainMenu;
 
     public ParticleSystem PlanetFishedFX;
+    public ParticleSystem PlanetCompleteFX;
+    public ParticleSystem NextPlanetFX;
 
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
@@ -163,6 +165,7 @@ public class GameManager : MonoBehaviour
 		planetsPast++;
 
 		PlanetFishedFX.Play();
+		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
 	}
 
@@ -170,11 +173,26 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(3);
 		Timer.Pause();
+		_tileSystemPainter.gameObject.SetActive(false);
+		_planetOutlineContainer.gameObject.SetActive(false);
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
+		PlanetCompleteFX.Stop();
 		yield return new WaitForSeconds(4);
+		_tileSystemPainter.gameObject.SetActive(true);
+		_planetOutlineContainer.gameObject.SetActive(true);
 		Timer.Unpause();
 		ClearPlanet();
+		
+		NextPlanetFX.Play();
+
+		StartCoroutine(StopNextPlanetFXDelayed());
+	}
+
+	IEnumerator StopNextPlanetFXDelayed()
+	{
+		yield return new WaitForSeconds(2);
+		NextPlanetFX.Stop();
 	}
 	
 	public void ClearPlanet()
