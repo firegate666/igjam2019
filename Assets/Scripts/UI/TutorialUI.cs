@@ -18,22 +18,74 @@ public class TutorialUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Xbox1Drop"))
-        {
-            SoundManager.Instance.PlayMenuClick();
-            Slides[_currentSlide].gameObject.SetActive(false);
-            _currentSlide++;
-
-            if (_currentSlide >= _numberOfSlides)
-            {
-                //Debug.Log("All slides played");
-                gameObject.SetActive(false);
-            }
-            else
-            {
-
-                Slides[_currentSlide].gameObject.SetActive(true);
-            }
-        }
+		HandleButton();
+		HandleAxis();
     }
+
+	void HandleButton()
+	{
+		if (Input.GetButtonDown("Xbox1Drop"))
+		{
+			if (NextSlide())
+			{
+				Slides[_currentSlide].gameObject.SetActive(true);
+			}
+			else
+			{
+				gameObject.SetActive(false);
+			}
+		}
+	}
+
+	bool _isSwitching;
+
+	void HandleAxis()
+	{
+		float x = Input.GetAxis("Xbox1Horizontal");
+		if (!_isSwitching && x > 0)
+		{
+			_isSwitching = true;
+			if (NextSlide())
+			{
+				Slides[_currentSlide].gameObject.SetActive(true);
+			}
+			else
+			{
+				gameObject.SetActive(false);
+			}
+		}
+		else if (!_isSwitching && x < 0)
+		{
+			_isSwitching = true;
+			if (PreviousSlide())
+			{
+				Slides[_currentSlide].gameObject.SetActive(true);
+			} else
+			{
+				gameObject.SetActive(false);
+			}
+		}
+		else if (_isSwitching && x == 0f)
+		{
+			_isSwitching = false;
+		}
+	}
+
+	bool PreviousSlide()
+	{
+		SoundManager.Instance.PlayMenuClick();
+		Slides[_currentSlide].gameObject.SetActive(false);
+		_currentSlide--;
+
+		return _currentSlide >= 0;
+	}
+
+	bool NextSlide()
+	{
+		SoundManager.Instance.PlayMenuClick();
+		Slides[_currentSlide].gameObject.SetActive(false);
+		_currentSlide++;
+
+		return _currentSlide < _numberOfSlides;
+	}
 }
