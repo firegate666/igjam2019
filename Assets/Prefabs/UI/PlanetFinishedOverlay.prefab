@@ -831,6 +831,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: ScoreAddedText
       objectReference: {fileID: 0}
+    - target: {fileID: 5359078466093056078, guid: ba028c9e55dfb9d46a72943df292113c,
+        type: 3}
+      propertyPath: m_textInfo.textComponent
+      value: 
+      objectReference: {fileID: 7005142852032649876}
+    - target: {fileID: 5359078466093056078, guid: ba028c9e55dfb9d46a72943df292113c,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5359078466093056078, guid: ba028c9e55dfb9d46a72943df292113c,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5949780104950346750, guid: ba028c9e55dfb9d46a72943df292113c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -944,3 +959,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 3127751279202917082}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7005142852032649876 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5359078466093056078, guid: ba028c9e55dfb9d46a72943df292113c,
+    type: 3}
+  m_PrefabInstance: {fileID: 3127751279202917082}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
