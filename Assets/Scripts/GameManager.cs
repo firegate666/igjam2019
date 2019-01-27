@@ -216,6 +216,10 @@ public class GameManager : MonoBehaviour
 		_planetOutlineContainer.gameObject.SetActive(false);
 		_tileSystemPainter.gameObject.SetActive(false);
 		yield return null;
+		foreach (PlayerController controller in _playerControllers)
+		{
+			controller.gameObject.SetActive(false);
+		}
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
 		PlanetFishedFX.Clear();
@@ -234,6 +238,10 @@ public class GameManager : MonoBehaviour
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
 		PlanetAnimatior.SetTrigger("planetIn");
+		foreach (PlayerController controller in _playerControllers)
+		{
+			controller.gameObject.SetActive(true);
+		}
 		yield return null;
 		gameState = GameState.Planet;
 		ElementSpawner.spawnElements = true;
