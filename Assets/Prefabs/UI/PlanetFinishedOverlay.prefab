@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 193579566}
   - component: {fileID: 193579565}
   m_Layer: 5
-  m_Name: Star 3 Label
+  m_Name: Star 3 Quote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,7 +34,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 252}
+  m_AnchoredPosition: {x: -290, y: 234}
   m_SizeDelta: {x: 823.9, y: 291.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &193579566
@@ -86,12 +86,12 @@ GameObject:
   - component: {fileID: 250345444}
   - component: {fileID: 250345443}
   m_Layer: 5
-  m_Name: Star 2 Label
+  m_Name: Star 2 Quote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &250345442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -108,7 +108,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 252}
+  m_AnchoredPosition: {x: -290, y: 238}
   m_SizeDelta: {x: 823.9, y: 291.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &250345444
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 3127751279360200132}
   - component: {fileID: 3127751279360200133}
   m_Layer: 5
-  m_Name: Star 1 Label
+  m_Name: Star 1 Quote
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -330,7 +330,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -290, y: 252}
+  m_AnchoredPosition: {x: -290, y: 205}
   m_SizeDelta: {x: 823.9, y: 291.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3127751279360200132
@@ -423,10 +423,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 343b5a74dd7ab4faaaf95d749a0bc202, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuotePanel: {fileID: 3127751280121868464}
-  StarPanel: {fileID: 3127751280648040215}
-  AlienPanel1: {fileID: 3127751280377444476}
-  AlienPanel2: {fileID: 3127751279347004145}
+  QuotePanel: {fileID: 233129320}
+  StarPanel: {fileID: 645119427}
+  AlienPanel: {fileID: 529962034}
   ScorePanel: {fileID: 1135256933753155832}
 --- !u!82 &3328020421339350765
 AudioSource:
@@ -533,6 +532,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3127751280121868471}
+  - component: {fileID: 233129320}
   m_Layer: 5
   m_Name: Quote Panel
   m_TagString: Untagged
@@ -562,6 +562,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 71}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &233129320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127751280121868464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03033fa52808ce74181bc6ec3cd4566d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Star1Quote: {fileID: 3127751279360200135}
+  Star2Quote: {fileID: 250345441}
+  Star3Quote: {fileID: 193579563}
 --- !u!1 &3127751280377444478
 GameObject:
   m_ObjectHideFlags: 0
@@ -648,7 +663,7 @@ GameObject:
   - component: {fileID: 3127751280571582706}
   - component: {fileID: 3127751280571582707}
   m_Layer: 5
-  m_Name: StarFrame (1)
+  m_Name: Star 2 Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -723,7 +738,7 @@ GameObject:
   - component: {fileID: 3127751280583716899}
   - component: {fileID: 3127751280583716908}
   m_Layer: 5
-  m_Name: StarFrame (2)
+  m_Name: Star 3 Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -798,7 +813,7 @@ GameObject:
   - component: {fileID: 3127751280599287681}
   - component: {fileID: 3127751280599287682}
   m_Layer: 5
-  m_Name: StarFrame
+  m_Name: Star 1 Outline
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -870,6 +885,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3127751280648040214}
+  - component: {fileID: 645119427}
   m_Layer: 5
   m_Name: Star Panel
   m_TagString: Untagged
@@ -899,6 +915,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: -383}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &645119427
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127751280648040215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d677248a0230f1a4bbd2d0a34659b9d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Star1Fill: {fileID: 3127751280863798117}
+  Star2Fill: {fileID: 3127751280847122800}
+  Star3Fill: {fileID: 3127751280800963664}
 --- !u!1 &3127751280800963664
 GameObject:
   m_ObjectHideFlags: 0
@@ -911,12 +942,12 @@ GameObject:
   - component: {fileID: 3127751280800963669}
   - component: {fileID: 3127751280800963670}
   m_Layer: 5
-  m_Name: StarFilled
+  m_Name: Star 3 Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3127751280800963671
 RectTransform:
   m_ObjectHideFlags: 0
@@ -985,12 +1016,12 @@ GameObject:
   - component: {fileID: 3127751280847122805}
   - component: {fileID: 3127751280847122806}
   m_Layer: 5
-  m_Name: StarFilled
+  m_Name: Star 2 Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3127751280847122807
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1059,12 +1090,12 @@ GameObject:
   - component: {fileID: 3127751280863798138}
   - component: {fileID: 3127751280863798139}
   m_Layer: 5
-  m_Name: StarFilled
+  m_Name: Star 1 Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3127751280863798116
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1130,6 +1161,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3127751281205948148}
+  - component: {fileID: 529962034}
   m_Layer: 5
   m_Name: Alien Panel
   m_TagString: Untagged
@@ -1158,6 +1190,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &529962034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3127751281205948149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f3fe597f43a9c4a955a9749994c6df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  AlienPanel1: {fileID: 3127751280377444476}
+  AlienPanel2: {fileID: 3127751279347004145}
 --- !u!1 &8830602050610668520
 GameObject:
   m_ObjectHideFlags: 0
