@@ -119,13 +119,14 @@ public class PlayerController : MonoBehaviour
 		SetElementToDrop(element);
 	}
 
-	private void RotateIcons(float factor)
+	private void TranslateIcons()
 	{
-				
-		FireIcon.transform.localPosition = new Vector3(1.3f * factor, 0.28f, 0);
-		WaterIcon.transform.localPosition = new Vector3(1.3f * factor, 0.28f, 0);
-		StoneIcon.transform.localPosition = new Vector3(1.3f * factor, 0.28f, 0);
-		WoodIcon.transform.localPosition = new Vector3(1.3f * factor, 0.28f, 0);
+		Vector3 iconPosition = RocketShip.transform.localPosition + RocketShip.transform.up * 1.9f;
+
+		FireIcon.transform.localPosition = iconPosition;
+		WaterIcon.transform.localPosition = iconPosition;
+		StoneIcon.transform.localPosition = iconPosition;
+		WoodIcon.transform.localPosition = iconPosition;
 	}
 
 	// Update is called once per frame
@@ -155,20 +156,16 @@ public class PlayerController : MonoBehaviour
                 if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
                 {
                     positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(1);
                 } else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
                 {
                     positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(-1);
                 } else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
                 {
                     positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-	                RotateIcons(-1);
                 }
                 else
                 {
                     positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(1);
                 }
             }
 
@@ -196,7 +193,8 @@ public class PlayerController : MonoBehaviour
 		{
 			targetRotation = Quaternion.LookRotation(Vector3.forward, new Vector3(_xOffset, 0, 0) - new Vector3(RocketShip.transform.position.x, RocketShip.transform.position.y, 0));
 		}
-		transform.rotation = Quaternion.Lerp(RocketShip.transform.rotation, targetRotation, Time.deltaTime * 7);
+		RocketShip.transform.rotation = Quaternion.Lerp(RocketShip.transform.rotation, targetRotation, Time.deltaTime * 7);
+	    TranslateIcons();
 
 		if (Input.GetButtonDown(dropButtonName))
         {
