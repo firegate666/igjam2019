@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
 		RocketShip.transform.rotation = Quaternion.Lerp(RocketShip.transform.rotation, targetRotation, Time.deltaTime * 7);
 	    TranslateIcons();
 
-		if (Input.GetButtonDown(dropButtonName))
+		if (Input.GetButtonDown(dropButtonName) && GameManager.Instance.gameState == GameState.Planet)
         {
             //Debug.Log("Drop button down");
 

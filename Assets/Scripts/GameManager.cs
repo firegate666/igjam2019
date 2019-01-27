@@ -183,6 +183,7 @@ public class GameManager : MonoBehaviour
 		planetsPast++;
 
 		Timer.Pause();
+		gameState = GameState.Advertisements;
 		PlanetFishedFX.Play();
 		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
@@ -190,26 +191,34 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator TriggerAdvertisements()
 	{
-		gameState = GameState.Advertisements;
-		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
-		yield return new WaitForSeconds(2);
-		_tileSystemPainter.gameObject.SetActive(false);
+		yield return new WaitForSeconds(1.5f);
+		_tileSystem.Dispose();
+		yield return null;
 		_planetOutlineContainer.gameObject.SetActive(false);
+		_tileSystemPainter.gameObject.SetActive(false);
+		yield return null;
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
+		PlanetFishedFX.Clear();
 		PlanetCompleteFX.Stop();
 		PlanetCompleteFX.Clear();
 	}
 
 	public void LeaveAdvertisements()
 	{
+		StartCoroutine(LeaveAdvertisementsCoroutine());
+	}
+	
+	private IEnumerator LeaveAdvertisementsCoroutine()
+	{
+		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
-		ClearPlanet();
+		PlanetAnimatior.SetTrigger("planetIn");
+		yield return null;
 		gameState = GameState.Planet;
 		Timer.Unpause();
-		PlanetAnimatior.SetTrigger("planetIn");
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
 	}
@@ -219,12 +228,6 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(2);
 		NextPlanetFX.Stop();
 		NextPlanetFX.Clear();
-	}
-	
-	public void ClearPlanet()
-	{
-		_tileSystem.Dispose();
-		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 	}
 
 	public void UpdateScoreText(bool showScoreIndicator = true)
