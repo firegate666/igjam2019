@@ -61,8 +61,9 @@ public class GameManager : MonoBehaviour
             throw new Exception("Only one instance of GameManager!");
         }
 
-		TheScore = new ScoreManager();
+		TheScore = FindObjectOfType<ScoreManager>();
 		TheScore.setTotalScore(0);
+		TheScore.setPlanetScore(0);
 		gameScore.text = "0";
 
         
@@ -103,6 +104,8 @@ public class GameManager : MonoBehaviour
 	    
 	    GameOverUI.SetActive(true);
 	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "" + TheScore.getTotalScore() * 100;
+
+		TheScore.CheckHighscore();
 
 	    foreach (var player in _playerControllers)
 	    {
