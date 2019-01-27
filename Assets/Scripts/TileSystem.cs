@@ -233,7 +233,8 @@ public class TileSystem : IDisposable
 			if (dropped == Elements.Fire)
 			{
 				SoundManager.Instance.PlayFire();
-			} else if (dropped == Elements.Wood)
+			} 
+			else if (dropped == Elements.Wood)
 			{
 				SoundManager.Instance.PlayWood();
 			}
