@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
 		SetElementToDrop(element);
 	}
 
-	private void RotateIcons(float factor)
+	private void TranslateIcons(float factor)
 	{
 				
 		FireIcon.transform.localPosition = new Vector3(1.3f * factor, 0.28f, 0);
@@ -155,20 +155,20 @@ public class PlayerController : MonoBehaviour
                 if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
                 {
                     positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(1);
+                    TranslateIcons(1);
                 } else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
                 {
                     positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(-1);
+                    TranslateIcons(-1);
                 } else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
                 {
                     positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-	                RotateIcons(-1);
+	                TranslateIcons(-1);
                 }
                 else
                 {
                     positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                    RotateIcons(1);
+                    TranslateIcons(1);
                 }
             }
 
