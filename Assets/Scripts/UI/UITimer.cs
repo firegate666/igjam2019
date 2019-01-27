@@ -64,8 +64,8 @@ public class UITimer : MonoBehaviour
             _isRunning = false;
             _callback.Invoke();
         }
-
-        Mathf.Lerp(_currentPitch, _targetPitch, (t += (Time.deltaTime * 0.25f)));
+        
+        _audioSource.pitch = Mathf.Lerp(_currentPitch, _targetPitch, (t += (Time.deltaTime * 1f)));
     }
 
     private void ChangePitch(float newPitch)
@@ -78,13 +78,13 @@ public class UITimer : MonoBehaviour
     public void Pause()
     {
         _isRunning = false;
-        _audioSource.pitch = 0.8f;
+        ChangePitch(0.0f);
     }
 
     public void Unpause()
     {
         _isRunning = true;
-        _audioSource.pitch = 1;
+        ChangePitch(1.0f);
     }
 
     public void SetRunning(float timeInSeconds, Action callback)
