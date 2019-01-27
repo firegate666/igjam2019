@@ -11,6 +11,7 @@ public class StartUI : MonoBehaviour
     private bool _isSwitching;
 
     public GameObject TutorialOverlay;
+    public GameObject CreditsOverlay;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,8 @@ public class StartUI : MonoBehaviour
 
     public void ShowCredits()
     {
-        Debug.Log("Show credits");
+        ButtonArea.SetActive((false));
+        CreditsOverlay.SetActive(true);
     }
     
     public void ShowOptions()
@@ -39,8 +41,8 @@ public class StartUI : MonoBehaviour
     
     public void ShowHelp()
     {
-        TutorialOverlay.SetActive(true);
         ButtonArea.SetActive((false));
+        TutorialOverlay.SetActive(true);
     }
     
     void ButtonDown()
@@ -72,13 +74,13 @@ public class StartUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TutorialOverlay.activeSelf)
+        if (TutorialOverlay.activeSelf || CreditsOverlay.activeSelf)
         {
             // start menu blocked if overlay
         }
         else
         {
-            if (!ButtonArea.activeSelf)
+            if (!ButtonArea.activeSelf && !CreditsOverlay.activeSelf)
             {
                 ButtonArea.SetActive((true));
             }
