@@ -1945,16 +1945,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4338291485029049062, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4338291485029049062, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcced4ae4e3364f03b5b659768b8aa9b, type: 3}
 --- !u!224 &1382188408 stripped
@@ -3208,11 +3198,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StartUI
       objectReference: {fileID: 0}
-    - target: {fileID: 6898746144817789921, guid: 7865eec418c29426a8d4e26a2156ab78,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6898746144817789922, guid: 7865eec418c29426a8d4e26a2156ab78,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3318,16 +3303,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 4191051780396350177, guid: 7865eec418c29426a8d4e26a2156ab78,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4191051780396350177, guid: 7865eec418c29426a8d4e26a2156ab78,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6898746144817789923, guid: 7865eec418c29426a8d4e26a2156ab78,
         type: 3}
       propertyPath: TutorialOverlay
@@ -3338,10 +3313,6 @@ PrefabInstance:
       propertyPath: CreditsOverlay
       value: 
       objectReference: {fileID: 952433911}
-    - target: {fileID: 869845231, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
-      propertyPath: BypassListenerEffects
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
 --- !u!1001 &8114988517106697097
@@ -3564,27 +3535,6 @@ PrefabInstance:
     - target: {fileID: 8484627171342276245, guid: 2817781451d8f476bbcf8722279be128,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8484627171342276247, guid: 2817781451d8f476bbcf8722279be128,
-        type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 8d36074dc521f448bbac9660b5bcef33, type: 3}
-    - target: {fileID: 705709532, guid: 2817781451d8f476bbcf8722279be128, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 705709531, guid: 2817781451d8f476bbcf8722279be128, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 705709530, guid: 2817781451d8f476bbcf8722279be128, type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 705709529, guid: 2817781451d8f476bbcf8722279be128, type: 3}
-      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
