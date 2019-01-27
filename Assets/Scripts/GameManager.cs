@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
+    public ElementSpawner ElementSpawner; 
     public AdvertisementsUI AdvertisementUI;
     public AlienUI AlienUI;
     public GameState gameState = GameState.MainMenu;
@@ -93,6 +94,7 @@ public class GameManager : MonoBehaviour
 	    _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         MainUI.SetActive(true);
         gameState = GameState.Planet;
+        ElementSpawner.spawnElements = true;
         Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
     }
 
@@ -118,7 +120,7 @@ public class GameManager : MonoBehaviour
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
 			Camera.main.gameObject.GetComponent<Shake>().DoShake();
-			_playerControllers[playerNo - 1].assignRandomElement();
+			_playerControllers[playerNo - 1].SetElementToDrop(Elements.NotSet);
 //			UpdateScoreText();
 			return true;
 		}
@@ -139,6 +141,7 @@ public class GameManager : MonoBehaviour
 		TheScore.setPlanetScore(0);
 		Debug.Log(TheScore.getTotalScore());
 		gameState = GameState.Advertisements;
+		ElementSpawner.spawnElements = false;
 		// Check for winning alien
 		List<int> alienPoints = new List<int>();
 		foreach (AlienContainer alien in _aliens)
@@ -184,6 +187,7 @@ public class GameManager : MonoBehaviour
 
 		Timer.Pause();
 		gameState = GameState.Advertisements;
+		ElementSpawner.spawnElements = false;
 		PlanetFishedFX.Play();
 		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
@@ -218,6 +222,7 @@ public class GameManager : MonoBehaviour
 		PlanetAnimatior.SetTrigger("planetIn");
 		yield return null;
 		gameState = GameState.Planet;
+		ElementSpawner.spawnElements = true;
 		Timer.Unpause();
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
