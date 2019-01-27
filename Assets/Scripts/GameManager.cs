@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
 		}
 		for (int i = 0; i < allWinners.Count; i++)
 		{
-			//Debug.Log("Winner declared");
+			IntermissionUI.AddWinner(_aliens[allWinners[i]]);
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
 			_aliens.Remove(_aliens[allWinners[i]]);

@@ -234,12 +234,12 @@ GameObject:
   - component: {fileID: 3127751279347004144}
   - component: {fileID: 3127751279347004145}
   m_Layer: 5
-  m_Name: Image (1)
+  m_Name: Alien 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3127751279347004146
 RectTransform:
   m_ObjectHideFlags: 0
@@ -424,7 +424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   QuotePanel: {fileID: 3127751280121868464}
   StarPanel: {fileID: 3127751280648040215}
-  AlienPanel: {fileID: 3127751281205948149}
+  AlienPanel1: {fileID: 3127751280377444476}
+  AlienPanel2: {fileID: 3127751279347004145}
   ScorePanel: {fileID: 1135256933753155832}
 --- !u!1 &3127751280121868464
 GameObject:
@@ -476,12 +477,12 @@ GameObject:
   - component: {fileID: 3127751280377444467}
   - component: {fileID: 3127751280377444476}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Alien 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3127751280377444477
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1038,7 +1039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3127751281205948148
 RectTransform:
   m_ObjectHideFlags: 0
