@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using ProBuilder2.Common;
+using TMPro;
 using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
 	public ScoreManager TheScore;
 
 	public UITimer Timer;
+	public TextMeshProUGUI gameScore; 
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
@@ -62,6 +64,7 @@ public class GameManager : MonoBehaviour
 
 		TheScore = new ScoreManager();
 		TheScore.setScore(0);
+		gameScore.text = "$$ 0";
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
@@ -101,6 +104,7 @@ public class GameManager : MonoBehaviour
 	    _planetOutlineContainer.gameObject.SetActive(false);
 	    
 	    GameOverUI.SetActive(true);
+	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "$$ " + TheScore.getScore() * 100;
 
 	    foreach (var player in _playerControllers)
 	    {
@@ -160,6 +164,7 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.Log("Winner declared");
 			TheScore.addScore(alienPoints[allWinners[i]]);
+			gameScore.text = "$$ " + TheScore.getScore() + 100;
 			Debug.Log(TheScore.getScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
