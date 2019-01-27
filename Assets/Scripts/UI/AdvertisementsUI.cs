@@ -14,7 +14,7 @@ public class AdvertisementsUI : MonoBehaviour
         _currentSlide = Random.Range(0, Slides.Length);
         _numberOfSlides = Slides.Length;
         _remote = GetComponentInChildren<Remote>();
-        _remote.GetComponent<RectTransform>().parent = GetComponent<RectTransform>().parent;
+        _remote.GetComponent<RectTransform>().SetParent(GetComponent<RectTransform>().parent);
     }
 
     private void OnEnable()
