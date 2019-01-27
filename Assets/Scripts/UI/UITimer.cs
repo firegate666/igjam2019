@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.UIElements;
+
+public enum TimerState
+{
+    NORMAL,
+    WARNING,
+    DANGER
+}
 
 public class UITimer : MonoBehaviour
 {
@@ -33,6 +41,8 @@ public class UITimer : MonoBehaviour
     private float _pitchModSpeedUp = 0.25f;
     private float _basePitch = 1f;
 
+    private TimerState _state;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -56,15 +66,18 @@ public class UITimer : MonoBehaviour
             TimerDisplay.text = str;
         }
 
-        if (TimeInSeconds < DangerLimit)
+        if (TimeInSeconds < DangerLimit && _state == TimerState.WARNING)
         {
+            _state = TimerState.DANGER;
             Color color;
             ColorUtility.TryParseHtmlString(DangerColor, out color);
             TimerDisplay.color = color;
             ChangePitch(DangerPitch, true);
             Background.Speed = new Vector2(0.05f, 0);
-        } else if (TimeInSeconds < WarningLimit)
+        } 
+        else if (TimeInSeconds < WarningLimit && _state == TimerState.NORMAL)
         {
+            _state = TimerState.WARNING;
             Color color;
             ColorUtility.TryParseHtmlString(WarningColor, out color);
             TimerDisplay.color = color;
@@ -112,5 +125,6 @@ public class UITimer : MonoBehaviour
         _isRunning = true;
         _callback = callback;
         _audioSource.Play();
+        _state = TimerState.NORMAL;
     }
 }
