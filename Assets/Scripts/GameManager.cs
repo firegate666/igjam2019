@@ -194,6 +194,7 @@ public class GameManager : MonoBehaviour
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
 		PlanetCompleteFX.Stop();
+		PlanetCompleteFX.Clear();
 	}
 
 	public void LeaveAdvertisements()
@@ -212,6 +213,7 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(2);
 		NextPlanetFX.Stop();
+		NextPlanetFX.Clear();
 	}
 	
 	public void ClearPlanet()
