@@ -229,9 +229,23 @@ public class TileSystem : IDisposable
 		if (possibleFusionElement == receiver)
 		{
 			receivingPiece.element = dropped;
+
+			if (dropped == Elements.Fire)
+			{
+				SoundManager.Instance.PlayFire();
+			} 
+			else if (dropped == Elements.Wood)
+			{
+				SoundManager.Instance.PlayWood();
+			}
+			else if (dropped == Elements.Water) {
+				SoundManager.Instance.PlayWater();
+			}
+			
 			return true;
 		}
 
+		SoundManager.Instance.PlayImpact();
 		return false;
 	}
 
