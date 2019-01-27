@@ -3,6 +3,7 @@ namespace DefaultNamespace
 	public enum GameState
 	{
 		MainMenu,
-		Planet
+		Planet,
+		Advertisements
 	}
 }
