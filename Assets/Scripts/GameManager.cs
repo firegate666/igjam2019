@@ -64,7 +64,7 @@ public class GameManager : MonoBehaviour
 
 		TheScore = new ScoreManager();
 		TheScore.setScore(0);
-		gameScore.text = "$$ 0";
+		gameScore.text = "0";
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
@@ -100,11 +100,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+	    Timer.Pause();
 	    _tileSystemPainter.gameObject.SetActive(false);
 	    _planetOutlineContainer.gameObject.SetActive(false);
 	    
 	    GameOverUI.SetActive(true);
-	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "$$ " + TheScore.getScore() * 100;
+	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "" + TheScore.getScore() * 100;
 
 	    foreach (var player in _playerControllers)
 	    {
@@ -164,7 +165,7 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.Log("Winner declared");
 			TheScore.addScore(alienPoints[allWinners[i]]);
-			gameScore.text = "$$ " + TheScore.getScore() + 100;
+			gameScore.text = "" + TheScore.getScore() + 100;
 			Debug.Log(TheScore.getScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
