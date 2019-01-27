@@ -1340,11 +1340,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -1528,6 +1528,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanetFinishedOverlay
       objectReference: {fileID: 0}
+    - target: {fileID: 3127751279377620604, guid: c958633a25e914593b1306b6f1afec87,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3127751279377620595, guid: c958633a25e914593b1306b6f1afec87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1632,6 +1637,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005142852032649876, guid: c958633a25e914593b1306b6f1afec87,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005142852032649876, guid: c958633a25e914593b1306b6f1afec87,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c958633a25e914593b1306b6f1afec87, type: 3}
@@ -2275,11 +2290,11 @@ MonoBehaviour:
     lineCount: 1
     pageCount: 1
     materialCount: 1
-  m_havePropertiesChanged: 1
+  m_havePropertiesChanged: 0
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_isInputParsingRequired: 1
+  m_isInputParsingRequired: 0
   m_inputSource: 0
   m_hasFontAssetChanged: 0
   m_subTextObjects:
@@ -3148,6 +3163,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StartUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 6898746144817789921, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6898746144817789922, guid: 7865eec418c29426a8d4e26a2156ab78,
         type: 3}
