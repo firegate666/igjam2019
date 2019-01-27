@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO.IsolatedStorage;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
@@ -21,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public GameObject WaterIcon;
     public GameObject WoodIcon;
     public GameObject FireIcon;
-	public GameObject RocketShip; // 8========D~~~
+	public GameObject RocketShip;
+	public GameObject ProjectilePrefab;
 
 	private Vector3 lastPosition;
 
@@ -199,7 +198,13 @@ public class PlayerController : MonoBehaviour
             FlyingTo fly = tile.GetComponent<FlyingTo>();
             fly.FlyTo(lookAt);*/
 
-			GameManager.Instance.doDrop(positionAngle, _player, elementToDrop);
+	        Elements droppedElement = elementToDrop;
+	        if (GameManager.Instance.doDrop(positionAngle, _player, elementToDrop))
+	        {
+		        Projectile projectile = Instantiate(ProjectilePrefab).GetComponent<Projectile>();
+		        projectile.transform.position = RocketShip.transform.position;
+		        projectile.SetElement(droppedElement, Vector3.right * _xOffset);
+	        }
         }
     }
 }
