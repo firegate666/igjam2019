@@ -24,29 +24,34 @@ public class StartUI : MonoBehaviour
 
     public void StartGame(int numberOfPlayers)
     {
+        SoundManager.Instance.PlayMenuClick();
         Debug.Log("Start Game");
         GameManager.Instance.StartGame(numberOfPlayers);
     }
 
     public void ShowCredits()
     {
+        SoundManager.Instance.PlayMenuClick();
         ButtonArea.SetActive((false));
         CreditsOverlay.SetActive(true);
     }
     
     public void ShowOptions()
     {
+        SoundManager.Instance.PlayMenuClick();
         Debug.Log("Show options");
     }
     
     public void ShowHelp()
     {
+        SoundManager.Instance.PlayMenuClick();
         ButtonArea.SetActive((false));
         TutorialOverlay.SetActive(true);
     }
     
     void ButtonDown()
     {
+        SoundManager.Instance.PlayMenuClick();
         Buttons[_activeButton].ToggleState();
         
         _activeButton++;
@@ -60,6 +65,7 @@ public class StartUI : MonoBehaviour
     
     void ButtonUp()
     {
+        SoundManager.Instance.PlayMenuClick();
         Buttons[_activeButton].ToggleState();
         
         _activeButton--;

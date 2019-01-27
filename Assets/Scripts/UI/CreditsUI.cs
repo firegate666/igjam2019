@@ -8,6 +8,7 @@ public class CreditsUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Xbox1Drop"))
         {
+            SoundManager.Instance.PlayMenuClick();
             gameObject.SetActive(false);
         }
     }

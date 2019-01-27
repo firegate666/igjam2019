@@ -27,6 +27,7 @@ public class AdvertisementsUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Xbox1Drop"))
         {
+            SoundManager.Instance.PlayMenuClick();
             Stop();
         }
     }

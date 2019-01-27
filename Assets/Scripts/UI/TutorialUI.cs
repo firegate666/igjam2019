@@ -20,6 +20,7 @@ public class TutorialUI : MonoBehaviour
     {
         if (Input.GetButtonDown("Xbox1Drop"))
         {
+            SoundManager.Instance.PlayMenuClick();
             Slides[_currentSlide].gameObject.SetActive(false);
             _currentSlide++;
 
