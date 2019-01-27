@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
@@ -17,8 +18,11 @@ public class GameManager : MonoBehaviour
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
+    public AdvertisementsUI AdvertisementUI;
     public AlienUI AlienUI;
     public GameState gameState = GameState.MainMenu;
+
+    public ParticleSystem PlanetFishedFX;
 
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
@@ -153,10 +157,26 @@ public class GameManager : MonoBehaviour
 			AlienUI.AddAlien(newAlien);
 			_aliens.Add(newAlien);
 		}
+		planetsPast++;
 
+		PlanetFishedFX.Play();
+		StartCoroutine(TriggerAdvertisements());
+	}
+
+	IEnumerator TriggerAdvertisements()
+	{
+		yield return new WaitForSeconds(3);
+		Timer.Pause();
+		AdvertisementUI.gameObject.SetActive(true);
+		PlanetFishedFX.Stop();
+		yield return new WaitForSeconds(4);
+		Timer.Unpause();
+		ClearPlanet();
+	}
+	
+	public void ClearPlanet()
+	{
 		_tileSystem.Dispose();
 		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
-
-		planetsPast++;
 	}
 }

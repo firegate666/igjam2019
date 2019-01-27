@@ -22,9 +22,17 @@ public class UITimer : MonoBehaviour
 
     private AudioSource _audioSource;
 
+    private float _currentPitch;
+    private float _targetPitch;
+    private float t;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
+
+        _currentPitch = 1.0f;
+        _targetPitch = 1.0f;
+        t = 0;
     }
 
     // Update is called once per frame
@@ -55,8 +63,28 @@ public class UITimer : MonoBehaviour
         {
             _isRunning = false;
             _callback.Invoke();
-            _audioSource.Stop();
         }
+
+        Mathf.Lerp(_currentPitch, _targetPitch, (t += (Time.deltaTime * 0.25f)));
+    }
+
+    private void ChangePitch(float newPitch)
+    {
+        t = 0;
+        _currentPitch = _audioSource.pitch;
+        _targetPitch = newPitch;
+    }
+    
+    public void Pause()
+    {
+        _isRunning = false;
+        _audioSource.pitch = 0.8f;
+    }
+
+    public void Unpause()
+    {
+        _isRunning = true;
+        _audioSource.pitch = 1;
     }
 
     public void SetRunning(float timeInSeconds, Action callback)
