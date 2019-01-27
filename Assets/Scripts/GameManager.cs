@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
 		
 		planetsPast++;
 
+		Timer.Pause();
 		PlanetFishedFX.Play();
 		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
@@ -188,7 +189,6 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
-		Timer.Pause();
 		yield return new WaitForSeconds(2);
 		_tileSystemPainter.gameObject.SetActive(false);
 		_planetOutlineContainer.gameObject.SetActive(false);
@@ -201,12 +201,12 @@ public class GameManager : MonoBehaviour
 
 	public void LeaveAdvertisements()
 	{
-		gameState = GameState.Planet;
 		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
 		ClearPlanet();
 		Timer.Unpause();
+		gameState = GameState.Planet;
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
 	}
