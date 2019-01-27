@@ -179,14 +179,15 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
-		yield return new WaitForSeconds(2);
 		Timer.Pause();
+		yield return new WaitForSeconds(2);
 		_tileSystemPainter.gameObject.SetActive(false);
 		_planetOutlineContainer.gameObject.SetActive(false);
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
 		PlanetCompleteFX.Stop();
-		yield return new WaitForSeconds(4);
+		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
