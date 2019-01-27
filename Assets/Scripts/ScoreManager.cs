@@ -7,7 +7,7 @@ public class ScoreManager : MonoBehaviour
     public int Score;
     public int PlanetScore;
 
-	private int highestScore;
+	public int highestScore;
 
     public int getTotalScore() => Score;
 	public int getHighestScore() => highestScore;
@@ -24,8 +24,6 @@ public class ScoreManager : MonoBehaviour
 
 	void Start()
 	{
-		DontDestroyOnLoad(gameObject);
-
 		LoadPlayerProgress();
 	}
 
