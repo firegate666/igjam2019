@@ -186,8 +186,7 @@ public class GameManager : MonoBehaviour
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
 		PlanetCompleteFX.Stop();
-		yield return new WaitForSeconds(3);
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(4);
 		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
