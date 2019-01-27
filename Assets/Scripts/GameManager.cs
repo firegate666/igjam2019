@@ -92,6 +92,9 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+	    _tileSystemPainter.gameObject.SetActive(false);
+	    _planetOutlineContainer.gameObject.SetActive(false);
+	    
 	    GameOverUI.SetActive(true);
 
 	    foreach (var player in _playerControllers)
