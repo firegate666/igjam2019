@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class StartUI : MonoBehaviour
 {
+    public GameObject ButtonArea;
     public Button[] Buttons;
     private int _activeButton;
     private bool _isSwitching;
@@ -39,6 +40,7 @@ public class StartUI : MonoBehaviour
     public void ShowHelp()
     {
         TutorialOverlay.SetActive(true);
+        ButtonArea.SetActive((false));
     }
     
     void ButtonDown()
@@ -76,6 +78,11 @@ public class StartUI : MonoBehaviour
         }
         else
         {
+            if (!ButtonArea.activeSelf)
+            {
+                ButtonArea.SetActive((true));
+            }
+
             float y = Input.GetAxis("Xbox1Vertical");
             if (!_isSwitching && y > 0)
             {
