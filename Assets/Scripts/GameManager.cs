@@ -244,6 +244,6 @@ public class GameManager : MonoBehaviour
 		
 		TheScore.setPlanetScore(elementCount1 + elementCount2);
 		TheScore.addTotalScore(((elementCount1 + elementCount2) - TheScore.getPlanetScore()));
-		gameScore.text = "$$ " + TheScore.getTotalScore() *100;
+		gameScore.text = "" + TheScore.getTotalScore() *100;
 	}
 }
