@@ -170,7 +170,7 @@ public class TileSystem : IDisposable
 		for (int i = 0; i < GlobalConfig.PlanetBaseLevelSize; i++)
 		{
 			Array elements = Enum.GetValues(typeof(Elements));
-			this.DoDrop(i * (360 / GlobalConfig.PlanetBaseLevelSize) + 1f, (Elements) Random.Range(1, elements.Length), false);
+			this.DoDrop(i * (360 / GlobalConfig.PlanetBaseLevelSize) + 1f, (Elements) Random.Range(1, elements.Length-1), false);
 		}
 	}
 
