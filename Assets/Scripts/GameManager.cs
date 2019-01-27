@@ -117,6 +117,7 @@ public class GameManager : MonoBehaviour
 	{
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
+			Camera.main.gameObject.GetComponent<Shake>().DoShake();
 			_playerControllers[playerNo - 1].assignRandomElement();
 			return true;
 		}

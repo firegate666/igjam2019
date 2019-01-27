@@ -1543,6 +1543,7 @@ GameObject:
   - component: {fileID: 1173731825}
   - component: {fileID: 1173731827}
   - component: {fileID: 1173731829}
+  - component: {fileID: 1173731830}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1644,6 +1645,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bd4201aeb24b118753ef8da0739c3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1173731830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1173731824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e727d8d2e3494202bbf07638699aa45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YShake: 1.1
+  XShake: 1.1
+  Time: 0.4
+  Delay: 0.5
 --- !u!1 &1230135007
 GameObject:
   m_ObjectHideFlags: 0
@@ -3061,6 +3078,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2074879725}
   - component: {fileID: 2074879726}
+  - component: {fileID: 2074879727}
   m_Layer: 0
   m_Name: Planet
   m_TagString: Untagged
@@ -3104,6 +3122,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2074879727
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2074879724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e727d8d2e3494202bbf07638699aa45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  YShake: 1.1
+  XShake: 0
+  Time: 0.5
+  Delay: 0.5
 --- !u!1001 &2085412041
 PrefabInstance:
   m_ObjectHideFlags: 0
