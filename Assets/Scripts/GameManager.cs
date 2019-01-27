@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
     public AlienUI AlienUI;
     public GameState gameState = GameState.MainMenu;
 
+    public ParticleSystem PlanetFishedFX;
+
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
     [SerializeField] private TileSystemPainter _tileSystemPainter;
@@ -157,14 +159,16 @@ public class GameManager : MonoBehaviour
 		}
 		planetsPast++;
 
+		PlanetFishedFX.Play();
 		StartCoroutine(TriggerAdvertisements());
 	}
 
 	IEnumerator TriggerAdvertisements()
 	{
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(3);
 		Timer.Pause();
 		AdvertisementUI.gameObject.SetActive(true);
+		PlanetFishedFX.Stop();
 		yield return new WaitForSeconds(4);
 		Timer.Unpause();
 		ClearPlanet();
