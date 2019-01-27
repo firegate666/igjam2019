@@ -12,6 +12,7 @@ public class AlienContainer
     public int Id;
     public Elements Element;
     public Image AlienImage;
+    public Image AlienWinnerImage;
     public Image ElementImage;
     public Image UIElementImage;
 }
@@ -22,6 +23,10 @@ public class AlienSpawner : MonoBehaviour
     public Image[] FireAliens;
     public Image[] WoodAliens;
 
+    public Image[] WaterWinnerAliens;
+    public Image[] FireWinnerAliens;
+    public Image[] WoodWinnerAliens;
+    
     public Image[] WaterIcons;
     public Image[] FireIcons;
     public Image[] WoodIcon;
@@ -75,6 +80,7 @@ public class AlienSpawner : MonoBehaviour
         alien.Id = _nextAlienID++;
         alien.Element = GetNextElement();
         alien.AlienImage = GetRandomAlien(alien.Element);
+        alien.AlienWinnerImage = GetRandomWinnerAlien(alien.Element);
         alien.ElementImage = GetRandomIcon(alien.Element);
         alien.UIElementImage = GetRandomUIIcon(alien.Element);
         return alien;
@@ -142,6 +148,24 @@ public class AlienSpawner : MonoBehaviour
         else if (element == Elements.Water)
         {
             return WaterAliens[Random.Range(0, WaterAliens.Length)];
+        }
+        
+        throw new Exception("invalid element picked " + element);
+    }
+    
+    private Image GetRandomWinnerAlien(Elements element)
+    {
+        if (element == Elements.Fire)
+        {
+            return FireWinnerAliens[Random.Range(0, FireWinnerAliens.Length)];
+        } 
+        else if (element == Elements.Wood)
+        {
+            return WoodWinnerAliens[Random.Range(0, WoodWinnerAliens.Length)];
+        }
+        else if (element == Elements.Water)
+        {
+            return WaterWinnerAliens[Random.Range(0, WaterWinnerAliens.Length)];
         }
         
         throw new Exception("invalid element picked " + element);

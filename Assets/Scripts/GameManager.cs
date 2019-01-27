@@ -125,6 +125,12 @@ public class GameManager : MonoBehaviour
     {
 	    if (Input.GetKeyDown(KeyCode.Escape))
 	    {
+		    if (gameState == GameState.MainMenu)
+		    {
+			    Application.Quit();
+			    Debug.Log("QUIT");
+		    }
+
 		    Restart();
 	    }
     }
@@ -136,10 +142,8 @@ public class GameManager : MonoBehaviour
 		{
 			Camera.main.gameObject.GetComponent<Shake>().DoShake();
 			_playerControllers[playerNo - 1].SetElementToDrop(Elements.NotSet);
-//			UpdateScoreText();
 			return true;
 		}
-//		UpdateScoreText();
 		return false;
 	}
 
@@ -189,7 +193,7 @@ public class GameManager : MonoBehaviour
 		}
 		for (int i = 0; i < allWinners.Count; i++)
 		{
-			//Debug.Log("Winner declared");
+			IntermissionUI.AddWinner(_aliens[allWinners[i]]);
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
 			_aliens.Remove(_aliens[allWinners[i]]);
@@ -270,11 +274,11 @@ public class GameManager : MonoBehaviour
 
 		if (showScoreIndicator && TheScore.getPlanetScore() != elementCount1 + elementCount2)
 		{
-			StartCoroutine(spawnScortextIndicator((elementCount1 + elementCount2- TheScore.getPlanetScore())*100, 0.5f));
+			//StartCoroutine(spawnScortextIndicator((elementCount1 + elementCount2- TheScore.getPlanetScore())*100, 0.5f));
 		}
 		
 		TheScore.setPlanetScore(elementCount1 + elementCount2);
-		gameScore.text = "" + (TheScore.getTotalScore()+TheScore.getPlanetScore())*100;
+		gameScore.text = "" + TheScore.getTotalScore()*100;
 	}
 
 	IEnumerator spawnScortextIndicator(int scoreText, float waitTime)
