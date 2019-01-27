@@ -184,8 +184,8 @@ public class GameManager : MonoBehaviour
 	{
 		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
-		yield return new WaitForSeconds(2);
 		Timer.Pause();
+		yield return new WaitForSeconds(2);
 		_tileSystemPainter.gameObject.SetActive(false);
 		_planetOutlineContainer.gameObject.SetActive(false);
 		AdvertisementUI.gameObject.SetActive(true);
