@@ -62,8 +62,9 @@ public class GameManager : MonoBehaviour
             throw new Exception("Only one instance of GameManager!");
         }
 
-		TheScore = new ScoreManager();
+		TheScore = FindObjectOfType<ScoreManager>();
 		TheScore.setTotalScore(0);
+		TheScore.setPlanetScore(0);
 		gameScore.text = "0";
 
         
@@ -105,6 +106,8 @@ public class GameManager : MonoBehaviour
 	    
 	    GameOverUI.SetActive(true);
 	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "" + TheScore.getTotalScore() * 100;
+
+		TheScore.CheckHighscore();
 
 	    foreach (var player in _playerControllers)
 	    {
@@ -182,6 +185,9 @@ public class GameManager : MonoBehaviour
 		
 		planetsPast++;
 
+		Timer.Pause();
+		gameState = GameState.Advertisements;
+		ElementSpawner.spawnElements = false;
 		PlanetFishedFX.Play();
 		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
@@ -189,28 +195,34 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator TriggerAdvertisements()
 	{
-		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
-		Timer.Pause();
-		yield return new WaitForSeconds(2);
-		_tileSystemPainter.gameObject.SetActive(false);
+		yield return new WaitForSeconds(1.5f);
+		_tileSystem.Dispose();
+		yield return null;
 		_planetOutlineContainer.gameObject.SetActive(false);
-		gameState = GameState.Advertisements;
-		ElementSpawner.spawnElements = false;
+		_tileSystemPainter.gameObject.SetActive(false);
+		yield return null;
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
+		PlanetFishedFX.Clear();
 		PlanetCompleteFX.Stop();
 		PlanetCompleteFX.Clear();
 	}
 
 	public void LeaveAdvertisements()
 	{
-		gameState = GameState.Planet;
-		ElementSpawner.spawnElements = true;
-		PlanetAnimatior.SetTrigger("planetIn");
+		StartCoroutine(LeaveAdvertisementsCoroutine());
+	}
+	
+	private IEnumerator LeaveAdvertisementsCoroutine()
+	{
+		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
-		ClearPlanet();
+		PlanetAnimatior.SetTrigger("planetIn");
+		yield return null;
+		gameState = GameState.Planet;
+		ElementSpawner.spawnElements = true;
 		Timer.Unpause();
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
@@ -221,12 +233,6 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(2);
 		NextPlanetFX.Stop();
 		NextPlanetFX.Clear();
-	}
-	
-	public void ClearPlanet()
-	{
-		_tileSystem.Dispose();
-		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 	}
 
 	public void UpdateScoreText(bool showScoreIndicator = true)

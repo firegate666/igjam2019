@@ -74,6 +74,7 @@ namespace DefaultNamespace
 
 		public void Reset()
 		{
+			StopAllCoroutines();
 			foreach (Transform child in lineContainer.transform)
 			{
 				Destroy(child.gameObject);
