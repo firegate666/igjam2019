@@ -46,12 +46,15 @@ MonoBehaviour:
   WaterAliens:
   - {fileID: 1765657144298685608, guid: 04f332aee3d2b47acab0edf61436e2a9, type: 3}
   - {fileID: 1765657144298685608, guid: 6d6f7717e1b204de4b1ae51fe5ffa40e, type: 3}
+  - {fileID: 1765657144298685608, guid: 65aa822d2331c489d8eca7740e01b73d, type: 3}
   FireAliens:
   - {fileID: 1765657144298685608, guid: d17303a726d634c61b0d9051d4bd20ba, type: 3}
   - {fileID: 1765657144298685608, guid: 850eea8e0237f4ed2bc9a8eadddff243, type: 3}
+  - {fileID: 1765657144298685608, guid: f6be34766a38b4cb9a0487a4f756ebcd, type: 3}
   WoodAliens:
   - {fileID: 1765657144298685608, guid: 3c12171b6968b4f488a624ca0ca7d952, type: 3}
   - {fileID: 1765657144298685608, guid: e64ff2e05bd6741719a71f26f214fbe0, type: 3}
+  - {fileID: 1765657144298685608, guid: 92081a1eefd044302a47df29fc07d0a4, type: 3}
   WaterWinnerAliens:
   - {fileID: 579101311035431816, guid: a907c6d3fa8af4935a4979a3f7cc9c99, type: 3}
   - {fileID: 4874527332101888803, guid: 596308edb07684eefb10d6ebe54ed528, type: 3}

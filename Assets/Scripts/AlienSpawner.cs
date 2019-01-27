@@ -79,11 +79,10 @@ public class AlienSpawner : MonoBehaviour
         var alien = new AlienContainer();
         alien.Id = _nextAlienID++;
         alien.Element = GetNextElement();
-        alien.AlienImage = GetRandomAlien(alien.Element);
-        alien.AlienWinnerImage = GetRandomWinnerAlien(alien.Element);
         alien.ElementImage = GetRandomIcon(alien.Element);
         alien.UIElementImage = GetRandomUIIcon(alien.Element);
-        return alien;
+
+		return AssignRandomAlien(alien);
     }
     
     public AlienContainer[] SpawnAliens(int playerCount)
@@ -93,7 +92,7 @@ public class AlienSpawner : MonoBehaviour
         for (int i = 0; i < numberOfAliens; i++)
         {
             var alien = SpawnAlien();
-            aliens[alien.Id] = alien;
+			aliens[alien.Id] = alien;
         }
 
         return aliens;
@@ -135,39 +134,31 @@ public class AlienSpawner : MonoBehaviour
         throw new Exception("invalid element picked " + element);
     }
     
-    private Image GetRandomAlien(Elements element)
+    private AlienContainer AssignRandomAlien(AlienContainer alien)
     {
-        if (element == Elements.Fire)
-        {
-            return FireAliens[Random.Range(0, FireAliens.Length)];
-        } 
-        else if (element == Elements.Wood)
-        {
-            return WoodAliens[Random.Range(0, WoodAliens.Length)];
-        }
-        else if (element == Elements.Water)
-        {
-            return WaterAliens[Random.Range(0, WaterAliens.Length)];
-        }
-        
-        throw new Exception("invalid element picked " + element);
-    }
-    
-    private Image GetRandomWinnerAlien(Elements element)
-    {
-        if (element == Elements.Fire)
-        {
-            return FireWinnerAliens[Random.Range(0, FireWinnerAliens.Length)];
-        } 
-        else if (element == Elements.Wood)
-        {
-            return WoodWinnerAliens[Random.Range(0, WoodWinnerAliens.Length)];
-        }
-        else if (element == Elements.Water)
-        {
-            return WaterWinnerAliens[Random.Range(0, WaterWinnerAliens.Length)];
-        }
-        
-        throw new Exception("invalid element picked " + element);
+		if (alien.Element == Elements.Fire)
+		{
+			var rand = Random.Range(0, FireAliens.Length);
+			alien.AlienImage = FireAliens[rand];
+			alien.AlienWinnerImage = FireWinnerAliens[rand];
+		}
+		else if (alien.Element == Elements.Wood)
+		{
+			var rand = Random.Range(0, WoodAliens.Length);
+			alien.AlienImage = WoodAliens[rand];
+			alien.AlienWinnerImage = WoodWinnerAliens[rand];
+		}
+		else if (alien.Element == Elements.Water)
+		{
+			var rand = Random.Range(0, WaterAliens.Length);
+			alien.AlienImage = WaterAliens[rand];
+			alien.AlienWinnerImage = WaterWinnerAliens[rand];
+		}
+		else
+		{
+			throw new Exception("invalid element picked " + alien.Element);
+		}
+
+		return alien;
     }
 }
