@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         _planetOutlineContainer.gameObject.SetActive(true);
         MainUI.SetActive(true);
         gameState = GameState.Planet;
-        Timer.SetRunning(120, () => { Debug.Log("Time is monkey"); });
+        Timer.SetRunning(10, () => GameOver());
     }
 
     public void GameOver()
