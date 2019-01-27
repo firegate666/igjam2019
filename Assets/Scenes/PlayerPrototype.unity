@@ -376,7 +376,10 @@ MonoBehaviour:
   WarningColor: '#fad866'
   DangerColor: '#ee6063'
   WarningLimit: 60
+  WarningPitch: 1.15
   DangerLimit: 20
+  DangerPitch: 1.3
+  Background: {fileID: 486685958}
   TimeInSeconds: 120
   _isRunning: 0
   TimerDisplay: {fileID: 1164684295}
