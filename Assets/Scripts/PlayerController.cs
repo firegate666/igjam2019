@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject WaterIcon;
     public GameObject WoodIcon;
     public GameObject FireIcon;
+    public GameObject NotSetIcon;
 	public GameObject RocketShip;
 	public GameObject ProjectilePrefab;
 
@@ -49,7 +50,7 @@ public class PlayerController : MonoBehaviour
 		elementToDrop = Elements.Stone;
 		lastDroppedElement = Elements.NotSet;
 
-		assignRandomElement();
+		SetElementToDrop(Elements.NotSet);
     }
 
     public Transform OrbitPivot;   // The transform that this object will orbit around
@@ -82,7 +83,7 @@ public class PlayerController : MonoBehaviour
 
 	public void SetElementToDrop(Elements element)
 	{
-		lastDroppedElement = elementToDrop;
+	lastDroppedElement = elementToDrop;
 		elementToDrop = element;
 
 		DeactivateIcons();
@@ -100,10 +101,14 @@ public class PlayerController : MonoBehaviour
 			case Elements.Water:
 				WaterIcon.SetActive(true);
 				break;
+			case Elements.NotSet:
+				NotSetIcon.SetActive(true);
+				break;
 				
 		}
 	}
 
+	
 	public void assignRandomElement()
 	{
 		Array elements = Enum.GetValues(typeof(Elements));
@@ -211,12 +216,25 @@ public class PlayerController : MonoBehaviour
             fly.FlyTo(lookAt);*/
 
 	        Elements droppedElement = elementToDrop;
-	        if (GameManager.Instance.doDrop(positionAngle, _player, elementToDrop))
+	        if (elementToDrop != Elements.NotSet && GameManager.Instance.doDrop(positionAngle, _player, elementToDrop))
 	        {
 		        Projectile projectile = Instantiate(ProjectilePrefab).GetComponent<Projectile>();
 		        projectile.transform.position = RocketShip.transform.position;
 		        projectile.SetElement(droppedElement, Vector3.right * _xOffset);
+
+		        elementToDrop = Elements.NotSet;
 	        }
         }
     }
+
+	private void OnTriggerEnter2D(Collider2D other)
+	{
+		Debug.Log("Collision Enter!");
+		if (elementToDrop == Elements.NotSet)
+		{
+		elementToDrop =other.transform.parent.GetComponent<ElementContainer>().element;
+		SetElementToDrop(elementToDrop);
+		other.transform.parent.gameObject.SetActive(false);
+		}
+	}
 }
