@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ScoreManager : MonoBehaviour
+public class ScoreManager
 {    
     public int Score;
     public int PlanetScore;
@@ -22,12 +22,7 @@ public class ScoreManager : MonoBehaviour
 
     public void addPlanetScore(int change) => PlanetScore += change;
 
-	void Start()
-	{
-		LoadPlayerProgress();
-	}
-
-	private void LoadPlayerProgress()
+	public void LoadPlayerProgress()
 	{
 		if (PlayerPrefs.HasKey("highestScore"))
 		{

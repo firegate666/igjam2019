@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
 
 	public UITimer Timer;
 	public TextMeshProUGUI gameScore;
+	public TextMeshProUGUI highScore;
 	public GameObject scoreAddedPrefab;
 	public GameObject MainUI;
     public GameObject StartUI;
@@ -62,11 +63,14 @@ public class GameManager : MonoBehaviour
             throw new Exception("Only one instance of GameManager!");
         }
 
-		TheScore = FindObjectOfType<ScoreManager>();
+		TheScore = new ScoreManager();
+		TheScore.LoadPlayerProgress();
 		TheScore.setTotalScore(0);
 		TheScore.setPlanetScore(0);
 		gameScore.text = "0";
 
+		int highscore = TheScore.getHighestScore() * 100;
+		highScore.text = highscore.ToString();
         
         StartUI.SetActive(true);
     }
