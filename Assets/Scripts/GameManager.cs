@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 		UpdateScoreText();
 		TheScore.addTotalScore(TheScore.getPlanetScore());
 		TheScore.setPlanetScore(0);
-		Debug.Log(TheScore.getTotalScore());
+		//Debug.Log(TheScore.getTotalScore());
 		gameState = GameState.Advertisements;
 		ElementSpawner.spawnElements = false;
 		// Check for winning alien
@@ -169,25 +169,25 @@ public class GameManager : MonoBehaviour
 		{
 			if (alienPoints[i] == 0)
 			{
-				Debug.Log("zero points");
+				//Debug.Log("zero points");
 				continue;
 			}
 
 			if (alienPoints[i] > maxPoints)
 			{
-				Debug.Log("new winnner");
+				//Debug.Log("new winnner");
 				allWinners.Clear();
 				allWinners.Add(i);
 				maxPoints = alienPoints[i];
 			} else if (alienPoints[i] == maxPoints)
 			{
-				Debug.Log("Additional winner");
+				//Debug.Log("Additional winner");
 				allWinners.Add(i);
 			}
 		}
 		for (int i = 0; i < allWinners.Count; i++)
 		{
-			Debug.Log("Winner declared");
+			//Debug.Log("Winner declared");
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
 			_aliens.Remove(_aliens[allWinners[i]]);

@@ -227,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("Collision Enter!");
+		//Debug.Log("Collision Enter!");
 		if (elementToDrop == Elements.NotSet)
 		{
 		elementToDrop =other.transform.parent.GetComponent<ElementContainer>().element;

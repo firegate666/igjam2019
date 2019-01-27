@@ -30,7 +30,7 @@ public class AlienUI : MonoBehaviour
 
     public void RemoveAlien(AlienContainer alien)
     {
-        Debug.Log("Remove alien " + alien.Id);
+        //Debug.Log("Remove alien " + alien.Id);
         AlienPortraitUI uiAlien;
         _aliens.TryGetValue(alien.Id, out uiAlien);
 
@@ -60,7 +60,7 @@ public class AlienUI : MonoBehaviour
         alienUI.AddAlien(alien);
         alienUI.gameObject.SetActive(true);
             
-        Debug.Log("Add Alien " + alien.Id);
+        //Debug.Log("Add Alien " + alien.Id);
         _aliens.Add(alien.Id, alienUI);
     }
 
