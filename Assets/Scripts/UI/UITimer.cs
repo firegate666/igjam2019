@@ -26,6 +26,8 @@ public class UITimer : MonoBehaviour
     private float _targetPitch;
     private float t;
 
+    private float _pitchModSpeedUp = 0.25f;
+
     private void Awake()
     {
         _audioSource = GetComponent<AudioSource>();
@@ -64,8 +66,8 @@ public class UITimer : MonoBehaviour
             _isRunning = false;
             _callback.Invoke();
         }
-
-        Mathf.Lerp(_currentPitch, _targetPitch, (t += (Time.deltaTime * 0.25f)));
+        
+        _audioSource.pitch = Mathf.Lerp(_currentPitch, _targetPitch, (t += (Time.deltaTime * _pitchModSpeedUp)));
     }
 
     private void ChangePitch(float newPitch)
@@ -78,13 +80,15 @@ public class UITimer : MonoBehaviour
     public void Pause()
     {
         _isRunning = false;
-        _audioSource.pitch = 0.8f;
+        _pitchModSpeedUp = 0.5f;
+        ChangePitch(0.0f);
     }
 
     public void Unpause()
     {
         _isRunning = true;
-        _audioSource.pitch = 1;
+        _pitchModSpeedUp = 0.75f;
+        ChangePitch(1.0f);
     }
 
     public void SetRunning(float timeInSeconds, Action callback)

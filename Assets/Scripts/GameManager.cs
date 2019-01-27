@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using DefaultNamespace;
 using ProBuilder2.Common;
+using TMPro;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
@@ -15,6 +17,7 @@ public class GameManager : MonoBehaviour
 	public ScoreManager TheScore;
 
 	public UITimer Timer;
+	public TextMeshProUGUI gameScore; 
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
@@ -23,6 +26,10 @@ public class GameManager : MonoBehaviour
     public GameState gameState = GameState.MainMenu;
 
     public ParticleSystem PlanetFishedFX;
+    public ParticleSystem PlanetCompleteFX;
+    public ParticleSystem NextPlanetFX;
+
+    public Animator PlanetAnimatior;
 
     private PlayerController[] _playerControllers;
     private TileSystem _tileSystem;
@@ -57,6 +64,7 @@ public class GameManager : MonoBehaviour
 
 		TheScore = new ScoreManager();
 		TheScore.setScore(0);
+		gameScore.text = "$$ 0";
 
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
@@ -96,6 +104,7 @@ public class GameManager : MonoBehaviour
 	    _planetOutlineContainer.gameObject.SetActive(false);
 	    
 	    GameOverUI.SetActive(true);
+	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "$$ " + TheScore.getScore() * 100;
 
 	    foreach (var player in _playerControllers)
 	    {
@@ -155,6 +164,7 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.Log("Winner declared");
 			TheScore.addScore(alienPoints[allWinners[i]]);
+			gameScore.text = "$$ " + TheScore.getScore() + 100;
 			Debug.Log(TheScore.getScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
@@ -166,18 +176,36 @@ public class GameManager : MonoBehaviour
 		planetsPast++;
 
 		PlanetFishedFX.Play();
+		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
 	}
 
 	IEnumerator TriggerAdvertisements()
 	{
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(1);
+		PlanetAnimatior.SetTrigger("planetOut");
 		Timer.Pause();
+		yield return new WaitForSeconds(2);
+		_tileSystemPainter.gameObject.SetActive(false);
+		_planetOutlineContainer.gameObject.SetActive(false);
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
+		PlanetCompleteFX.Stop();
 		yield return new WaitForSeconds(4);
-		Timer.Unpause();
+		PlanetAnimatior.SetTrigger("planetIn");
+		_tileSystemPainter.gameObject.SetActive(true);
+		_planetOutlineContainer.gameObject.SetActive(true);
 		ClearPlanet();
+		Timer.Unpause();
+		NextPlanetFX.Play();
+
+		StartCoroutine(StopNextPlanetFXDelayed());
+	}
+
+	IEnumerator StopNextPlanetFXDelayed()
+	{
+		yield return new WaitForSeconds(2);
+		NextPlanetFX.Stop();
 	}
 	
 	public void ClearPlanet()
