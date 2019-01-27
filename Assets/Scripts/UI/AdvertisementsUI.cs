@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DefaultNamespace;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class AdvertisementsUI : MonoBehaviour
@@ -25,7 +26,7 @@ public class AdvertisementsUI : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Xbox1Drop"))
+        if (Input.GetButtonDown("Xbox1Drop") && GameManager.Instance.gameState == GameState.Advertisements)
         {
             SoundManager.Instance.PlayMenuClick();
             Stop();

@@ -201,12 +201,12 @@ public class GameManager : MonoBehaviour
 
 	public void LeaveAdvertisements()
 	{
+		gameState = GameState.Planet;
 		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
 		ClearPlanet();
 		Timer.Unpause();
-		gameState = GameState.Planet;
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
 	}
