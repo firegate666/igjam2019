@@ -195,7 +195,6 @@ public class TileSystem : IDisposable
 	{
 		yield return	new WaitForSeconds(waitSec);
 		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
-		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 		
 		GameManager.Instance.UpdateScoreText(showScoreIndicator);
 		
@@ -218,6 +217,7 @@ public class TileSystem : IDisposable
 			 OperateOnElements(planetPiece.GetUnderlayingPiece());
 		}
 		_tileSystemPainter.DrawTile(planetPiece, isFirstRecursionStep);
+		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
 
 		return thereWasAReaction;
 	}
@@ -245,5 +245,6 @@ public class TileSystem : IDisposable
 		_planetCycle._rings.ForEach(r => r._pieces.ForEach(p => p.Dispose()));
 		_planetOutlinePainter.Reset();
 		_tileSystemPainter.Reset();
+		CoroutineProvider.Instance.StopAll();
 	}
 }
