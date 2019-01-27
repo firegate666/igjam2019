@@ -125,6 +125,12 @@ public class GameManager : MonoBehaviour
     {
 	    if (Input.GetKeyDown(KeyCode.Escape))
 	    {
+		    if (gameState == GameState.MainMenu)
+		    {
+			    Application.Quit();
+			    Debug.Log("QUIT");
+		    }
+
 		    Restart();
 	    }
     }
