@@ -2,7 +2,7 @@
 
 public class ScrollingBackground : MonoBehaviour
 {
-	public float Speed;
+	public Vector2 Speed;
 
 	private Renderer _renderer;
 
@@ -13,6 +13,6 @@ public class ScrollingBackground : MonoBehaviour
 
 	void Update()
 	{
-		_renderer.material.mainTextureOffset += Vector2.right * Speed * Time.deltaTime;
+		_renderer.material.mainTextureOffset += Speed * Time.deltaTime;
 	}
 }
