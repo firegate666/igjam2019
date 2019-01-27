@@ -1678,6 +1678,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1382188407}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1375470268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1375470267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 821259f3b5a9e4e94ba3e2ad2d89edcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1382188407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2833,6 +2845,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: TutorialOverlay
       objectReference: {fileID: 0}
+    - target: {fileID: 7368181896200054325, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7368181896200054324, guid: f2b53eaa043014eebacf945fe8d8954d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2937,6 +2954,61 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895764423348, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -279
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895764423348, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895769664363, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -279
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895010731799, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -279
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895371672363, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -279
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895411002078, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -314
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895411002078, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 524
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895010731796, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895371672360, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895764423349, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7368181895769664360, guid: f2b53eaa043014eebacf945fe8d8954d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f2b53eaa043014eebacf945fe8d8954d, type: 3}
@@ -3079,6 +3151,11 @@ PrefabInstance:
       propertyPath: CreditsOverlay
       value: 
       objectReference: {fileID: 952433911}
+    - target: {fileID: 915734634907773886, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
 --- !u!1001 &8114988517106697097
