@@ -53,7 +53,6 @@ public class PlayerController : MonoBehaviour
     }
 
     public Transform OrbitPivot;   // The transform that this object will orbit around
-    public float OrbitSpeed = 100f;
 
     private void DeactivateIcons()
     {
@@ -142,21 +141,21 @@ public class PlayerController : MonoBehaviour
                 deg = 360 + deg;
             }
 
-            if (Mathf.Abs(deg - positionAngle) > 0.1f * OrbitSpeed)
+            if (Mathf.Abs(deg - positionAngle) > 0.1f * GlobalConfig.FlySpeedInDegPerSec)
             {
                 if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
                 {
-                    positionAngle += Time.deltaTime * OrbitSpeed;
+                    positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
                 } else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
                 {
-                    positionAngle -= Time.deltaTime * OrbitSpeed;
+                    positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
                 } else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
                 {
-                    positionAngle -= Time.deltaTime * OrbitSpeed;
+                    positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
                 }
                 else
                 {
-                    positionAngle += Time.deltaTime * OrbitSpeed;
+                    positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
                 }
             }
 
