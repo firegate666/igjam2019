@@ -7,7 +7,7 @@ namespace DefaultNamespace
 		public const int PlanetBaseLevelSize = 3;
 		public const int PlanetLevelHeight = 3;
 		public const int CycleSegmentOutlineSoftness = 6;
-		public const int GameplaySeconds = 200;
+		public const int GameplaySeconds = 120;
 		public const float FlySpeedInDegPerSec = 140f;
 
 		public static Dictionary<Elements, Elements> PossibleFusions = new Dictionary<Elements, Elements>
