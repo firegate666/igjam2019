@@ -1494,11 +1494,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlanetFinishedOverlay
       objectReference: {fileID: 0}
-    - target: {fileID: 3127751279377620604, guid: c958633a25e914593b1306b6f1afec87,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3127751279377620595, guid: c958633a25e914593b1306b6f1afec87,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1612,6 +1607,18 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1181056100}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1181056103 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1181056103, guid: c958633a25e914593b1306b6f1afec87,
+    type: 3}
+  m_PrefabInstance: {fileID: 1181056100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 343b5a74dd7ab4faaaf95d749a0bc202, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1230135007
 GameObject:
   m_ObjectHideFlags: 0
@@ -1821,18 +1828,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1382188407}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1375470268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1375470267}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 821259f3b5a9e4e94ba3e2ad2d89edcd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1382188407
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1844,11 +1839,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameOverUI
-      objectReference: {fileID: 0}
-    - target: {fileID: 1971872769806331179, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 144214679214473718, guid: bcced4ae4e3364f03b5b659768b8aa9b,
         type: 3}
@@ -1955,35 +1945,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1598316772983915207, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+    - target: {fileID: 4338291485029049062, guid: bcced4ae4e3364f03b5b659768b8aa9b,
         type: 3}
-      propertyPath: m_Enabled
-      value: 0
+      propertyPath: m_havePropertiesChanged
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
+    - target: {fileID: 4338291485029049062, guid: bcced4ae4e3364f03b5b659768b8aa9b,
         type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 23
-      objectReference: {fileID: 0}
-    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 970157911417382151, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 382
-      objectReference: {fileID: 0}
-    - target: {fileID: 998316701291164042, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -86
-      objectReference: {fileID: 0}
-    - target: {fileID: 1811352448619803599, guid: bcced4ae4e3364f03b5b659768b8aa9b,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: m_isInputParsingRequired
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcced4ae4e3364f03b5b659768b8aa9b, type: 3}
@@ -2539,6 +2509,7 @@ MonoBehaviour:
   MainUI: {fileID: 490067661}
   StartUI: {fileID: 869845229}
   GameOverUI: {fileID: 1375470267}
+  IntermissionUI: {fileID: 1181056103}
   ElementSpawner: {fileID: 1134409527}
   AdvertisementUI: {fileID: 1336540358}
   AlienUI: {fileID: 337129815}
@@ -3352,6 +3323,16 @@ PrefabInstance:
       propertyPath: CreditsOverlay
       value: 
       objectReference: {fileID: 952433911}
+    - target: {fileID: 4191051780396350177, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4191051780396350177, guid: 7865eec418c29426a8d4e26a2156ab78,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7865eec418c29426a8d4e26a2156ab78, type: 3}
 --- !u!1001 &8114988517106697097

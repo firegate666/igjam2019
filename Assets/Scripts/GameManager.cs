@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
+    public IntermissionUI IntermissionUI;
     public ElementSpawner ElementSpawner; 
     public AdvertisementsUI AdvertisementUI;
     public AlienUI AlienUI;
@@ -151,7 +152,8 @@ public class GameManager : MonoBehaviour
 	public void PlanetFull()
 	{
 		UpdateScoreText();
-		TheScore.addTotalScore(TheScore.getPlanetScore());
+		int planetScore = TheScore.getPlanetScore();
+		TheScore.addTotalScore(planetScore);
 		TheScore.setPlanetScore(0);
 		//Debug.Log(TheScore.getTotalScore());
 		gameState = GameState.Advertisements;
@@ -196,6 +198,7 @@ public class GameManager : MonoBehaviour
 			_aliens.Add(newAlien);
 		}
 		
+		IntermissionUI.SetPlanetScore(planetScore);
 		
 		planetsPast++;
 
@@ -209,7 +212,14 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator TriggerAdvertisements()
 	{
+		IntermissionUI.gameObject.SetActive(true);
 		PlanetAnimatior.SetTrigger("planetOut");
+		yield return new WaitForSeconds(2);
+		IntermissionUI.gameObject.SetActive(false);
+			
+			
+		
+		
 		yield return new WaitForSeconds(1.5f);
 		_tileSystem.Dispose();
 		yield return null;
