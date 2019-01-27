@@ -17,7 +17,8 @@ public class GameManager : MonoBehaviour
 	public ScoreManager TheScore;
 
 	public UITimer Timer;
-	public TextMeshProUGUI gameScore; 
+	public TextMeshProUGUI gameScore;
+	public GameObject scoreAddedPrefab;
 	public GameObject MainUI;
     public GameObject StartUI;
     public GameObject GameOverUI;
@@ -65,7 +66,6 @@ public class GameManager : MonoBehaviour
 		TheScore = new ScoreManager();
 		TheScore.setScore(0);
 		gameScore.text = "$$ 0";
-
         _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         _tileSystemPainter.gameObject.SetActive(false);
         _planetOutlineContainer.gameObject.SetActive(false);
@@ -117,9 +117,10 @@ public class GameManager : MonoBehaviour
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
 			_playerControllers[playerNo - 1].assignRandomElement();
+			UpdateScoreText();
 			return true;
 		}
-
+		UpdateScoreText();
 		return false;
 	}
 
@@ -163,8 +164,8 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < allWinners.Count; i++)
 		{
 			Debug.Log("Winner declared");
-			TheScore.addScore(alienPoints[allWinners[i]]);
-			gameScore.text = "$$ " + TheScore.getScore() + 100;
+//			TheScore.addScore(alienPoints[allWinners[i]]);
+			UpdateScoreText();
 			Debug.Log(TheScore.getScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
@@ -212,5 +213,26 @@ public class GameManager : MonoBehaviour
 	{
 		_tileSystem.Dispose();
 		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
+	}
+
+	public void UpdateScoreText()
+	{
+		if (_aliens == null)
+		{
+			return;
+		}
+		int elementCount1 = _tileSystem.CountElement(_aliens[0].Element);
+		int elementCount2 = _tileSystem.CountElement(_aliens[1].Element);
+
+		if (TheScore.getScore() != elementCount1 + elementCount2)
+		{
+			GameObject scoreAddedText = Instantiate(scoreAddedPrefab, gameScore.transform);
+			scoreAddedText.GetComponent<TextMeshProUGUI>().text =
+				"" + ((elementCount1 + elementCount2) - TheScore.getScore())*100;
+			Destroy(scoreAddedText, 2f);
+		}
+		
+		TheScore.setScore(elementCount1 + elementCount2);
+		gameScore.text = "$$ " + TheScore.getScore() *100;
 	}
 }

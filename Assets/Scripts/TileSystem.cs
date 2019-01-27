@@ -176,6 +176,7 @@ public class TileSystem : IDisposable
 
 	public bool DoDrop(float angle, Elements element)
 	{
+		
 		PlanetPiece planetPiece = _planetCycle.GetFirstFreeAtAngle(angle);
 		if (planetPiece == null)
 		{
@@ -183,7 +184,6 @@ public class TileSystem : IDisposable
 		}
 
 		planetPiece.element = element;
-
 		CoroutineProvider.Instance.RunCoroutine(OperateOnElementsAfterSeconds(planetPiece, .5f)); //plus drawing, now 20% off !
 
 		if (_planetCycle.IsPlanetFull())
@@ -199,6 +199,7 @@ public class TileSystem : IDisposable
 		yield return	new WaitForSeconds(waitSec);
 		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
 		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
+		GameManager.Instance.UpdateScoreText();
 	}
 	
 	private bool OperateOnElements(PlanetPiece planetPiece, bool isFirstRecursionStep = false)
