@@ -5,6 +5,7 @@ using System.Linq;
 using DefaultNamespace;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -118,8 +119,17 @@ public class GameManager : MonoBehaviour
 		    player.gameObject.SetActive(false);
 	    }
     }
-    
-	public bool doDrop(float playerPosition, int playerNo, Elements element)
+
+    private void Update()
+    {
+	    if (Input.GetKeyDown(KeyCode.Escape))
+	    {
+		    Restart();
+	    }
+    }
+
+
+    public bool doDrop(float playerPosition, int playerNo, Elements element)
 	{
 		if (_tileSystem.DoDrop(playerPosition, element))
 		{
