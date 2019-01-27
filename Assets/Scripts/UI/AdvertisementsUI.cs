@@ -9,10 +9,8 @@ public class AdvertisementsUI : MonoBehaviour
 
     private void Awake()
     {
-        _currentSlide = 0;
+        _currentSlide = Random.Range(0, Slides.Length);
         _numberOfSlides = Slides.Length;
-        
-        
     }
 
     private void OnEnable()
