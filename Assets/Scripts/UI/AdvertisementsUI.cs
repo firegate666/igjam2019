@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class AdvertisementsUI : MonoBehaviour
@@ -20,19 +18,19 @@ public class AdvertisementsUI : MonoBehaviour
     private void OnEnable()
     {
         Slides[_currentSlide].gameObject.SetActive(true);
-        StartCoroutine(ScheduleNext());
     }
 
-    IEnumerator ScheduleNext()
+    private void OnDisable()
     {
-        yield return new WaitForSeconds(2);
-        Slides[GetCurrentSlideIndex()].gameObject.SetActive(false);
+        GameManager.Instance.LeaveAdvertisements();
+    }
 
-        IncrementSlide();
-        
-        Slides[GetCurrentSlideIndex()].gameObject.SetActive(true);
-
-        StartCoroutine(Stop());
+    private void Update()
+    {
+        if (Input.GetButtonDown("Xbox1Drop"))
+        {
+            Stop();
+        }
     }
 
     void IncrementSlide()
@@ -44,28 +42,15 @@ public class AdvertisementsUI : MonoBehaviour
         }
     }
 
-    IEnumerator Stop()
+    private void Stop()
     {
-        yield return new WaitForSeconds(2);
-        
         Slides[GetCurrentSlideIndex()].gameObject.SetActive(false);
         IncrementSlide();
-        
         gameObject.SetActive(false);
     }
 
     int GetCurrentSlideIndex()
     {
         return _currentSlide;
-    }
-    
-    int GetNextSlideIndex()
-    {
-        int nextSlide = _currentSlide + 1;
-        if (nextSlide >= _numberOfSlides)
-        {
-            nextSlide = 0;
-        }
-        return nextSlide;
     }
 }
