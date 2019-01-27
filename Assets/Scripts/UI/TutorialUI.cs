@@ -26,7 +26,7 @@ public class TutorialUI : MonoBehaviour
 
             if (_currentSlide >= _numberOfSlides)
             {
-                Debug.Log("All slides played");
+                //Debug.Log("All slides played");
                 gameObject.SetActive(false);
             }
             else

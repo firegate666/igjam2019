@@ -39,7 +39,7 @@ public class ElementSpawner : MonoBehaviour
                 }
             }
 
-            Debug.Log("Active elment " + activeElements);
+            //Debug.Log("Active elment " + activeElements);
             if (activeElements < 2)
             {
                 float angle = 360 / Random.Range(1, 6);

@@ -25,7 +25,7 @@ public class StartUI : MonoBehaviour
     public void StartGame(int numberOfPlayers)
     {
         SoundManager.Instance.PlayMenuClick();
-        Debug.Log("Start Game");
+        //Debug.Log("Start Game");
         GameManager.Instance.StartGame(numberOfPlayers);
     }
 
@@ -39,7 +39,7 @@ public class StartUI : MonoBehaviour
     public void ShowOptions()
     {
         SoundManager.Instance.PlayMenuClick();
-        Debug.Log("Show options");
+        //Debug.Log("Show options");
     }
     
     public void ShowHelp()
