@@ -67,14 +67,13 @@ public class GameManager : MonoBehaviour
 		TheScore.setTotalScore(0);
 		gameScore.text = "0";
 
-        _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
-        _tileSystemPainter.gameObject.SetActive(false);
-        _planetOutlineContainer.gameObject.SetActive(false);
+        
         StartUI.SetActive(true);
     }
 
     public void StartGame(int numberOfPlayers)
     {
+	    
 		planetsPast = 0;
 
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers).ToList();
@@ -92,8 +91,7 @@ public class GameManager : MonoBehaviour
         }
 
         StartUI.SetActive(false);
-        _tileSystemPainter.gameObject.SetActive(true);
-        _planetOutlineContainer.gameObject.SetActive(true);
+	    _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         MainUI.SetActive(true);
         gameState = GameState.Planet;
         Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
@@ -120,10 +118,10 @@ public class GameManager : MonoBehaviour
 		{
 			Camera.main.gameObject.GetComponent<Shake>().DoShake();
 			_playerControllers[playerNo - 1].assignRandomElement();
-			UpdateScoreText();
+//			UpdateScoreText();
 			return true;
 		}
-		UpdateScoreText();
+//		UpdateScoreText();
 		return false;
 	}
 
@@ -135,6 +133,11 @@ public class GameManager : MonoBehaviour
 
 	public void PlanetFull()
 	{
+		UpdateScoreText();
+		TheScore.addTotalScore(TheScore.getPlanetScore());
+		TheScore.setPlanetScore(0);
+		Debug.Log(TheScore.getTotalScore());
+		gameState = GameState.Advertisements;
 		// Check for winning alien
 		List<int> alienPoints = new List<int>();
 		foreach (AlienContainer alien in _aliens)
@@ -167,10 +170,6 @@ public class GameManager : MonoBehaviour
 		for (int i = 0; i < allWinners.Count; i++)
 		{
 			Debug.Log("Winner declared");
-//			TheScore.addPlanetScore(alienPoints[allWinners[i]]);
-			TheScore.setPlanetScore(0);
-			UpdateScoreText();
-			Debug.Log(TheScore.getTotalScore());
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
 			_aliens.Remove(_aliens[allWinners[i]]);
@@ -178,6 +177,8 @@ public class GameManager : MonoBehaviour
 			AlienUI.AddAlien(newAlien);
 			_aliens.Add(newAlien);
 		}
+		
+		
 		planetsPast++;
 
 		PlanetFishedFX.Play();
@@ -225,25 +226,30 @@ public class GameManager : MonoBehaviour
 		_tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
 	}
 
-	public void UpdateScoreText()
+	public void UpdateScoreText(bool showScoreIndicator = true)
 	{
-		if (_aliens == null)
+		if (gameState != GameState.Planet)
 		{
 			return;
 		}
 		int elementCount1 = _tileSystem.CountElement(_aliens[0].Element);
 		int elementCount2 = _tileSystem.CountElement(_aliens[1].Element);
 
-		if (TheScore.getTotalScore() != elementCount1 + elementCount2)
+		if (showScoreIndicator && TheScore.getPlanetScore() != elementCount1 + elementCount2)
 		{
-			GameObject scoreAddedText = Instantiate(scoreAddedPrefab, gameScore.transform);
-			scoreAddedText.GetComponent<TextMeshProUGUI>().text =
-				"" + ((elementCount1 + elementCount2) - TheScore.getPlanetScore())*100;
-			Destroy(scoreAddedText, 2f);
+			StartCoroutine(spawnScortextIndicator((elementCount1 + elementCount2- TheScore.getPlanetScore())*100, 0.5f));
 		}
 		
 		TheScore.setPlanetScore(elementCount1 + elementCount2);
-		TheScore.addTotalScore(((elementCount1 + elementCount2) - TheScore.getPlanetScore()));
-		gameScore.text = "$$ " + TheScore.getTotalScore() *100;
+		gameScore.text = "" + (TheScore.getTotalScore()+TheScore.getPlanetScore())*100;
+	}
+
+	IEnumerator spawnScortextIndicator(int scoreText, float waitTime)
+	{
+		yield return new WaitForSeconds(waitTime);
+		GameObject scoreAddedText = Instantiate(scoreAddedPrefab, gameScore.transform);
+		scoreAddedText.GetComponent<TextMeshProUGUI>().text =
+			""+scoreText;
+		Destroy(scoreAddedText, 2f);
 	}
 }

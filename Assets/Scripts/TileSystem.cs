@@ -170,11 +170,11 @@ public class TileSystem : IDisposable
 		for (int i = 0; i < GlobalConfig.PlanetBaseLevelSize; i++)
 		{
 			Array elements = Enum.GetValues(typeof(Elements));
-			this.DoDrop(i * (360 / GlobalConfig.PlanetBaseLevelSize) + 1f, (Elements) Random.Range(1, elements.Length));
+			this.DoDrop(i * (360 / GlobalConfig.PlanetBaseLevelSize) + 1f, (Elements) Random.Range(1, elements.Length), false);
 		}
 	}
 
-	public bool DoDrop(float angle, Elements element)
+	public bool DoDrop(float angle, Elements element, bool showScoreIndicator = true)
 	{
 		
 		PlanetPiece planetPiece = _planetCycle.GetFirstFreeAtAngle(angle);
@@ -184,22 +184,26 @@ public class TileSystem : IDisposable
 		}
 
 		planetPiece.element = element;
-		CoroutineProvider.Instance.RunCoroutine(OperateOnElementsAfterSeconds(planetPiece, .5f)); //plus drawing, now 20% off !
+		CoroutineProvider.Instance.RunCoroutine(OperateOnElementsAfterSeconds(planetPiece, .5f, showScoreIndicator)); //plus drawing, now 20% off !
 
-		if (_planetCycle.IsPlanetFull())
-		{
-			GameManager.Instance.PlanetFull();
-		}
+		
 
 		return true;
 	}
 
-	IEnumerator OperateOnElementsAfterSeconds(PlanetPiece planetPiece, float waitSec)
+	IEnumerator OperateOnElementsAfterSeconds(PlanetPiece planetPiece, float waitSec, bool showScoreIndicator = true)
 	{
 		yield return	new WaitForSeconds(waitSec);
 		OperateOnElements(planetPiece, true); //plus drawing, now 20% off !
 		_planetOutlinePainter.DrawOutLineForPiece(planetPiece);
-		GameManager.Instance.UpdateScoreText();
+		
+		GameManager.Instance.UpdateScoreText(showScoreIndicator);
+		
+		if (_planetCycle.IsPlanetFull())
+		{
+			GameManager.Instance.PlanetFull();
+		}
+		
 	}
 	
 	private bool OperateOnElements(PlanetPiece planetPiece, bool isFirstRecursionStep = false)
