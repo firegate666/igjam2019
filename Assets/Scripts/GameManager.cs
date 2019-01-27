@@ -187,12 +187,12 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator TriggerAdvertisements()
 	{
+		gameState = GameState.Advertisements;
 		yield return new WaitForSeconds(1);
 		PlanetAnimatior.SetTrigger("planetOut");
 		yield return new WaitForSeconds(2);
 		_tileSystemPainter.gameObject.SetActive(false);
 		_planetOutlineContainer.gameObject.SetActive(false);
-		gameState = GameState.Advertisements;
 		AdvertisementUI.gameObject.SetActive(true);
 		PlanetFishedFX.Stop();
 		PlanetCompleteFX.Stop();
@@ -201,12 +201,12 @@ public class GameManager : MonoBehaviour
 
 	public void LeaveAdvertisements()
 	{
-		gameState = GameState.Planet;
-		PlanetAnimatior.SetTrigger("planetIn");
 		_tileSystemPainter.gameObject.SetActive(true);
 		_planetOutlineContainer.gameObject.SetActive(true);
 		ClearPlanet();
+		gameState = GameState.Planet;
 		Timer.Unpause();
+		PlanetAnimatior.SetTrigger("planetIn");
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
 	}
