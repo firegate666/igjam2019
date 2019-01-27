@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using DefaultNamespace;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -26,6 +27,8 @@ public class ElementSpawner : MonoBehaviour
 //        SpawnAtPositionAngle(Elements.Wood, 200f);
     }
 
+	int _elementsInSpawning = 0;
+
     // Update is called once per frame
     void Update()
     {
@@ -46,7 +49,7 @@ public class ElementSpawner : MonoBehaviour
             }
 
             //Debug.Log("Active elment " + activeElements);
-            if (activeElements < 2)
+            if (activeElements + _elementsInSpawning < 2)
             {
                 float angle = (360f / 6) * Random.Range(0, 6);
                 
@@ -84,9 +87,9 @@ public class ElementSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnAtPositionAngle(Elements element, float angle)
+    void SpawnAtPositionAngle(Elements element, float angle)
     {
-        float positionX = Mathf.Sin(angle / (180 / Mathf.PI)) * _distanceToCenter;
+		float positionX = Mathf.Sin(angle / (180 / Mathf.PI)) * _distanceToCenter;
         float positionY = Mathf.Cos(angle / (180 / Mathf.PI)) * _distanceToCenter;
         Vector3 newPosition = new Vector3(positionX + _xOffset, positionY, transform.position.z);
 
@@ -104,12 +107,23 @@ public class ElementSpawner : MonoBehaviour
             }
         }
 
-        GameObject newElement = Instantiate(ElementToSpawnPrefab, transform);
-        newElement.GetComponent<ElementContainer>().element = element;
-        newElement.transform.position = newPosition;
-
-        newElement.GetComponentInChildren<SpriteRenderer>().sprite = _elemntIcons[(int) element];
-
-        spawnedElements.Add(newElement);
+		StartCoroutine(DoSpawn(element, newPosition));
     }
+
+	IEnumerator DoSpawn(Elements element, Vector3 newPosition)
+	{
+		_elementsInSpawning++;
+
+		yield return new WaitForSeconds(0.5f);
+
+		GameObject newElement = Instantiate(ElementToSpawnPrefab, transform);
+		newElement.GetComponent<ElementContainer>().element = element;
+		newElement.transform.position = newPosition;
+
+		newElement.GetComponentInChildren<SpriteRenderer>().sprite = _elemntIcons[(int)element];
+
+		spawnedElements.Add(newElement);
+
+		_elementsInSpawning--;
+	}
 }
