@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         _planetOutlineContainer.gameObject.SetActive(true);
         MainUI.SetActive(true);
         gameState = GameState.Planet;
-        Timer.SetRunning(10, () => GameOver());
+        Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
     }
 
     public void GameOver()
