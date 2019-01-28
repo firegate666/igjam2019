@@ -576,6 +576,53 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &383169621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 383169622}
+  - component: {fileID: 383169623}
+  m_Layer: 0
+  m_Name: MobileManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &383169622
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383169621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 985.64905, y: 534.7317, z: 23.43576}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 13
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &383169623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 383169621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13e6d4e0dc526ad42b5cb48a242068cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MobileOnlyGameObjects:
+  - {fileID: 1153047994}
+  - {fileID: 607669946}
+  DebugMode: 0
 --- !u!1 &405772999
 GameObject:
   m_ObjectHideFlags: 0
@@ -928,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eb56da154381741b8fce97635a386e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mode: 2
+  _mode: 0
 --- !u!4 &607669948
 Transform:
   m_ObjectHideFlags: 0
