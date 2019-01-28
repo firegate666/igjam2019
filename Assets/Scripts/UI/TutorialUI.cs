@@ -8,6 +8,7 @@ public class TutorialUI : MonoBehaviour
     public Image[] Slides;
     private int _numberOfSlides;
     private int _currentSlide;
+	private string _currentSlideName;
 
     private void OnEnable()
     {
@@ -15,8 +16,10 @@ public class TutorialUI : MonoBehaviour
         _numberOfSlides = Slides.Length;
 
 		TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
+		_currentSlideName = Slides[_currentSlide].gameObject.name;
 		Slides[_currentSlide].gameObject.SetActive(true);
-    }
+
+	}
 
     private void Update()
     {
@@ -31,11 +34,11 @@ public class TutorialUI : MonoBehaviour
 			if (NextSlide())
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
+				_currentSlideName = Slides[_currentSlide].gameObject.name;
 				Slides[_currentSlide].gameObject.SetActive(true);
 			}
 			else
 			{
-				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -52,11 +55,12 @@ public class TutorialUI : MonoBehaviour
 			if (NextSlide())
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
+				_currentSlideName = Slides[_currentSlide].gameObject.name;
 				Slides[_currentSlide].gameObject.SetActive(true);
 			}
 			else
 			{
-				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+				TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -66,10 +70,11 @@ public class TutorialUI : MonoBehaviour
 			if (PreviousSlide())
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
+				_currentSlideName = Slides[_currentSlide].gameObject.name;
 				Slides[_currentSlide].gameObject.SetActive(true);
 			} else
 			{
-				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+				TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -84,7 +89,7 @@ public class TutorialUI : MonoBehaviour
 		SoundManager.Instance.PlayMenuClick();
 
 		Slides[_currentSlide].gameObject.SetActive(false);
-		TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+		TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 
 		_currentSlide--;
 
@@ -96,7 +101,7 @@ public class TutorialUI : MonoBehaviour
 		SoundManager.Instance.PlayMenuClick();
 
 		Slides[_currentSlide].gameObject.SetActive(false);
-		TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+		TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 
 		_currentSlide++;
 
