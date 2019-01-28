@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace DefaultNamespace
 {
-	public class Projectile : MonoBehaviour
+	public class ElementProjectile : MonoBehaviour
 	{
 		public float speed;
 		public Sprite[] projectileSprites;

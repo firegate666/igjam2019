@@ -216,7 +216,7 @@ public class PlayerController : MonoBehaviour
 	        Elements droppedElement = elementToDrop;
 	        if (elementToDrop != Elements.NotSet && GameManager.Instance.doDrop(positionAngle, _player, elementToDrop))
 	        {
-		        Projectile projectile = Instantiate(ProjectilePrefab).GetComponent<Projectile>();
+		        ElementProjectile projectile = Instantiate(ProjectilePrefab).GetComponent<ElementProjectile>();
 		        projectile.transform.position = RocketShip.transform.position;
 		        projectile.SetElement(droppedElement, Vector3.right * _xOffset);
 
