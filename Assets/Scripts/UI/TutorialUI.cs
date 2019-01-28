@@ -13,7 +13,9 @@ public class TutorialUI : MonoBehaviour
     {
         _currentSlide = 0;
         _numberOfSlides = Slides.Length;
-        Slides[_currentSlide].gameObject.SetActive(true);
+
+		TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
+		Slides[_currentSlide].gameObject.SetActive(true);
     }
 
     private void Update()
@@ -28,10 +30,12 @@ public class TutorialUI : MonoBehaviour
 		{
 			if (NextSlide())
 			{
+				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				Slides[_currentSlide].gameObject.SetActive(true);
 			}
 			else
 			{
+				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -47,10 +51,12 @@ public class TutorialUI : MonoBehaviour
 			_isSwitching = true;
 			if (NextSlide())
 			{
+				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				Slides[_currentSlide].gameObject.SetActive(true);
 			}
 			else
 			{
+				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -59,9 +65,11 @@ public class TutorialUI : MonoBehaviour
 			_isSwitching = true;
 			if (PreviousSlide())
 			{
+				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				Slides[_currentSlide].gameObject.SetActive(true);
 			} else
 			{
+				TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
 				gameObject.SetActive(false);
 			}
 		}
@@ -74,7 +82,10 @@ public class TutorialUI : MonoBehaviour
 	bool PreviousSlide()
 	{
 		SoundManager.Instance.PlayMenuClick();
+
 		Slides[_currentSlide].gameObject.SetActive(false);
+		TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+
 		_currentSlide--;
 
 		return _currentSlide >= 0;
@@ -83,7 +94,10 @@ public class TutorialUI : MonoBehaviour
 	bool NextSlide()
 	{
 		SoundManager.Instance.PlayMenuClick();
+
 		Slides[_currentSlide].gameObject.SetActive(false);
+		TrackingManager.Help(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
+
 		_currentSlide++;
 
 		return _currentSlide < _numberOfSlides;

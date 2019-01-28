@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 999537893171734457}
   - component: {fileID: 999537893171734454}
   m_Layer: 5
-  m_Name: Slide 4
+  m_Name: Delivery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 999537893345648328}
   - component: {fileID: 999537893345648329}
   m_Layer: 5
-  m_Name: Slide 3
+  m_Name: Homeworld
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 999537893382895578}
   - component: {fileID: 999537893382895579}
   m_Layer: 5
-  m_Name: Slide 7
+  m_Name: Slice of life
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 999537893440036520}
   - component: {fileID: 999537893440036521}
   m_Layer: 5
-  m_Name: Slide 2
+  m_Name: Planet Delivery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -308,7 +308,7 @@ GameObject:
   - component: {fileID: 999537893529600632}
   - component: {fileID: 999537893529600633}
   m_Layer: 5
-  m_Name: Slide 6
+  m_Name: Hot Planets
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -382,7 +382,7 @@ GameObject:
   - component: {fileID: 999537894020704644}
   - component: {fileID: 999537894020704645}
   m_Layer: 5
-  m_Name: Slide 9
+  m_Name: 50000 credits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -623,7 +623,7 @@ GameObject:
   - component: {fileID: 999537894988337341}
   - component: {fileID: 999537894988337338}
   m_Layer: 5
-  m_Name: Slide 8
+  m_Name: Oops
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -697,7 +697,7 @@ GameObject:
   - component: {fileID: 999537895059714942}
   - component: {fileID: 999537895059714943}
   m_Layer: 5
-  m_Name: Slide 5
+  m_Name: Galexy Glue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -771,7 +771,7 @@ GameObject:
   - component: {fileID: 999537895175387434}
   - component: {fileID: 999537895175387435}
   m_Layer: 5
-  m_Name: Slide 1
+  m_Name: Flex String
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -845,7 +845,7 @@ GameObject:
   - component: {fileID: 420774536976861959}
   - component: {fileID: 2228417198069491354}
   m_Layer: 5
-  m_Name: Slide 10
+  m_Name: Recycle today
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

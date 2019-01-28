@@ -102,7 +102,10 @@ public class GameManager : MonoBehaviour
         gameState = GameState.Planet;
         ElementSpawner.spawnElements = true;
         Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
-    }
+		TrackingManager.NewGame();
+		TrackingManager.StartTimer(TrackingManager.TIMER_GAME);
+		TrackingManager.StartTimer(TrackingManager.TIMER_PLANET);
+	}
 
     public void GameOver()
     {
@@ -112,6 +115,8 @@ public class GameManager : MonoBehaviour
 	    
 	    GameOverUI.SetActive(true);
 	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "" + TheScore.getTotalScore() * 100;
+
+		TrackingManager.GameFinished(TheScore.getTotalScore() * 100, TrackingManager.StopTimer(TrackingManager.TIMER_GAME), TheScore.getHighestScore());
 
 		TheScore.CheckHighscore();
 
@@ -155,6 +160,7 @@ public class GameManager : MonoBehaviour
 
 	public void PlanetFull()
 	{
+		var duration = TrackingManager.StopTimer(TrackingManager.TIMER_PLANET);
 		UpdateScoreText();
 		int planetScore = TheScore.getPlanetScore();
 		TheScore.addTotalScore(planetScore);
@@ -206,6 +212,8 @@ public class GameManager : MonoBehaviour
 		
 		planetsPast++;
 
+		TrackingManager.PlanetFinished(planetScore, planetsPast, duration, TheScore.getTotalScore() * 100);
+
 		Timer.Pause();
 		gameState = GameState.Advertisements;
 		ElementSpawner.spawnElements = false;
@@ -252,6 +260,9 @@ public class GameManager : MonoBehaviour
 		gameState = GameState.Planet;
 		ElementSpawner.spawnElements = true;
 		Timer.Unpause();
+
+		TrackingManager.StartTimer(TrackingManager.TIMER_PLANET);
+
 		NextPlanetFX.Play();
 		StartCoroutine(StopNextPlanetFXDelayed());
 	}

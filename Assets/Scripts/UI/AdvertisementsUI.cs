@@ -9,24 +9,31 @@ public class AdvertisementsUI : MonoBehaviour
     private int _currentSlide;
     private Remote _remote;
 
+	private float remoteXDistance;
+	private float remoteYDistance;
+
     private void Awake()
     {
         _currentSlide = Random.Range(0, Slides.Length);
         _numberOfSlides = Slides.Length;
         _remote = GetComponentInChildren<Remote>();
         _remote.GetComponent<RectTransform>().SetParent(GetComponent<RectTransform>().parent);
+
+		remoteXDistance = 0;
+		remoteYDistance = 0;
     }
 
     private void OnEnable()
     {
-        Slides[_currentSlide].gameObject.SetActive(true);
+		TrackingManager.StartTimer(TrackingManager.TIMER_AD);
+		Slides[_currentSlide].gameObject.SetActive(true);
         _remote.gameObject.SetActive(true);
         
     }
 
     private void OnDisable()
     {
-        GameManager.Instance.LeaveAdvertisements();
+		GameManager.Instance.LeaveAdvertisements();
         _remote.gameObject.SetActive(false);
     }
 
@@ -35,7 +42,8 @@ public class AdvertisementsUI : MonoBehaviour
         if (Input.GetButtonDown("Xbox1Drop") && GameManager.Instance.gameState == GameState.Advertisements)
         {
             SoundManager.Instance.PlayMenuClick();
-            Stop();
+			TrackingManager.Ad(Slides[_currentSlide].gameObject.name, TrackingManager.StopTimer(TrackingManager.TIMER_AD), _remote.GetDistanceMoved());
+			Stop();
         }
     }
 

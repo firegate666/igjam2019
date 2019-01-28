@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class CreditsUI : MonoBehaviour
 {
-    private void Update()
+	private void OnEnable()
+	{
+		TrackingManager.Credits();
+	}
+
+	private void Update()
     {
         if (Input.GetButtonDown("Xbox1Drop"))
         {

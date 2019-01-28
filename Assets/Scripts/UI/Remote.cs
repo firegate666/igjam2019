@@ -11,13 +11,30 @@ public class Remote : MonoBehaviour
     
     public float Speed;
 
-    // Update is called once per frame
-    void Update()
+	private float remoteXDistance;
+	private float remoteYDistance;
+
+	public Vector2 GetDistanceMoved()
+	{
+		return new Vector2(remoteXDistance, remoteYDistance);
+	}
+
+	private void OnEnable()
+	{
+		remoteXDistance = 0;
+		remoteYDistance = 0;
+	}
+
+	// Update is called once per frame
+	void Update()
     {
         float x = Input.GetAxis("Xbox1Horizontal");
         float y = Input.GetAxis("Xbox1Vertical");
-        
-        transform.Translate(x * Time.deltaTime * Speed, y * Time.deltaTime * -Speed, 0);
+
+		remoteXDistance += x;
+		remoteYDistance += y;
+
+		transform.Translate(x * Time.deltaTime * Speed, y * Time.deltaTime * -Speed, 0);
 
         Vector3 newPosition = transform.position;
         

@@ -680,6 +680,7 @@ PlayerSettings:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
+    Build: 1
     UNet: 1
   luminIcon:
     m_Name: 
@@ -700,10 +701,10 @@ PlayerSettings:
   facebookXfbml: 0
   facebookFrictionlessRequests: 1
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 9e199b86-33be-49a1-956f-670663dac235
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Planex - Global Game Jam 2019
+  organizationId: firegate666
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
