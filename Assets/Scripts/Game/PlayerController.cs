@@ -9,8 +9,12 @@ using Random = UnityEngine.Random;
 public class PlayerController : MonoBehaviour
 {
     int _player;
-    string horizontalAxis;
-    string verticalAxis;
+    string horizontalAxisController;
+    string verticalAxisController;
+    
+    string horizontalAxisKeyboard;
+    string verticalAxisKeyboard;
+
     string dropButtonName;
     private float _distanceToCenter;
     private float _xOffset;
@@ -38,8 +42,10 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     private void OnEnable()
     {
-        horizontalAxis = "Xbox" + _player + "Horizontal";
-        verticalAxis = "Xbox" + _player + "Vertical";
+        horizontalAxisController = "Xbox" + _player + "Horizontal";
+        horizontalAxisKeyboard = "Keyboard" + _player + "Horizontal";
+        verticalAxisController = "Xbox" + _player + "Vertical";
+        verticalAxisKeyboard = "Keyboard" + _player + "Vertical";
         dropButtonName = "Xbox" + _player + "Drop";
 
 		RocketShip.SetActive(true);
@@ -137,51 +143,29 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        float x = Input.GetAxis(horizontalAxis);
-        float y = Input.GetAxis(verticalAxis);
+        float xController = Input.GetAxis(horizontalAxisController);
+        float yController = Input.GetAxis(verticalAxisController);
 
-		lastPositionAngle = positionAngle;
+        float xKeyboard = Input.GetAxis(horizontalAxisKeyboard);
+        float yKeyboard = Input.GetAxis(verticalAxisKeyboard);
+
+        lastPositionAngle = positionAngle;
 		lastPosition = RocketShip.transform.position;
 
 		Quaternion targetRotation;
 		bool isMoving;
 
-		if (x > 0 || x < 0 || y > 0 || y < 0)
+		if (xController > 0 || xController < 0 || yController > 0 || yController < 0)
         {
-            var rad = Mathf.Atan2(y, x); // In radians
-            var deg = rad * (180 / Mathf.PI) + 90;
-
-            if (deg < 0)
-            {
-                deg = 360 + deg;
-            }
-
-            if (Mathf.Abs(deg - positionAngle) > 0.1f * GlobalConfig.FlySpeedInDegPerSec)
-            {
-                if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
-                {
-                    positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                } else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
-                {
-                    positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                } else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
-                {
-                    positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                }
-                else
-                {
-                    positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
-                }
-            }
-
-            if (positionAngle >= 360)
-            {
-                positionAngle -= 360;
-            } else if (positionAngle < 0)
-            {
-                positionAngle += 360;
-            }
-
+            HandleController(xController, yController);
+            positionAngle = NormalizeAngle(positionAngle);
+            SetPositionAngle(positionAngle);
+            isMoving = true;
+		}
+		else if (xKeyboard > 0 || xKeyboard < 0 || yKeyboard > 0 || yKeyboard < 0)
+		{
+			HandleKeyboard(xKeyboard, yKeyboard);
+			positionAngle = NormalizeAngle(positionAngle);
 			SetPositionAngle(positionAngle);
 			isMoving = true;
 		}
@@ -203,16 +187,6 @@ public class PlayerController : MonoBehaviour
 
 		if (Input.GetButtonDown(dropButtonName) && GameManager.Instance.gameState == GameState.Planet)
         {
-            //Debug.Log("Drop button down");
-
-			/*GameObject tile = Instantiate(tileToDrop, transform.position, Quaternion.identity, null);
-            Vector3 lookAt = OrbitPivot.position;
-            lookAt.z = transform.position.z;
-            tile.transform.LookAt(lookAt);
-
-            FlyingTo fly = tile.GetComponent<FlyingTo>();
-            fly.FlyTo(lookAt);*/
-
 	        Elements droppedElement = elementToDrop;
 	        if (elementToDrop != Elements.NotSet && GameManager.Instance.doDrop(positionAngle, _player, elementToDrop))
 	        {
@@ -224,6 +198,53 @@ public class PlayerController : MonoBehaviour
 	        }
         }
     }
+
+	float NormalizeAngle(float angle)
+	{
+		if (angle >= 360)
+		{
+			angle -= 360;
+		} else if (angle < 0)
+		{
+			angle += 360;
+		}
+
+		return angle;
+	}
+	
+	void HandleKeyboard(float x, float y)
+	{
+		positionAngle -= x * Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
+	}
+
+	void HandleController(float x, float y)
+	{
+		var rad = Mathf.Atan2(y, x); // In radians
+		var deg = rad * (180 / Mathf.PI) + 90;
+
+		if (deg < 0)
+		{
+			deg = 360 + deg;
+		}
+
+		if (Mathf.Abs(deg - positionAngle) > 0.1f * GlobalConfig.FlySpeedInDegPerSec)
+		{
+			if (positionAngle < deg && deg - positionAngle < positionAngle + 360 - deg) // right
+			{
+				positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
+			} else if (positionAngle < deg && deg - positionAngle >= positionAngle + 360 - deg)
+			{
+				positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
+			} else if (positionAngle >= deg && positionAngle - deg < deg + 360 - positionAngle)
+			{
+				positionAngle -= Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
+			}
+			else
+			{
+				positionAngle += Time.deltaTime * GlobalConfig.FlySpeedInDegPerSec;
+			}
+		}
+	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{

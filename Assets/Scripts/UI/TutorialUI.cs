@@ -48,7 +48,7 @@ public class TutorialUI : MonoBehaviour
 
 	void HandleAxis()
 	{
-		float x = Input.GetAxis("Xbox1Horizontal");
+		float x = Input.GetAxis("Xbox1Horizontal") + Input.GetAxis("Keyboard1Horizontal");
 		if (!_isSwitching && x > 0)
 		{
 			_isSwitching = true;

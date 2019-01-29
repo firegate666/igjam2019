@@ -91,7 +91,7 @@ public class StartUI : MonoBehaviour
                 ButtonArea.SetActive((true));
             }
 
-            float y = Input.GetAxis("Xbox1Vertical");
+            float y = Input.GetAxis("Xbox1Vertical") + Input.GetAxis("Keyboard1Vertical");
             if (!_isSwitching && y > 0)
             {
                 _isSwitching = true;

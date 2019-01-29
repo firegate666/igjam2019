@@ -622,7 +622,7 @@ MonoBehaviour:
   MobileOnlyGameObjects:
   - {fileID: 1153047994}
   - {fileID: 607669946}
-  DebugMode: 0
+  DebugMode: 1
 --- !u!1 &405772999
 GameObject:
   m_ObjectHideFlags: 0
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 87eb56da154381741b8fce97635a386e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _mode: 1
+  _mode: 2
 --- !u!4 &607669948
 Transform:
   m_ObjectHideFlags: 0
@@ -1409,9 +1409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef282548b69dc8c45ac0676c459b6f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HorizontalAxis: Xbox1Horizontal
+  HorizontalAxis: Keyboard1Horizontal
   HorizontalInvertAxis: 0
-  VerticalAxis: Xbox1Vertical
+  VerticalAxis: Keyboard1Vertical
   VerticalInvertAxis: 1
   _sensitivity: 60
   AnalogicKnobObject: {fileID: 102677099}

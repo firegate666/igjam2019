@@ -28,8 +28,8 @@ public class Remote : MonoBehaviour
 	// Update is called once per frame
 	void Update()
     {
-        float x = Input.GetAxis("Xbox1Horizontal");
-        float y = Input.GetAxis("Xbox1Vertical");
+        float x = Input.GetAxis("Xbox1Horizontal") + Input.GetAxis("Keyboard1Horizontal");
+        float y = Input.GetAxis("Xbox1Vertical") + Input.GetAxis("Keyboard1Vertical");
 
 		remoteXDistance += x;
 		remoteYDistance += y;
