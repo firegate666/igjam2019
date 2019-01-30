@@ -622,7 +622,7 @@ MonoBehaviour:
   MobileOnlyGameObjects:
   - {fileID: 1153047994}
   - {fileID: 607669946}
-  DebugMode: 1
+  DebugMode: 0
 --- !u!1 &405772999
 GameObject:
   m_ObjectHideFlags: 0
