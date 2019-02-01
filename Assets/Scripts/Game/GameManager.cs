@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
 	public TextMeshProUGUI highScore;
 	public GameObject scoreAddedPrefab;
 	public GameObject MainUI;
-    public GameObject StartUI;
     public GameObject GameOverUI;
     public IntermissionUI IntermissionUI;
     public ElementSpawner ElementSpawner; 
@@ -54,7 +53,16 @@ public class GameManager : MonoBehaviour
         return _aliens;
     }
 
-    void Start()
+	GameStateManager _gsm;
+	SoundManager _sm;
+
+	private void Awake()
+	{
+		_gsm = FindObjectOfType<GameStateManager>();
+		_sm = FindObjectOfType<SoundManager>();
+	}
+
+	void Start()
     {
         if (Instance == null)
         {
@@ -71,15 +79,16 @@ public class GameManager : MonoBehaviour
 		TheScore.setPlanetScore(0);
 		gameScore.text = "0";
 
-		int highscore = TheScore.getHighestScore() * 100;
-		highScore.text = highscore.ToString();
-        
-        StartUI.SetActive(true);
+		/*int highscore = TheScore.getHighestScore() * 100;
+		highScore.text = highscore.ToString();*/
+
+		_sm.StopDefaultAudioLook();
+		StartGame(1);
     }
+
 
     public void StartGame(int numberOfPlayers)
     {
-	    
 		planetsPast = 0;
 
         _aliens = AlienSpawner.Instance.SpawnAliens(numberOfPlayers).ToList();
@@ -96,12 +105,10 @@ public class GameManager : MonoBehaviour
             _playerControllers[i] = player;
         }
 
-        StartUI.SetActive(false);
 	    _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
-        MainUI.SetActive(true);
         gameState = GameState.Planet;
         ElementSpawner.spawnElements = true;
-        Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameOver());
+        Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameManager.Instance.GameOver());
 		TrackingManager.NewGame();
 		TrackingManager.StartTimer(TrackingManager.TIMER_GAME);
 		TrackingManager.StartTimer(TrackingManager.TIMER_PLANET);
@@ -136,7 +143,7 @@ public class GameManager : MonoBehaviour
 			    Debug.Log("QUIT");
 		    }
 
-		    Restart();
+			Restart();
 	    }
     }
 
@@ -154,9 +161,8 @@ public class GameManager : MonoBehaviour
 
 	public void Restart()
     {
-        Scene scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.name);
-    }
+		_gsm.ChangeState(new StartState());
+	}
 
 	public void PlanetFull()
 	{

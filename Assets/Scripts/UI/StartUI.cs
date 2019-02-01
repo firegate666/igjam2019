@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
@@ -10,48 +11,60 @@ public class StartUI : MonoBehaviour
     private int _activeButton;
     private bool _isSwitching;
 
-    public GameObject TutorialOverlay;
-    public GameObject CreditsOverlay;
+	public TextMeshProUGUI highScore;
 
-    // Start is called before the first frame update
-    void Start()
+	GameStateManager _gsm;
+	SoundManager _sm;
+
+	private void Awake()
+	{
+		_gsm = FindObjectOfType<GameStateManager>();
+		_sm = FindObjectOfType<SoundManager>();
+	}
+
+	// Start is called before the first frame update
+	void Start()
     {
         if (Buttons.Length > 0)
         {
             Buttons[_activeButton].ToggleState();
         }
-    }
 
-    public void StartGame(int numberOfPlayers)
+		_sm.PlayDefaultAudioLoop();
+
+		ScoreManager TheScore = new ScoreManager();
+		TheScore.LoadPlayerProgress();
+		int highscore = TheScore.getHighestScore() * 100;
+		highScore.text = highscore.ToString();
+	}
+
+	public void StartGame(int numberOfPlayers)
     {
-        SoundManager.Instance.PlayMenuClick();
-        //Debug.Log("Start Game");
-        GameManager.Instance.StartGame(numberOfPlayers);
+        _sm.PlayMenuClick();
+		_gsm.ChangeState(new InGameState());
     }
 
     public void ShowCredits()
     {
-        SoundManager.Instance.PlayMenuClick();
-        ButtonArea.SetActive((false));
-        CreditsOverlay.SetActive(true);
+        _sm.PlayMenuClick();
+		_gsm.ChangeState(new CreditsState());
     }
     
     public void ShowOptions()
     {
-        SoundManager.Instance.PlayMenuClick();
+        _sm.PlayMenuClick();
         //Debug.Log("Show options");
     }
     
     public void ShowHelp()
     {
-        SoundManager.Instance.PlayMenuClick();
-        ButtonArea.SetActive((false));
-        TutorialOverlay.SetActive(true);
-    }
+        _sm.PlayMenuClick();
+		_gsm.ChangeState(new HelpState());
+	}
     
     void ButtonDown()
     {
-        SoundManager.Instance.PlayMenuClick();
+        _sm.PlayMenuClick();
         Buttons[_activeButton].ToggleState();
         
         _activeButton++;
@@ -65,7 +78,7 @@ public class StartUI : MonoBehaviour
     
     void ButtonUp()
     {
-        SoundManager.Instance.PlayMenuClick();
+        _sm.PlayMenuClick();
         Buttons[_activeButton].ToggleState();
         
         _activeButton--;
@@ -80,37 +93,26 @@ public class StartUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (TutorialOverlay.activeSelf || CreditsOverlay.activeSelf)
+        float y = Input.GetAxis("Xbox1Vertical") + Input.GetAxis("Keyboard1Vertical");
+
+		if (!_isSwitching && y > 0)
         {
-            // start menu blocked if overlay
+            _isSwitching = true;
+            ButtonDown();
         }
-        else
+        else if (!_isSwitching && y < 0)
         {
-            if (!ButtonArea.activeSelf && !CreditsOverlay.activeSelf)
-            {
-                ButtonArea.SetActive((true));
-            }
+            _isSwitching = true;
+            ButtonUp();
+        }
+        else if (_isSwitching && y == 0f)
+        {
+            _isSwitching = false;
+        }
 
-            float y = Input.GetAxis("Xbox1Vertical") + Input.GetAxis("Keyboard1Vertical");
-            if (!_isSwitching && y > 0)
-            {
-                _isSwitching = true;
-                ButtonDown();
-            }
-            else if (!_isSwitching && y < 0)
-            {
-                _isSwitching = true;
-                ButtonUp();
-            }
-            else if (_isSwitching && y == 0f)
-            {
-                _isSwitching = false;
-            }
-
-            if (Input.GetButtonDown("Xbox1Drop"))
-            {
-                Buttons[_activeButton].TriggerAction();
-            }
+        if (Input.GetButtonDown("Xbox1Drop"))
+        {
+            Buttons[_activeButton].TriggerAction();
         }
     }
 }

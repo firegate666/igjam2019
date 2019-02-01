@@ -10,6 +10,8 @@ public class SoundManager : MonoBehaviour
     public AudioSource Wood;
     public AudioSource Impact;
 
+	public AudioSource DefaultAudioLoop;
+
     public static SoundManager Instance;
 
     private void Awake()
@@ -19,6 +21,19 @@ public class SoundManager : MonoBehaviour
             Instance = this;
         }
     }
+
+	public void PlayDefaultAudioLoop()
+	{
+		if (!DefaultAudioLoop.isPlaying)
+		{
+			DefaultAudioLoop.Play();
+		}
+	}
+
+	public void StopDefaultAudioLook()
+	{
+		DefaultAudioLoop.Stop();
+	}
 
     public void PlayMenuClick()
     {

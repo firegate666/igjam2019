@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
@@ -10,7 +8,16 @@ public class TutorialUI : MonoBehaviour
     private int _currentSlide;
 	private string _currentSlideName;
 
-    private void OnEnable()
+	GameStateManager _gsm;
+	SoundManager _sm;
+
+	private void Awake()
+	{
+		_gsm = FindObjectOfType<GameStateManager>();
+		_sm = FindObjectOfType<SoundManager>();
+	}
+
+	private void OnEnable()
     {
         _currentSlide = 0;
         _numberOfSlides = Slides.Length;
@@ -35,10 +42,14 @@ public class TutorialUI : MonoBehaviour
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				_currentSlideName = Slides[_currentSlide].gameObject.name;
+
+				_sm.PlayMenuClick();
 				Slides[_currentSlide].gameObject.SetActive(true);
+
 			}
 			else
 			{
+				_gsm.ChangeState(new StartState());
 				gameObject.SetActive(false);
 			}
 		}
@@ -56,12 +67,14 @@ public class TutorialUI : MonoBehaviour
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				_currentSlideName = Slides[_currentSlide].gameObject.name;
+
+				_sm.PlayMenuClick();
 				Slides[_currentSlide].gameObject.SetActive(true);
 			}
 			else
 			{
 				TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
-				gameObject.SetActive(false);
+				_gsm.ChangeState(new StartState());
 			}
 		}
 		else if (!_isSwitching && x < 0)
@@ -71,11 +84,13 @@ public class TutorialUI : MonoBehaviour
 			{
 				TrackingManager.StartTimer(TrackingManager.TIMER_HELP);
 				_currentSlideName = Slides[_currentSlide].gameObject.name;
+
+				_sm.PlayMenuClick();
 				Slides[_currentSlide].gameObject.SetActive(true);
 			} else
 			{
 				TrackingManager.Help(_currentSlideName, TrackingManager.StopTimer(TrackingManager.TIMER_HELP));
-				gameObject.SetActive(false);
+				_gsm.ChangeState(new StartState());
 			}
 		}
 		else if (_isSwitching && x == 0f)

@@ -116,7 +116,7 @@ public class UITimer : MonoBehaviour
     {
         _isRunning = true;
         _pitchModSpeedUp = 0.75f;
-        ChangePitch(1.0f, false);
+        ChangePitch(_basePitch, false);
     }
 
     public void SetRunning(float timeInSeconds, Action callback)

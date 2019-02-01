@@ -4,9 +4,19 @@ using UnityEngine;
 
 public class GameOverUI : MonoBehaviour
 {
+	SoundManager _sm;
 
-    // Update is called once per frame
-    void Update()
+	private void Awake()
+	{
+		_sm = FindObjectOfType<SoundManager>();
+	}
+
+	private void Start()
+	{
+		_sm.PlayDefaultAudioLoop();
+	}
+	// Update is called once per frame
+	void Update()
     {
         if (Input.GetButtonDown("Xbox1Drop"))
         {
