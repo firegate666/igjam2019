@@ -91,7 +91,8 @@ public class TileSystemPainter : MonoBehaviour
 
         while (elapsedTime < time)
         {
-            float scalar = (Mathf.Clamp(level - 1, 0.1f,1000f) + (elapsedTime/time));
+            float scalar = (level - 1) + (elapsedTime/time);
+            if (scalar < 0.1f) scalar = 0.1f;
             tile.transform.localScale = Vector3.one * scalar;
             tile.transform.GetChild(0).transform.localScale = Vector3.one / scalar;
 
