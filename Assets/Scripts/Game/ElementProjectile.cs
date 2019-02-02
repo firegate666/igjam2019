@@ -23,9 +23,15 @@ namespace DefaultNamespace
 			Vector3 moveVector = _target - transform.position;
 			transform.position += moveVector * speed * Time.deltaTime;
 			float currentDistance = moveVector.magnitude;
-			if (currentDistance < 0.01f) Destroy(gameObject);
-			float currentValue = currentDistance / _distanceAtStart;
-			transform.localScale = Vector3.one * sizeCurve.Evaluate(currentValue) * _startSize;
+			if (currentDistance < 0.01f || GameManager.Instance.gameState != GameState.Planet)
+			{
+				Destroy(gameObject);
+			}
+			else
+			{
+				float currentValue = currentDistance / _distanceAtStart;
+				transform.localScale = Vector3.one * sizeCurve.Evaluate(currentValue) * _startSize;
+			}
 		}
 	}
 }
