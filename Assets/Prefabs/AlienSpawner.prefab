@@ -55,6 +55,7 @@ MonoBehaviour:
   - {fileID: 1765657144298685608, guid: 3c12171b6968b4f488a624ca0ca7d952, type: 3}
   - {fileID: 1765657144298685608, guid: e64ff2e05bd6741719a71f26f214fbe0, type: 3}
   - {fileID: 1765657144298685608, guid: 92081a1eefd044302a47df29fc07d0a4, type: 3}
+  - {fileID: 6171793843436318780, guid: aec94a96d90a3c2429d4b0c4db22daf2, type: 3}
   WaterWinnerAliens:
   - {fileID: 579101311035431816, guid: a907c6d3fa8af4935a4979a3f7cc9c99, type: 3}
   - {fileID: 4874527332101888803, guid: 596308edb07684eefb10d6ebe54ed528, type: 3}
@@ -67,6 +68,7 @@ MonoBehaviour:
   - {fileID: 9160421040121328527, guid: 9c385e93c1c254eaba6040d7dbafde16, type: 3}
   - {fileID: 2824585814497071898, guid: 0886b1759c16e44ee87aba4cc8c0bdb0, type: 3}
   - {fileID: 5773633091918597463, guid: 278a2ac052e72491ea2b398692ce0d67, type: 3}
+  - {fileID: 7382444168944475502, guid: 71ce1ebcb1068474d94c13e6f190c580, type: 3}
   WaterIcons:
   - {fileID: 1840254512457647010, guid: 057236b01f580434687c4d09d17427c4, type: 3}
   FireIcons:
