@@ -124,7 +124,8 @@ public class PlanetPiece : IDisposable
 	public readonly float angleSize;
 	public readonly int indexOnRing;
 	private PlanetPiece underlayingPiece = null;
-	public GameObject viewObject;
+	public GameObject viewTile;
+	public GameObject viewOutline;
 
 	public PlanetPiece(int level, float angleSize, int indexOnRing)
 	{
@@ -151,7 +152,8 @@ public class PlanetPiece : IDisposable
 	public void Dispose()
 	{
 		underlayingPiece = null;
-		viewObject = null;
+		viewTile = null;
+		viewOutline = null;
 	}
 }
 

@@ -33,10 +33,10 @@ public class TileSystemPainter : MonoBehaviour
     {
         if (planetPiece.element == Elements.NotSet)
         {
-            if (planetPiece.viewObject != null)
+            if (planetPiece.viewTile != null)
             {
-                Destroy(planetPiece.viewObject);
-                planetPiece.viewObject = null;
+                Destroy(planetPiece.viewTile);
+                planetPiece.viewTile = null;
             }
 
             return;
@@ -46,11 +46,11 @@ public class TileSystemPainter : MonoBehaviour
         int index = planetPiece.indexOnRing;
         float size = planetPiece.angleSize;
 
-        GameObject tile = planetPiece.viewObject;
-        if (planetPiece.viewObject == null)
+        GameObject tile = planetPiece.viewTile;
+        if (planetPiece.viewTile == null)
         {
             tile = Instantiate(_tilePrefab, _levelContainers[level - 1].transform);
-            planetPiece.viewObject = tile;
+            planetPiece.viewTile = tile;
         }
         Image img = tile.transform.GetChild(0).GetComponent<Image>();
         img.sprite = _elementTextures[(int) planetPiece.element];
@@ -64,12 +64,12 @@ public class TileSystemPainter : MonoBehaviour
 
         if (animate && GameManager.Instance.gameState == GameState.Planet)
         {
-        StartCoroutine(AnimateTile(tile.transform, level, 1f));
+            StartCoroutine(AnimateTile(tile.transform, level, 1f));
         }
         else
         {
-        tile.transform.localScale = Vector3.one * level;
-        tile.transform.GetChild(0).transform.localScale = Vector3.one / level;
+            tile.transform.localScale = Vector3.one * level;
+            tile.transform.GetChild(0).transform.localScale = Vector3.one / level;
         }
     }
 
