@@ -114,22 +114,6 @@ public class PlayerController : MonoBehaviour
 		}
 	}
 
-	
-	public void assignRandomElement()
-	{
-		Array elements = Enum.GetValues(typeof(Elements));
-		int count = 0;
-		Elements element;
-
-		do
-		{
-			element = (Elements) elements.GetValue(Random.Range(1, elements.Length - 1));
-			count++;
-		} while (count < 2 && element == lastDroppedElement);
-
-		SetElementToDrop(element);
-	}
-
 	private void TranslateIcons()
 	{
 		Vector3 iconPosition = RocketShip.transform.localPosition + RocketShip.transform.up * 1.9f;
@@ -140,7 +124,6 @@ public class PlayerController : MonoBehaviour
 		WoodIcon.transform.localPosition = iconPosition;
 	}
 
-	// Update is called once per frame
 	void Update()
     {
         float xController = Input.GetAxis(horizontalAxisController);
@@ -251,9 +234,9 @@ public class PlayerController : MonoBehaviour
 		//Debug.Log("Collision Enter!");
 		if (elementToDrop == Elements.NotSet)
 		{
-		elementToDrop =other.transform.parent.GetComponent<ElementContainer>().element;
-		SetElementToDrop(elementToDrop);
-		other.transform.parent.gameObject.SetActive(false);
+			elementToDrop = other.transform.parent.GetComponent<ElementContainer>().element;
+			SetElementToDrop(elementToDrop);
+			other.transform.parent.gameObject.SetActive(false);
 		}
 	}
 }

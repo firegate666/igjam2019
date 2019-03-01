@@ -9,6 +9,7 @@ namespace DefaultNamespace
 		public const int CycleSegmentOutlineSoftness = 6;
 		public const int GameplaySeconds = 120;
 		public const float FlySpeedInDegPerSec = 140f;
+		public const int ElementSpawnSlots = 6;
 
 		// total random values
 		// below first value -> 1 star

@@ -107,7 +107,6 @@ public class GameManager : MonoBehaviour
 
 	    _tileSystem = new TileSystem(_tileSystemPainter, _planetOutlinePainter);
         gameState = GameState.Planet;
-        ElementSpawner.spawnElements = true;
         Timer.SetRunning(GlobalConfig.GameplaySeconds, () => GameManager.Instance.GameOver());
 		TrackingManager.NewGame();
 		TrackingManager.StartTimer(TrackingManager.TIMER_GAME);
@@ -173,7 +172,6 @@ public class GameManager : MonoBehaviour
 		TheScore.setPlanetScore(0);
 		//Debug.Log(TheScore.getTotalScore());
 		gameState = GameState.Advertisements;
-		ElementSpawner.spawnElements = false;
 		// Check for winning alien
 		List<int> alienPoints = new List<int>();
 		foreach (AlienContainer alien in _aliens)
@@ -223,7 +221,6 @@ public class GameManager : MonoBehaviour
 
 		Timer.Pause();
 		gameState = GameState.Advertisements;
-		ElementSpawner.spawnElements = false;
 		PlanetFishedFX.Play();
 		PlanetCompleteFX.Play();
 		StartCoroutine(TriggerAdvertisements());
@@ -265,7 +262,6 @@ public class GameManager : MonoBehaviour
 		PlanetAnimatior.SetTrigger("planetIn");
 		yield return null;
 		gameState = GameState.Planet;
-		ElementSpawner.spawnElements = true;
 		Timer.Unpause();
 
 		TrackingManager.StartTimer(TrackingManager.TIMER_PLANET);
