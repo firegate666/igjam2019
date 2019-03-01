@@ -84,11 +84,29 @@ public class AlienSpawner : MonoBehaviour
 
 		return AssignRandomAlien(alien);
     }
+
+    public AlienContainer SpawnAlienAndExludeElements(List<Elements> exludeElementsList)
+    {
+        var alien = new AlienContainer();
+        alien.Id = _nextAlienID++;
+
+        Elements newAlienElement = GetNextElement();
+        while(exludeElementsList.Contains(newAlienElement)) 
+        {
+            newAlienElement = GetNextElement();
+        }
+        alien.Element = newAlienElement;
+        alien.ElementImage = GetRandomIcon(alien.Element);
+        alien.UIElementImage = GetRandomUIIcon(alien.Element);
+
+		return AssignRandomAlien(alien);
+    }
     
     public AlienContainer[] SpawnAliens(int playerCount)
     {
         var numberOfAliens = playerCount + 1;
         var aliens = new AlienContainer[numberOfAliens];
+
         for (int i = 0; i < numberOfAliens; i++)
         {
             var alien = SpawnAlien();

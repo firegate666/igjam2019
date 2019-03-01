@@ -209,7 +209,8 @@ public class GameManager : MonoBehaviour
 			
 			AlienUI.RemoveAlien(_aliens[allWinners[i]]);
 			_aliens.Remove(_aliens[allWinners[i]]);
-			AlienContainer newAlien = AlienSpawner.Instance.SpawnAlien();
+
+			AlienContainer newAlien = AlienSpawner.Instance.SpawnAlienAndExludeElements(_aliens.Select(a => a.Element).ToList());
 			AlienUI.AddAlien(newAlien);
 			_aliens.Add(newAlien);
 		}
