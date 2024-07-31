@@ -9,6 +9,9 @@ using Random = UnityEngine.Random;
 
 public class GameManager : MonoBehaviour
 {
+    public static event Action<int> OnGameOver = delegate { };
+    public static event Action<int> OnPlanetFinished = delegate { }; 
+    
     public static GameManager Instance;
 
 	public ScoreManager TheScore;
@@ -120,6 +123,8 @@ public class GameManager : MonoBehaviour
 	    GameOverUI.SetActive(true);
 	    GameOverUI.GetComponentInChildren<TextMeshProUGUI>().text = "" + TheScore.getTotalScore() * 100;
 
+        OnGameOver(TheScore.getTotalScore() * 100);
+        
 		TrackingManager.GameFinished(TheScore.getTotalScore() * 100, TrackingManager.StopTimer(TrackingManager.TIMER_GAME), TheScore.getHighestScore());
 
 		TheScore.CheckHighscore();
@@ -217,6 +222,8 @@ public class GameManager : MonoBehaviour
 
 		TrackingManager.PlanetFinished(planetScore, planetsPast, duration, TheScore.getTotalScore() * 100);
 
+        OnPlanetFinished(planetScore);
+        
 		Timer.Pause();
 		gameState = GameState.Advertisements;
 		PlanetFishedFX.Play();
