@@ -1,0 +1,4 @@
+error /: error/
+error /Error building Player/
+
+warn /: warning/
